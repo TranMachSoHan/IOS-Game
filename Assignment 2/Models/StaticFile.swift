@@ -10,16 +10,11 @@
   Acknowledgement: Acknowledge the resources that you use here.
 */
 
-
-import SwiftUI
-
-@main
-struct Assignment_2App: App {
-    
-    var body: some Scene {
-        WindowGroup {
-            MenuView()
-        }
-    }
-    
+//enum state for each screen
+enum Page {
+    case menuPage
+    case gamePage
+    case leaderboardPage
+    case howToPlayPage
+    case levelSettingPage
 }

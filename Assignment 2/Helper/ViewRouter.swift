@@ -10,16 +10,8 @@
   Acknowledgement: Acknowledge the resources that you use here.
 */
 
-
 import SwiftUI
 
-@main
-struct Assignment_2App: App {
-    
-    var body: some Scene {
-        WindowGroup {
-            MenuView()
-        }
-    }
-    
+class ViewRouter: ObservableObject {
+    @Published var currentPage: Page = .menuPage
 }

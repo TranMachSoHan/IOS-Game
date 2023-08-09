@@ -11,15 +11,9 @@
 */
 
 
-import SwiftUI
+import Foundation
 
-@main
-struct Assignment_2App: App {
+class CurrentPlayer: ObservableObject {
     
-    var body: some Scene {
-        WindowGroup {
-            MenuView()
-        }
-    }
-    
+    @Published var name: String = ""
 }
