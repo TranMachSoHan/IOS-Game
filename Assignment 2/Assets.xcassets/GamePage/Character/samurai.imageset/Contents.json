@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "Samurai-Japanease-Culture-iPhone-Wallpaper-HD.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Samurai-Japanease-Culture-iPhone-Wallpaper-HD@2x.jpg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "Samurai-Japanease-Culture-iPhone-Wallpaper-HD@3x.jpg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

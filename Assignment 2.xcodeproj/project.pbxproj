@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2236F3EA2A86951100DAEE8C /* BloodBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2236F3E92A86951100DAEE8C /* BloodBar.swift */; };
+		2236F3EC2A869D5400DAEE8C /* PlayerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2236F3EB2A869D5400DAEE8C /* PlayerStatus.swift */; };
 		2260406D2A814AE200B4682F /* Assignment_2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2260406C2A814AE200B4682F /* Assignment_2App.swift */; };
 		2260406F2A814AE200B4682F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2260406E2A814AE200B4682F /* ContentView.swift */; };
 		226040712A814AE800B4682F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 226040702A814AE800B4682F /* Assets.xcassets */; };
@@ -20,6 +22,7 @@
 		226040A02A814F0700B4682F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2260409F2A814F0700B4682F /* Player.swift */; };
 		226040A22A81505C00B4682F /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226040A12A81505C00B4682F /* GameSettings.swift */; };
 		226040A42A81513C00B4682F /* MenuViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226040A32A81513C00B4682F /* MenuViews.swift */; };
+		22714B602A85426800399305 /* StatusPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22714B5F2A85426800399305 /* StatusPoint.swift */; };
 		22F22C2D2A836372002C1BBD /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F22C2C2A836372002C1BBD /* GameView.swift */; };
 		22F22C322A8370FF002C1BBD /* ParentDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F22C312A8370FF002C1BBD /* ParentDeck.swift */; };
 		22F22C342A8408AC002C1BBD /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F22C332A8408AC002C1BBD /* Character.swift */; };
@@ -44,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2236F3E92A86951100DAEE8C /* BloodBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodBar.swift; sourceTree = "<group>"; };
+		2236F3EB2A869D5400DAEE8C /* PlayerStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStatus.swift; sourceTree = "<group>"; };
 		226040692A814AE200B4682F /* Assignment 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Assignment 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2260406C2A814AE200B4682F /* Assignment_2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment_2App.swift; sourceTree = "<group>"; };
 		2260406E2A814AE200B4682F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -60,6 +65,7 @@
 		2260409F2A814F0700B4682F /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		226040A12A81505C00B4682F /* GameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
 		226040A32A81513C00B4682F /* MenuViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViews.swift; sourceTree = "<group>"; };
+		22714B5F2A85426800399305 /* StatusPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusPoint.swift; sourceTree = "<group>"; };
 		22F22C2C2A836372002C1BBD /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		22F22C312A8370FF002C1BBD /* ParentDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentDeck.swift; sourceTree = "<group>"; };
 		22F22C332A8408AC002C1BBD /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
@@ -193,6 +199,9 @@
 			children = (
 				22F22C312A8370FF002C1BBD /* ParentDeck.swift */,
 				22F22C352A8408D8002C1BBD /* CharacterDeck.swift */,
+				22714B5F2A85426800399305 /* StatusPoint.swift */,
+				2236F3E92A86951100DAEE8C /* BloodBar.swift */,
+				2236F3EB2A869D5400DAEE8C /* PlayerStatus.swift */,
 			);
 			path = GameView;
 			sourceTree = "<group>";
@@ -327,13 +336,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22714B602A85426800399305 /* StatusPoint.swift in Sources */,
 				2260406F2A814AE200B4682F /* ContentView.swift in Sources */,
+				2236F3EC2A869D5400DAEE8C /* PlayerStatus.swift in Sources */,
 				226040982A814C0600B4682F /* MotherView.swift in Sources */,
 				22F22C342A8408AC002C1BBD /* Character.swift in Sources */,
 				22F22C322A8370FF002C1BBD /* ParentDeck.swift in Sources */,
 				2260409E2A814DB300B4682F /* StaticFile.swift in Sources */,
 				2260406D2A814AE200B4682F /* Assignment_2App.swift in Sources */,
 				22F22C2D2A836372002C1BBD /* GameView.swift in Sources */,
+				2236F3EA2A86951100DAEE8C /* BloodBar.swift in Sources */,
 				226040A02A814F0700B4682F /* Player.swift in Sources */,
 				226040A42A81513C00B4682F /* MenuViews.swift in Sources */,
 				2260409B2A814C4F00B4682F /* ViewRouter.swift in Sources */,

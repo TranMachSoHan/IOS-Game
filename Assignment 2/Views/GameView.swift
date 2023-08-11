@@ -14,11 +14,13 @@
     https://www.pinterest.com/pin/701154235755448104/
     https://www.besthdwallpaper.com/cuoi-lon/knight-zed-splash-art-lien-minh-huyen-thoai-lol-dt_vi-64746.html
     https://www.freepik.com/premium-photo/scary-black-werewolf-illustration-full-body-3d-rendering_33092555.htm
+ 
 */
 
 
 import SwiftUI
 
+var characterExample = ["knight", "samurai", "robin-hood"]
 struct GameView: View {
     private var gridItemLayout: [GridItem] = Array(repeating: .init(.flexible()), count: 4)
     
@@ -32,24 +34,22 @@ struct GameView: View {
                     .edgesIgnoringSafeArea(.all)
                     .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
                 VStack {
+                    Spacer()
                     LazyVGrid(columns: gridItemLayout) {
                         ForEach((0...15), id: \.self) {_ in
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(.gray)
-                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: geo.size.height/7)
+                                .frame(minWidth: 0, maxWidth: 60, minHeight: geo.size.height/13)
                         }
                     }.padding(.horizontal, 15)
+                    Spacer()
                     HStack {
-                        ParentDeck(systemName: "hammer.fill")
-                            .frame(width: geo.size.width/6, height: geo.size.height/7)
-                        Spacer()
-                        HStack {
-                            ForEach((0...2), id: \.self) {_ in
-                                ParentDeck(systemName: "hammer.fill")
-                                    .frame(width: geo.size.width/6, height: geo.size.height/7)
-                            }
+                        PlayerStatusView(image: Image("luckin317"))
+                        ForEach(characterExample, id: \.self) {character in
+                            CharacterDeck(image: Image(character), attackPoint: 3, manaPoint: 2, bloodPoint: 1)
+                                .frame(width: geo.size.width/5, height: geo.size.height/5)
                         }
-                    }.padding(.top, 30)
+                    }.padding(.vertical, 20)
                 }.padding(.horizontal, 10)
             }
             

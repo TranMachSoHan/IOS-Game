@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "knight-zed-splash-art-league-of-legends-lol-wallpaper-1024x768_18.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "knight-zed-splash-art-league-of-legends-lol-wallpaper-1024x768_18@2x.jpg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "knight-zed-splash-art-league-of-legends-lol-wallpaper-1024x768_18@3x.jpg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
