@@ -15,11 +15,15 @@ import SwiftUI
 
 @main
 struct Assignment_2App: App {
+    @StateObject var viewRouter = ViewRouter()
+    @StateObject var dataController = DataController()
+    @StateObject var currentPlayer = CurrentPlayer()
     
     var body: some Scene {
         WindowGroup {
-            GameView()
+            HomeView().environmentObject(viewRouter)
+                .environment(\.managedObjectContext, dataController.container.viewContext)
+                .environmentObject(currentPlayer)
         }
     }
-    
 }

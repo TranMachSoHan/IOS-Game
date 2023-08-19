@@ -14,6 +14,7 @@
     https://www.pinterest.com/pin/701154235755448104/
     https://www.besthdwallpaper.com/cuoi-lon/knight-zed-splash-art-lien-minh-huyen-thoai-lol-dt_vi-64746.html
     https://www.freepik.com/premium-photo/scary-black-werewolf-illustration-full-body-3d-rendering_33092555.htm
+    https://blog.canopas.com/reorder-items-with-drag-and-drop-using-swiftui-e336d44b9d02
  
 */
 
@@ -21,8 +22,19 @@
 import SwiftUI
 
 var characterExample = ["knight", "samurai", "robin-hood"]
+var characterMainDeck = [
+    CharacterTest(characterName: "knight", manaPoint: 3, bloodPoint: 2, attackPoint: 1),
+    CharacterTest(characterName: "samurai", manaPoint: 1, bloodPoint: 2, attackPoint: 1),
+    CharacterTest(characterName: "robin-hood", manaPoint: 2, bloodPoint: 2, attackPoint: 1)
+]
+var emptyCharacter : CharacterTest = CharacterTest()
+
+var emptyCell : CellTest = CellTest(Character: emptyCharacter)
+
 struct GameView: View {
-    private var gridItemLayout: [GridItem] = Array(repeating: .init(.flexible()), count: 4)
+    @EnvironmentObject var levelStatus: LevelStatus
+    
+    @State var draggedCharacter: CharacterTest = emptyCharacter
     
     var body: some View {
         GeometryReader { geo in
@@ -34,39 +46,57 @@ struct GameView: View {
                     .edgesIgnoringSafeArea(.all)
                     .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
                 VStack {
-                    Spacer()
-                    LazyVGrid(columns: gridItemLayout) {
-                        ForEach((0...15), id: \.self) {_ in
-                            RoundedRectangle(cornerRadius: 10)
-                                .fill(.gray)
-                                .frame(minWidth: 0, maxWidth: 60, minHeight: geo.size.height/13)
-                        }
-                    }.padding(.horizontal, 15)
-                    Spacer()
                     HStack {
-                        PlayerStatusView(image: Image("luckin317"))
+                        PlayerStatusView(image: Image("robot"))
+                            .frame(height: geo.size.height/4)
                         ForEach(characterExample, id: \.self) {character in
-                            CharacterDeck(image: Image(character), attackPoint: 3, manaPoint: 2, bloodPoint: 1)
+                            ParentDeck(systemName: "hammer.fill")
                                 .frame(width: geo.size.width/5, height: geo.size.height/5)
                         }
-                    }.padding(.vertical, 20)
-                }.padding(.horizontal, 10)
+                    }
+                    ManaBarView(manaPoint: 3)
+                        .frame(height: geo.size.height/40)
+                        .padding(.bottom, 30)
+                    
+                    ForEach(0..<4, id: \.self) { row in
+                        HStack {
+                            ForEach(0..<4, id: \.self) { col in
+//                                var index = col + row * 4
+//                                var mainBoard = (levelStatus.mainBoard!.allObjects as! [[Cell]])
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(.gray)
+                                    .frame(minWidth: 0, maxWidth: 60, minHeight: geo.size.height/13)
+                            }
+                        }
+                    }
+                    
+                    ManaBarView(manaPoint: 3)
+                        .frame(height: geo.size.height/40)
+                        .padding(.top, 30)
+                    
+                    HStack {
+                        PlayerStatusView(image: Image("luckin317"))
+                            .frame(height: geo.size.height/7)
+                        ForEach(characterMainDeck, id: \.self) {character in
+                            CharacterDeck(image: Image(character.characterName), attackPoint: character.attackPoint, manaPoint: character.manaPoint, bloodPoint: character.bloodPoint)
+                                .frame(width: geo.size.width/5, height: geo.size.height/5)
+                                .onTapGesture {
+                                    draggedCharacter = draggedCharacter == character ? emptyCharacter : character
+                                }
+                                .border(.green, width: draggedCharacter == character ? 10 : 0)
+                        }
+                    }
+                }
+                .padding(.horizontal, 10)
             }
-            
         }
     }
     
 }
 
-extension GameView {
-    var playerCard : some View {
-        HStack {
-            
-        }
-    }
-}
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
         GameView()
+            .environmentObject(LevelStatus())
     }
 }

@@ -56,7 +56,6 @@ extension CharacterDeck {
         ZStack{
             image
                 .resizable()
-                .frame(height: .infinity)
                 .clipShape(Ellipse())
                 .overlay(
                     Ellipse()
@@ -65,6 +64,14 @@ extension CharacterDeck {
                                 gradient: Gradient(colors: [.red, .yellow, .green, .blue, .purple, .red]), center: .center),
                             lineWidth: 4))
                 .shadow(radius: 7)
+        }
+    }
+    
+    @ViewBuilder func `if`<Content: View>(_ condition: Bool, transform: (Self) -> Content) -> some View {
+        if condition {
+            transform(self)
+        } else {
+            self
         }
     }
 }

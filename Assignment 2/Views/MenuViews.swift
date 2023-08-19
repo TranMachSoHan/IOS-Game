@@ -17,7 +17,6 @@ import SwiftUI
 
 struct MenuView: View {
     @EnvironmentObject var viewRouter: ViewRouter
-    @EnvironmentObject var currentPlayer: CurrentPlayer
     
     var body: some View {
         GeometryReader { geo in
@@ -44,10 +43,9 @@ struct MenuView: View {
                         .frame(alignment: .center)
                         .padding(.top,80)
                     
-                    //Menu: START + LEADERBOARD + HOW TO PLAY
                     Button(action: {
                         withAnimation {
-//                            viewRouter.currentPage = .newPlayerView
+                            viewRouter.currentPage = .gamePage
                         }
                     }) {
                         Image("play-btn")
@@ -56,10 +54,21 @@ struct MenuView: View {
                             .frame(width: geo.size.width/1.2, height: geo.size.height/10)
                             .shadow(color: .red, radius: 5, x: 5, y: 5)
                     }
+                    
                     Button(action: {
                         withAnimation {
-//                            viewRouter.currentPage = .howToPlayPage
+                            viewRouter.currentPage = .switchUser
                         }
+                    }) {
+                        Image("play-btn")
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: geo.size.width/1.2, height: geo.size.height/10)
+                            .shadow(color: .red, radius: 5, x: 5, y: 5)
+                    }
+                    
+                    Button(action: {
+//                        viewRouter.currentPage = .switchUser
                     }) {
                             Image("how-to-play-btn")
                                 .resizable()
@@ -80,7 +89,7 @@ struct MenuView: View {
                     }
                     Button(action: {
                         withAnimation {
-//                            viewRouter.currentPage = .leaderboardPage
+                            viewRouter.currentPage = .leaderboardPage
                         }
                     }) {
                         Image("leaderboard")
@@ -105,6 +114,5 @@ struct MenuView: View {
 struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
         MenuView().environmentObject(ViewRouter())
-            .environmentObject(CurrentPlayer())
     }
 }

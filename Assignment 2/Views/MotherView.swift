@@ -12,32 +12,32 @@
 
 import SwiftUI
 
-struct MotherView: View {
+struct HomeView: View {
     
     @EnvironmentObject var viewRouter: ViewRouter
-    @EnvironmentObject var currentPlayer: CurrentPlayer
     var settings = GameSettings()
     
     var body: some View {
         //Display the corresponding view based on the varible
         switch viewRouter.currentPage {
-        case .menuPage:
-            MenuView()
-        case .gamePage:
-            MenuView()
-        case .leaderboardPage:
-            MenuView()
-        case .howToPlayPage:
-            MenuView()
-        case .levelSettingPage:
-            MenuView()
-        }
+            case .menuPage:
+                MenuView()
+            case .gamePage:
+                GameView()
+            case .switchUser:
+                SwitchUserView()
+            case .leaderboardPage:
+                LeaderboardView()
+            case .howToPlayPage:
+                MenuView()
+            case .levelSettingPage:
+                MenuView()
+            }
     }
 }
 
-struct MotherView_Previews: PreviewProvider {
+struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        MotherView().environmentObject(ViewRouter())
-            .environmentObject(CurrentPlayer())
+        HomeView().environmentObject(ViewRouter())
     }
 }

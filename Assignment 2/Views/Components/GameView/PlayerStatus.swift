@@ -15,18 +15,18 @@ import SwiftUI
 struct PlayerStatusView: View {
     var image: Image
     var body: some View {
-        ZStack (alignment: .bottom){
-            image
-                .resizable()
-                .scaledToFit()
-                .clipShape(Circle())
-                .overlay(Circle().stroke(Color(.white),lineWidth: 4))
-                .shadow(radius: 7)
-            ProgressMeterView(percentage: 50)
-                .frame(height: 30)
+        GeometryReader { geo in
+            ZStack (alignment: .bottom){
+                image
+                    .resizable()
+                    .clipShape(Circle())
+                    .overlay(Circle().stroke(Color(.white), lineWidth: 4))
+                    .shadow(radius: 7)
+                
+                ProgressMeterView(percentage: 50)
+                    .frame(height: geo.size.height/10)
+            }
         }
-        
-        
     }
 }
 
