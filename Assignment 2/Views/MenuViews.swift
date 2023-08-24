@@ -17,7 +17,8 @@ import SwiftUI
 
 struct MenuView: View {
     @EnvironmentObject var viewRouter: ViewRouter
-    
+    @EnvironmentObject var currentPlayer : CurrentPlayer
+
     var body: some View {
         GeometryReader { geo in
             ZStack {
@@ -37,7 +38,7 @@ struct MenuView: View {
                         .padding(.top,100)
                     
                     //Header: Greeting current player
-                    Text("Welcome Han")
+                    Text("Welcome \(currentPlayer.name)")
                         .foregroundColor(.blue)
                         .font(.system(size: 25, weight: .bold, design: .rounded))
                         .frame(alignment: .center)
@@ -78,7 +79,7 @@ struct MenuView: View {
                         }
                     Button(action: {
                         withAnimation {
-//                            viewRouter.currentPage = .leaderboardPage
+                            viewRouter.currentPage = .profilePage
                         }
                     }) {
                         Image("setting-btn")

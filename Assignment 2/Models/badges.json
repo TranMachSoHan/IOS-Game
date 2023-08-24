@@ -1,0 +1,27 @@
+[
+    {
+      "name": "New Member",
+      "imageName": "new-badge",
+      "score": 100
+    },
+    {
+      "name": "Level 1",
+      "imageName": "level-1-badge",
+      "score": 10
+    },
+    {
+      "name": "Level 2",
+      "imageName": "level-2-badge",
+      "score": 10
+    },
+    {
+      "name": "Level 3",
+      "imageName": "level-3-badge",
+      "score": 10
+    },
+    {
+      "name": "Level 4",
+      "imageName": "level-4-badge",
+      "score": 10
+    }
+]

@@ -35,28 +35,39 @@ class DataController: ObservableObject {
         }
     }
     
-    func addPlayer(name: String, pass: String, context: NSManagedObjectContext) {
+    func addPlayer(name: String, pass: String, context: NSManagedObjectContext) -> Player {
         let player = Player(context: context)
         player.id = UUID()
         player.name = name
         player.password = pass
         player.imageName = "luckin317"
         player.levelStatus = []
-        player.badges = []
+        player.badges = ["New Member"]
         save(context: context)
+        return player
+    }
+//
+    func addLevelStatus(context: NSManagedObjectContext, player: Player) -> LevelStatus {
+        let levelStatus = LevelStatus(context: context)
+        levelStatus.id = UUID()
+        levelStatus.player = player
+        save(context: context)
+        return levelStatus
+    }
+//
+    func getPlayerById(with id: UUID?, context: NSManagedObjectContext) -> Player? {
+        guard let id = id else { return nil }
+        let request = Player.fetchRequest() as NSFetchRequest<Player>
+        request.predicate = NSPredicate(
+            format: "%K == %@", "id", id as CVarArg
+        )
+        guard let players = try? context.fetch(request) else { return nil }
+        return players.first
     }
     
-    func fetchPlayerByName(name:String, context: NSManagedObjectContext) -> Player{
-        let fetchRequest: NSFetchRequest<Player>
-        fetchRequest = Player.fetchRequest()
-        fetchRequest.predicate = NSPredicate(
-            format: "name LIKE %@", name)
-        do {
-            let player = try context.fetch(fetchRequest).first!
-            return player
-        } catch {
-            print("error")
-            return Player()
-        }
+    func updateScore(badge: Badge, id: UUID, context: NSManagedObjectContext) {
+        let player = getPlayerById(with: id, context: context) ?? Player()
+//        player.badges = player.badges!.append(badge.name as NSString)
+        player.score = player.score + badge.score
     }
 }

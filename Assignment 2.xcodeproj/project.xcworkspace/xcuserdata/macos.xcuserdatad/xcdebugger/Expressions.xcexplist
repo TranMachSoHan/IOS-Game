@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "Assignment_2App.init():Assignment_2App.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "viewRouter.currentPage">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in Assignment_2App.body.getter:Assignment_2App.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "viewRouter.currentPage">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HomeView.body.getter:HomeView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "viewRouter.currentPage">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #3 in closure #1 in closure #1 in closure #1 in SwitchUserView.body.getter:SwitchUserView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.popUpTypeString">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in HomeView.body.getter:HomeView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "currentPlayer.id">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in GameView.body.getter:GameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "player.levelStatus?.allObjects.last as! LevelStatus">
+            </PersistentString>
+            <PersistentString
+               value = "player.levelStatus?.allObjects.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AcheivementBadgeView.filterAcheivementBadges():AcheivementBadgeView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "badges.filter{ badge in&#10;            return playerBadges.contains(badge.name)&#10;        }">
+            </PersistentString>
+            <PersistentString
+               value = "playerBadges">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

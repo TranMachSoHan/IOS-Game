@@ -13,62 +13,18 @@
 import SwiftUI
 
 struct LeaderboardView: View {
-    @State var leaderboard : [[String:String]] = [
-        ["name" : "PlayerA", "score": "10"],
-        ["name" : "PlayerB", "score": "10"],
-        ["name" : "PlayerA", "score": "10"],
-        ["name" : "PlayerB", "score": "10"],["name" : "PlayerA", "score": "10"],
-        ["name" : "PlayerB", "score": "10"],["name" : "PlayerA", "score": "10"],
-        ["name" : "PlayerB", "score": "10"],["name" : "PlayerA", "score": "10"],
-        ["name" : "PlayerB", "score": "10"],["name" : "PlayerA", "score": "10"],
-        ["name" : "PlayerB", "score": "10"],["name" : "PlayerA", "score": "10"],
-        ["name" : "PlayerB", "score": "10"],["name" : "PlayerA", "score": "10"],
-        ["name" : "PlayerB", "score": "10"],["name" : "PlayerA", "score": "10"],
-        ["name" : "PlayerB", "score": "10"],["name" : "PlayerA", "score": "10"],
-        ["name" : "PlayerB", "score": "10"],["name" : "PlayerA", "score": "10"],
-        ["name" : "PlayerB", "score": "10"],
-    ]
+    @Environment(\.managedObjectContext) var managedObjContext
+    
+    //Fetch players
+    @FetchRequest(sortDescriptors: []) var player: FetchedResults<Player>
     
     var body: some View {
         ZStack (alignment: .top){
             Color.blue
+                .opacity(0.2)
                 .ignoresSafeArea(.all)
             VStack {
-                Text("Leaderboard")
-                    .foregroundColor(Color.red)
-                    .font(.system(size: 50))
-                    .fontWeight(.bold)
-                //show the name and score of leaderboard array
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(Color.white.opacity(0))
-                    .frame(width: 300, height: 50.0)
-                    .overlay(
-                        HStack {
-                            Text("Player")
-                            Spacer()
-                            Text("Badge")
-                            Spacer()
-                            Text("Score")
-                        }.padding(10)
-                    )
-                
-                ScrollView{
-                    ForEach(leaderboard, id: \.self) { player in
-                        if ((player["name"]) != nil) {
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(Color.pink)
-                            .frame(width: 300, height: 50.0)
-                            .overlay(
-                                HStack {
-                                    Text(player["name"]!)
-                                    Spacer()
-                                    Text(player["score"]!)
-                                }.padding(10)
-                            )
-                        }
-                    }
-                }
-                
+                LeaderboardList()
             }
         }
     }

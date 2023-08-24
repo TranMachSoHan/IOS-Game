@@ -13,10 +13,17 @@
 
 import SwiftUI
 
-struct PlayerRow: View {
-    var player: Player
+struct NameImage: View {
+    var name: String
+    var image: Image
     
     var body: some View {
-        NameImage(name: player.name!, image: Image(player.imageName!))
+        VStack {
+            image
+                .resizable()
+                .frame(width: 100, height: 100)
+                .cornerRadius(0.5)
+            Text(name)
+        }
     }
 }

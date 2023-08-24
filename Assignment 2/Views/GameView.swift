@@ -32,9 +32,11 @@ var emptyCharacter : CharacterTest = CharacterTest()
 var emptyCell : CellTest = CellTest(Character: emptyCharacter)
 
 struct GameView: View {
-    @EnvironmentObject var levelStatus: LevelStatus
-    
+    @EnvironmentObject var currentPlayer: CurrentPlayer
+    @Environment(\.managedObjectContext) var managedObjContext
+    @EnvironmentObject var dataController: DataController
     @State var draggedCharacter: CharacterTest = emptyCharacter
+    @State var levelStatus  : LevelStatus = LevelStatus()
     
     var body: some View {
         GeometryReader { geo in
@@ -49,23 +51,25 @@ struct GameView: View {
                     HStack {
                         PlayerStatusView(image: Image("robot"))
                             .frame(height: geo.size.height/4)
-                        ForEach(characterExample, id: \.self) {character in
-                            ParentDeck(systemName: "hammer.fill")
-                                .frame(width: geo.size.width/5, height: geo.size.height/5)
-                        }
                     }
                     ManaBarView(manaPoint: 3)
                         .frame(height: geo.size.height/40)
                         .padding(.bottom, 30)
+//                    ForEach(levelStatus.mainBoard?.allObjects as! [Cell], id: \.self) { cell in
+//                        RoundedRectangle(cornerRadius: 10)
+//                            .fill(.gray)
+//                            .frame(width: 60, height: geo.size.height/10)
+//                            .padding(5)
+//                    }
                     
-                    ForEach(0..<4, id: \.self) { row in
+                    ForEach(0..<3, id: \.self) { row in
                         HStack {
-                            ForEach(0..<4, id: \.self) { col in
-//                                var index = col + row * 4
-//                                var mainBoard = (levelStatus.mainBoard!.allObjects as! [[Cell]])
+                            ForEach(0..<3, id: \.self) { col in
+                                let character = CharacterTest()
                                 RoundedRectangle(cornerRadius: 10)
                                     .fill(.gray)
-                                    .frame(minWidth: 0, maxWidth: 60, minHeight: geo.size.height/13)
+                                    .frame(width: 60, height: geo.size.height/10)
+                                    .padding(5)
                             }
                         }
                     }
@@ -90,6 +94,20 @@ struct GameView: View {
                 .padding(.horizontal, 10)
             }
         }
+        .onAppear(
+            perform: {
+                let player = dataController.getPlayerById(with: UUID(uuidString: currentPlayer.id), context: managedObjContext)!
+                
+                if (player.levelStatus?.allObjects.count == 0){
+                    levelStatus = dataController.addLevelStatus(context: managedObjContext, player: player)
+                    let id = levelStatus.id!
+                }
+                else{
+                    levelStatus = player.levelStatus?.allObjects.last as! LevelStatus
+                }
+                
+            }
+        )
     }
     
 }

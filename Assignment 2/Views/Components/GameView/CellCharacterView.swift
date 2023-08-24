@@ -8,17 +8,19 @@
 import SwiftUI
 
 struct CellCharacterView: View {
-    var character: Character
+    var character: CharacterTest = CharacterTest()
     var body: some View {
-        GeometryReader { geo in
-            
-        }
+        RoundedRectangle(cornerRadius: 10)
+            .fill(.gray)
+            .frame(width: 60, height: 60)
+            .padding(5)
+
     }
 }
 
 struct CellCharacterView_Previews: PreviewProvider {
     static var previews: some View {
-        CellCharacterView(character: Character())
+        CellCharacterView()
     }
 }
 

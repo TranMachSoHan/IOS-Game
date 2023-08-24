@@ -13,10 +13,10 @@
 
 import SwiftUI
 
-struct PlayerRow: View {
-    var player: Player
+struct BadgeItem: View {
+    var badge: Badge
     
     var body: some View {
-        NameImage(name: player.name!, image: Image(player.imageName!))
+        NameImage(name: badge.name, image: badge.image)
     }
 }

@@ -17,12 +17,13 @@ import SwiftUI
 struct Assignment_2App: App {
     @StateObject var viewRouter = ViewRouter()
     @StateObject var dataController = DataController()
-    @StateObject var currentPlayer = CurrentPlayer()
+    @StateObject var currentPlayer: CurrentPlayer = CurrentPlayer()
     
     var body: some Scene {
         WindowGroup {
             HomeView().environmentObject(viewRouter)
                 .environment(\.managedObjectContext, dataController.container.viewContext)
+                .environmentObject(dataController)
                 .environmentObject(currentPlayer)
         }
     }

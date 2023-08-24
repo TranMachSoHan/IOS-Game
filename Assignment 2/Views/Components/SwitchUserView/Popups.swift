@@ -8,14 +8,25 @@
 import SwiftUI
 
 struct SignInUpView: View {
-    @State var popUpTypeString: String = "Sign Up"
+    @Binding var popUpTypeString: String
     @Binding var name: String
     @Binding var pass: String
+    @Binding var showPopUpAuth: Bool
     var error: String = ""
     var onClose: () -> ()
 
     var body: some View {
         VStack(spacing: 12) {
+            Button(action: {showPopUpAuth = false}){
+                Image(systemName: "xmark")
+                    .symbolVariant(.circle.fill)
+                    .font(.system(size: 50,
+                                  weight: .bold,
+                                  design: .rounded))
+                    .foregroundStyle(.gray.opacity(0.4))
+                    .padding(8)
+            }
+            
             Text(popUpTypeString)
                 .foregroundColor(.black)
                 .font(.system(size: 24))

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22F82" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Badge" representedClassName="Badge" syncable="YES" codeGenerationType="class">
-        <attribute name="image" optional="YES" attributeType="String"/>
+    <entity name="BadgeToBeDeleted" representedClassName="BadgeToBeDeleted" syncable="YES" codeGenerationType="class">
+        <attribute name="imageName" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="score" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="Cell" representedClassName="Cell" syncable="YES" codeGenerationType="class">
         <relationship name="character" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Character"/>
@@ -19,6 +20,7 @@
         <relationship name="belongsPlayer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlayerGame" inverseName="character" inverseEntity="PlayerGame"/>
     </entity>
     <entity name="LevelStatus" representedClassName="LevelStatus" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="level" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="progress" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="round" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
@@ -26,13 +28,14 @@
         <relationship name="player" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Player" inverseName="levelStatus" inverseEntity="Player"/>
     </entity>
     <entity name="Player" representedClassName="Player" syncable="YES" codeGenerationType="class">
+        <attribute name="badges" optional="YES" attributeType="Transformable" customClassName="[NSString]"/>
         <attribute name="gameLevel" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="imageName" optional="YES" attributeType="String" defaultValueString=""/>
         <attribute name="latestLoggedIn" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="password" optional="YES" attributeType="String"/>
-        <relationship name="badges" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Badge"/>
+        <attribute name="score" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="levelStatus" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LevelStatus" inverseName="player" inverseEntity="LevelStatus"/>
     </entity>
     <entity name="PlayerGame" representedClassName="PlayerGame" syncable="YES" codeGenerationType="class">
