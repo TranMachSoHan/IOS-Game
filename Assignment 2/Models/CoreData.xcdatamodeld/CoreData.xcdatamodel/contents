@@ -1,32 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22F82" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="BadgeToBeDeleted" representedClassName="BadgeToBeDeleted" syncable="YES" codeGenerationType="class">
-        <attribute name="imageName" optional="YES" attributeType="String"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="score" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-    </entity>
-    <entity name="Cell" representedClassName="Cell" syncable="YES" codeGenerationType="class">
-        <relationship name="character" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Character"/>
-    </entity>
-    <entity name="Character" representedClassName="Character" syncable="YES" codeGenerationType="class">
-        <attribute name="attackPoint" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="bloodPoint" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="characterName" optional="YES" attributeType="String"/>
-        <attribute name="downAttack" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="leftAttack" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="manaPoint" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="rightAttack" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="upAttack" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="belongsPlayer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlayerGame" inverseName="character" inverseEntity="PlayerGame"/>
-    </entity>
-    <entity name="LevelStatus" representedClassName="LevelStatus" syncable="YES" codeGenerationType="class">
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="level" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="progress" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="round" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="mainBoard" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Cell"/>
-        <relationship name="player" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Player" inverseName="levelStatus" inverseEntity="Player"/>
-    </entity>
     <entity name="Player" representedClassName="Player" syncable="YES" codeGenerationType="class">
         <attribute name="badges" optional="YES" attributeType="Transformable" customClassName="[NSString]"/>
         <attribute name="gameLevel" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
@@ -36,12 +9,5 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="password" optional="YES" attributeType="String"/>
         <attribute name="score" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="levelStatus" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LevelStatus" inverseName="player" inverseEntity="LevelStatus"/>
     </entity>
-    <entity name="PlayerGame" representedClassName="PlayerGame" syncable="YES" codeGenerationType="class">
-        <attribute name="bloodPoint" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="manaPoint" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="character" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Character" inverseName="belongsPlayer" inverseEntity="Character"/>
-    </entity>
-    <entity name="ToBeDeleted" representedClassName="ToBeDeleted" syncable="YES" codeGenerationType="class"/>
 </model>

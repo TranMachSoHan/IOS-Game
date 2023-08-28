@@ -126,8 +126,8 @@
             filePath = "Assignment 2/CoreData/DataController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "addPlayer(name:pass:context:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -221,10 +221,42 @@
             filePath = "Assignment 2/Views/HomeView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "body"
             landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "C092BB81-FEF5-4ED6-B391-0D1D479FEA71 - a19bcc634d48c45c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in Assignment_2.HomeView.body.getter : some"
+                  moduleName = "Assignment 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macos/Documents/IOS/Assignment%202/Assignment%202/Views/HomeView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "82">
+               </Location>
+               <Location
+                  uuid = "C092BB81-FEF5-4ED6-B391-0D1D479FEA71 - a19bcc634d48c45c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in Assignment_2.HomeView.body.getter : some"
+                  moduleName = "Assignment 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macos/Documents/IOS/Assignment%202/Assignment%202/Views/HomeView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "37">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -253,56 +285,408 @@
             filePath = "Assignment 2/CoreData/DataController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "updateScore(badge:id:context:)"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "deleteAll(context:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CE8ABE9A-C796-42FE-8DFE-E59917956E38"
+            uuid = "023C150B-8495-417C-92B1-10F531AEB3D7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Assignment 2/Views/HomeView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "023C150B-8495-417C-92B1-10F531AEB3D7 - a19bcc634d48c43d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in Assignment_2.HomeView.body.getter : some"
+                  moduleName = "Assignment 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macos/Documents/IOS/Assignment%202/Assignment%202/Views/HomeView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "38">
+               </Location>
+               <Location
+                  uuid = "023C150B-8495-417C-92B1-10F531AEB3D7 - a19bcc634d48c45c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in Assignment_2.HomeView.body.getter : some"
+                  moduleName = "Assignment 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macos/Documents/IOS/Assignment%202/Assignment%202/Views/HomeView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "37">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8FD36005-5C5C-4A81-ADC2-768A016B399B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Assignment 2/Views/Components/GameView/CharacterCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2326EB2E-56CC-4F37-8EE9-C2146D9B626E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Assignment 2/Views/Components/GameView/CharacterCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "CharacterCell"
+            landmarkType = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "52D4D814-E976-4722-99F5-0C5A355BBB7F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Assignment 2/Views/Components/GameView/CellCharacterView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "CellCharacterView"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "52D4D814-E976-4722-99F5-0C5A355BBB7F - 4666017bcafa5300"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Assignment_2.CellCharacterView.init() -&gt; Assignment_2.CellCharacterView"
+                  moduleName = "Assignment 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macos/Documents/IOS/Assignment%202/Assignment%202/Views/Components/GameView/CellCharacterView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "11"
+                  endingLineNumber = "11"
+                  offsetFromSymbolStart = "34">
+               </Location>
+               <Location
+                  uuid = "52D4D814-E976-4722-99F5-0C5A355BBB7F - b932f0942c177617"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Assignment_2.CellCharacterView.body.getter : some"
+                  moduleName = "Assignment 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macos/Documents/IOS/Assignment%202/Assignment%202/Views/Components/GameView/CellCharacterView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "436">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "398BEEB2-C4DB-47DB-97D3-938FC756D14B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Assignment 2/Views/Components/GameView/PlayerStatus.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "398BEEB2-C4DB-47DB-97D3-938FC756D14B - b4766f9e661d5663"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Color, SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0&gt;, SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(SwiftUI.ZStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.shadow(color: SwiftUI.Color, radius: CoreGraphics.CGFloat, x: CoreGraphics.CGFloat, y: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0)&gt;&gt;, Swift.Optional&lt;SwiftUI.ForEach&lt;Swift.Array&lt;Assignment_2.Character&gt;, Assignment_2.Character, &lt;&lt;opaque return type of SwiftUI.View.border&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ShapeStyle&gt;(_: &#x3c4;_1_0, width: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0&gt;&gt;)&gt;&gt;, Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0&gt;)&gt;&gt;)&gt; in closure #1 (SwiftUI.GeometryProxy) -&gt; SwiftUI.ZStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Color, SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0&gt;, SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(SwiftUI.ZStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.shadow(color: SwiftUI.Color, radius: CoreGraphics.CGFloat, x: CoreGraphics.CGFloat, y: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0)&gt;&gt;, Swift.Optional&lt;SwiftUI.ForEach&lt;Swift.Array&lt;Assignment_2.Character&gt;, Assignment_2.Character, &lt;&lt;opaque return type of SwiftUI.View.border&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ShapeStyle&gt;(_: &#x3c4;_1_0, width: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0&gt;&gt;)&gt;&gt;, Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0&gt;)&gt;&gt;)&gt;&gt; in Assignment_2.PlayerStatusView.body.getter : some"
+                  moduleName = "Assignment 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macos/Documents/IOS/Assignment%202/Assignment%202/Views/Components/GameView/PlayerStatus.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "1247">
+               </Location>
+               <Location
+                  uuid = "398BEEB2-C4DB-47DB-97D3-938FC756D14B - b4766f9e661d5663"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Color, SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0&gt;, SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(SwiftUI.ZStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.shadow(color: SwiftUI.Color, radius: CoreGraphics.CGFloat, x: CoreGraphics.CGFloat, y: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0)&gt;&gt;, Swift.Optional&lt;SwiftUI.ForEach&lt;Swift.Array&lt;Assignment_2.Character&gt;, Assignment_2.Character, &lt;&lt;opaque return type of SwiftUI.View.border&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ShapeStyle&gt;(_: &#x3c4;_1_0, width: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0&gt;&gt;)&gt;&gt;, Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0&gt;)&gt;&gt;)&gt; in closure #1 (SwiftUI.GeometryProxy) -&gt; SwiftUI.ZStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Color, SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0&gt;, SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(SwiftUI.ZStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.shadow(color: SwiftUI.Color, radius: CoreGraphics.CGFloat, x: CoreGraphics.CGFloat, y: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0)&gt;&gt;, Swift.Optional&lt;SwiftUI.ForEach&lt;Swift.Array&lt;Assignment_2.Character&gt;, Assignment_2.Character, &lt;&lt;opaque return type of SwiftUI.View.border&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ShapeStyle&gt;(_: &#x3c4;_1_0, width: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0&gt;&gt;)&gt;&gt;, Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0&gt;)&gt;&gt;)&gt;&gt; in Assignment_2.PlayerStatusView.body.getter : some"
+                  moduleName = "Assignment 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macos/Documents/IOS/Assignment%202/Assignment%202/Views/Components/GameView/PlayerStatus.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "311">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "28882052-31B1-414A-AC80-654119AFAD10"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Assignment 2/Models/PlayerLevelStatus.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "init(color:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "587BC3DA-18C5-477F-85A1-F56CC3E34EBC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Assignment 2/Models/PlayerLevelStatus.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "PlayerLevelStatus"
+            landmarkType = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E469A56A-7349-4844-A8BE-13C9A230719B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Assignment 2/Models/PlayerLevelStatus.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "init(color:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A465445F-6451-49FD-871F-2CBC73854DBF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Assignment 2/Models/PlayerLevelStatus.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "init(color:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A465445F-6451-49FD-871F-2CBC73854DBF - 9d2cde1f5e719cbe"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Assignment_2.PlayerGame.init() -&gt; Assignment_2.PlayerGame"
+                  moduleName = "Assignment 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macos/Documents/IOS/Assignment%202/Assignment%202/Models/PlayerLevelStatus.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "2266">
+               </Location>
+               <Location
+                  uuid = "A465445F-6451-49FD-871F-2CBC73854DBF - 9d2cde1f5e719cbe"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Assignment_2.PlayerGame.init() -&gt; Assignment_2.PlayerGame"
+                  moduleName = "Assignment 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macos/Documents/IOS/Assignment%202/Assignment%202/Models/PlayerLevelStatus.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "1774">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "709CB56C-8C1C-46EC-A6FA-581FAD915958"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Assignment 2/Models/PlayerLevelStatus.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "removeDeck(removedCharacter:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "709CB56C-8C1C-46EC-A6FA-581FAD915958 - 1f991ee4f64e6570"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Assignment_2.PlayerGame.removeDeck(removedCharacter: Assignment_2.Character) -&gt; ()"
+                  moduleName = "Assignment 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macos/Documents/IOS/Assignment%202/Assignment%202/Models/PlayerLevelStatus.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "177">
+               </Location>
+               <Location
+                  uuid = "709CB56C-8C1C-46EC-A6FA-581FAD915958 - f697f3f51c26ec12"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Assignment_2.Character) -&gt; Swift.Bool in Assignment_2.PlayerGame.removeDeck(removedCharacter: Assignment_2.Character) -&gt; ()"
+                  moduleName = "Assignment 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macos/Documents/IOS/Assignment%202/Assignment%202/Models/PlayerLevelStatus.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "43">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B5F949E3-4158-452A-B7B4-7FCD792EDF7D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Assignment 2/Models/PlayerLevelStatus.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "removeDeck(removedCharacter:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "204CECD5-06C5-412B-9436-2942AEAC7CB1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Assignment 2/Models/PlayerLevelStatus.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "removeDeck(removedCharacter:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "83903418-1B91-4D50-8742-73F1788D97F5"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment 2/Views/GameView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
                <Location
-                  uuid = "CE8ABE9A-C796-42FE-8DFE-E59917956E38 - 86a0e674507da184"
+                  uuid = "83903418-1B91-4D50-8742-73F1788D97F5 - a9b3512ef5c3bb25"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; () in Assignment_2.GameView.body.getter : some"
+                  symbolName = "closure #1 (SwiftUI.GeometryProxy) -&gt; SwiftUI.ZStack&lt;&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0&gt; in Assignment_2.GameView.body.getter : some"
                   moduleName = "Assignment 2"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macos/Documents/IOS/Assignment%202/Assignment%202/Views/GameView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "110"
-                  endingLineNumber = "110"
-                  offsetFromSymbolStart = "2025">
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "170">
                </Location>
                <Location
-                  uuid = "CE8ABE9A-C796-42FE-8DFE-E59917956E38 - 9623616f66005bd6"
+                  uuid = "83903418-1B91-4D50-8742-73F1788D97F5 - cf927ef09fb2be5b"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Assignment_2.GameView.body.getter : some"
+                  symbolName = "closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0 in closure #1 (SwiftUI.GeometryProxy) -&gt; SwiftUI.ZStack&lt;&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0&gt; in Assignment_2.GameView.body.getter : some"
                   moduleName = "Assignment 2"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macos/Documents/IOS/Assignment%202/Assignment%202/Views/GameView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "113"
-                  endingLineNumber = "113"
-                  offsetFromSymbolStart = "334">
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "210">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -310,173 +694,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9D251EE9-D386-4553-88A6-AA6D467E8F47"
+            uuid = "1AE6A7E8-A988-490B-A892-CE3FC9B88C40"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Assignment 2/Models/PlayerLevelStatus.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "updatePlayerTurn(player:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C4DB087A-656D-4239-AEAC-4D6A2ABBDFFE"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Assignment 2/Views/GameView.swift"
+            filePath = "Assignment 2/Models/PlayerLevelStatus.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "34854E2F-DED8-44FE-8A9C-7D58C38ADDC3"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Assignment 2/Views/GameView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "body"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "34854E2F-DED8-44FE-8A9C-7D58C38ADDC3 - 86a0e674507da0bd"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; () in Assignment_2.GameView.body.getter : some"
-                  moduleName = "Assignment 2"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macos/Documents/IOS/Assignment%202/Assignment%202/Views/GameView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "103"
-                  endingLineNumber = "103"
-                  offsetFromSymbolStart = "531">
-               </Location>
-               <Location
-                  uuid = "34854E2F-DED8-44FE-8A9C-7D58C38ADDC3 - 86a0e674507da0bd"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; () in Assignment_2.GameView.body.getter : some"
-                  moduleName = "Assignment 2"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macos/Documents/IOS/Assignment%202/Assignment%202/Views/GameView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "103"
-                  endingLineNumber = "103"
-                  offsetFromSymbolStart = "1090">
-               </Location>
-               <Location
-                  uuid = "34854E2F-DED8-44FE-8A9C-7D58C38ADDC3 - 86a0e674507da0bd"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; () in Assignment_2.GameView.body.getter : some"
-                  moduleName = "Assignment 2"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macos/Documents/IOS/Assignment%202/Assignment%202/Views/GameView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "103"
-                  endingLineNumber = "103"
-                  offsetFromSymbolStart = "1097">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A06D1937-4577-4B5D-984E-0976ACC54BC9"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Assignment 2/Views/GameView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
-            landmarkName = "body"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "A06D1937-4577-4B5D-984E-0976ACC54BC9 - 86a0e674507da000"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; () in Assignment_2.GameView.body.getter : some"
-                  moduleName = "Assignment 2"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macos/Documents/IOS/Assignment%202/Assignment%202/Views/GameView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "106"
-                  endingLineNumber = "106"
-                  offsetFromSymbolStart = "1485">
-               </Location>
-               <Location
-                  uuid = "A06D1937-4577-4B5D-984E-0976ACC54BC9 - 86a0e674507da000"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; () in Assignment_2.GameView.body.getter : some"
-                  moduleName = "Assignment 2"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macos/Documents/IOS/Assignment%202/Assignment%202/Views/GameView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "106"
-                  endingLineNumber = "106"
-                  offsetFromSymbolStart = "1500">
-               </Location>
-               <Location
-                  uuid = "A06D1937-4577-4B5D-984E-0976ACC54BC9 - 86a0e674507da000"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; () in Assignment_2.GameView.body.getter : some"
-                  moduleName = "Assignment 2"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macos/Documents/IOS/Assignment%202/Assignment%202/Views/GameView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "106"
-                  endingLineNumber = "106"
-                  offsetFromSymbolStart = "1547">
-               </Location>
-               <Location
-                  uuid = "A06D1937-4577-4B5D-984E-0976ACC54BC9 - 86a0e674507da000"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; () in Assignment_2.GameView.body.getter : some"
-                  moduleName = "Assignment 2"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macos/Documents/IOS/Assignment%202/Assignment%202/Views/GameView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "106"
-                  endingLineNumber = "106"
-                  offsetFromSymbolStart = "1507">
-               </Location>
-               <Location
-                  uuid = "A06D1937-4577-4B5D-984E-0976ACC54BC9 - 86a0e674507da000"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; () in Assignment_2.GameView.body.getter : some"
-                  moduleName = "Assignment 2"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macos/Documents/IOS/Assignment%202/Assignment%202/Views/GameView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "106"
-                  endingLineNumber = "106"
-                  offsetFromSymbolStart = "1554">
-               </Location>
-            </Locations>
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "botProcess()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -41,20 +41,11 @@ class DataController: ObservableObject {
         player.name = name
         player.password = pass
         player.imageName = "luckin317"
-        player.levelStatus = []
         player.badges = ["New Member"]
         save(context: context)
         return player
     }
-//
-    func addLevelStatus(context: NSManagedObjectContext, player: Player) -> LevelStatus {
-        let levelStatus = LevelStatus(context: context)
-        levelStatus.id = UUID()
-        levelStatus.player = player
-        save(context: context)
-        return levelStatus
-    }
-//
+
     func getPlayerById(with id: UUID?, context: NSManagedObjectContext) -> Player? {
         guard let id = id else { return nil }
         let request = Player.fetchRequest() as NSFetchRequest<Player>
@@ -63,6 +54,12 @@ class DataController: ObservableObject {
         )
         guard let players = try? context.fetch(request) else { return nil }
         return players.first
+    }
+    
+    func deleteAll() {
+          let fetchRequest1: NSFetchRequest<NSFetchRequestResult> = Player.fetchRequest()
+          let batchDeleteRequest1 = NSBatchDeleteRequest(fetchRequest: fetchRequest1)
+          _ = try? container.viewContext.execute(batchDeleteRequest1)
     }
     
     func updateScore(badge: Badge, id: UUID, context: NSManagedObjectContext) {

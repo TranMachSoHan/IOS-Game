@@ -5,7 +5,9 @@
 //  Created by macOS on 10/08/2023.
 //
 
-struct CharacterTest: Hashable {
+import SwiftUI
+
+struct Character: Hashable {
     var characterName = ""
     var manaPoint = 0
     var bloodPoint = 0
@@ -14,4 +16,16 @@ struct CharacterTest: Hashable {
     var downAttack : Bool = false
     var leftAttack : Bool = false
     var rightAttack : Bool = false
+    
+    var imageCard: Image {
+        Image(characterName)
+    }
+    
+    var imageChibi: Image {
+        Image(characterName + "_chibi")
+    }
+    
+    mutating func resetCharacterAttribute() {
+        self.characterName = ""
+    }
 }

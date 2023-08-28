@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "skeleton.jpeg",
+      "filename" : "PngItem_2772744.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "skeleton@2x.jpeg",
+      "filename" : "PngItem_2772744@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "skeleton@3x.jpeg",
+      "filename" : "PngItem_2772744@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

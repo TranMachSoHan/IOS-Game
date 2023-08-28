@@ -11,7 +11,7 @@
     https://www.hackingwithswift.com/books/ios-swiftui/how-to-combine-core-data-and-swiftui
 */
 
-import Foundation
+import SwiftUI
 
 class CurrentPlayer: ObservableObject  {
     @Published var id: String = ""
@@ -19,8 +19,10 @@ class CurrentPlayer: ObservableObject  {
     @Published var imageName: String = ""
     @Published var gameLevel: Int = 0
     @Published var badges: [String] = []
-    @Published var levelStatusTest: [PlayerLevelStatusTest] = []
     
+    var image : Image {
+        return Image(imageName)
+    }
     func CurrentPlayer(name: String, chip: Int) {
         self.name = name
         self.gameLevel = 0

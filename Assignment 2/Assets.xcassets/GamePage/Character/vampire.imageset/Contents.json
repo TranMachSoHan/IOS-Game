@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "robin-hood.jpeg",
+      "filename" : "vampire.jpeg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "robin-hood@2x.jpeg",
+      "filename" : "vampire@2x.jpeg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "robin-hood@3x.jpeg",
+      "filename" : "vampire@3x.jpeg",
       "idiom" : "universal",
       "scale" : "3x"
     }

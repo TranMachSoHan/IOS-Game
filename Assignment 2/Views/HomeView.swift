@@ -16,8 +16,8 @@ struct HomeView: View {
     
     @EnvironmentObject var viewRouter: ViewRouter
     @EnvironmentObject var currentPlayer: CurrentPlayer
+    @Environment(\.managedObjectContext) var managedObjContext
     
-    var settings = GameSettings()
     var body: some View {
         ZStack {
             //Display the corresponding view based on the varible
@@ -25,7 +25,7 @@ struct HomeView: View {
                 case .menuPage:
                     MenuView()
                 case .gamePage:
-                    GameView()
+                    GameView(gameStatus: GameStatus())
                 case .switchUser:
                     SwitchUserView()
                 case .leaderboardPage:
@@ -36,9 +36,11 @@ struct HomeView: View {
                     ProfileView()
                 }
         }.onAppear{
+//            DataController().deleteAll()
             if (currentPlayer.id == ""){
                 viewRouter.currentPage = .switchUser
             }
+            
         }
         
         
@@ -47,6 +49,8 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView().environmentObject(ViewRouter())
+        HomeView()
+            .environmentObject(ViewRouter())
+            .environmentObject(CurrentPlayer())
     }
 }

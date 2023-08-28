@@ -12,8 +12,8 @@
 */
 import SwiftUI
 
-struct ProgressMeterView: View {
-    @State var percentage: Double = 70
+struct  BloodBarView: View {
+    @Binding var percentage: Int
     
     var body: some View {
         bloodBar
@@ -22,7 +22,7 @@ struct ProgressMeterView: View {
     
 }
 
-extension ProgressMeterView {
+extension BloodBarView {
     var bloodBar : some View {
         GeometryReader { geo in
             ZStack (alignment: .leading){
@@ -31,7 +31,7 @@ extension ProgressMeterView {
                     .foregroundColor(Color.gray.opacity(0.7))
 
                 RoundedRectangle(cornerRadius: 40)
-                    .frame(width: percentage/100 * geo.size.width)
+                    .frame(width: Double(percentage)/100 * geo.size.width)
                     .foregroundColor(
                         progressColor(percentage: percentage)
                     )
@@ -42,7 +42,7 @@ extension ProgressMeterView {
             }
         }
     }
-    func progressColor(percentage: Double) -> Color {
+    func progressColor(percentage: Int) -> Color {
         if percentage <= 30 {
             return Color.red
         } else if percentage <= 60 {
@@ -52,9 +52,9 @@ extension ProgressMeterView {
         }
     }
 }
-
-struct ProgressMeterView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProgressMeterView()
-    }
-}
+//
+//struct ProgressMeterView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BloodBarView()
+//    }
+//}

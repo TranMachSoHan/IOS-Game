@@ -15,7 +15,7 @@
 import SwiftUI
 
 struct ManaBarView: View {
-    var manaPoint: Int
+    @Binding var manaPoint: Int
     
     var body: some View {
         GeometryReader{g in
@@ -39,8 +39,8 @@ struct ManaBarView: View {
     }
 }
 
-struct ManaBarView_Previews: PreviewProvider {
-    static var previews: some View {
-        ManaBarView(manaPoint: 3)
-    }
-}
+//struct ManaBarView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ManaBarView(manaPoint: 3)
+//    }
+//}
