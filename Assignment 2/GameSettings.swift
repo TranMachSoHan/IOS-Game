@@ -6,16 +6,22 @@ enum Mode: String, CaseIterable {
 }
 
 class GameSettings: ObservableObject {
-  @Published var mode: Mode = .easy
+    @Published var mode: Mode = .easy
   
-  // game theme
-  @Published var selectedTheme: ThemeName {
+    // game theme
+    @Published var selectedTheme: ThemeName {
       didSet {
           UserDefaults.standard.set(selectedTheme.rawValue, forKey: "theme")
       }
-  }
+    }
 
-  @Published var selectedSave: GameSave?
+    @Published var darkMode: Bool {
+      didSet {
+          UserDefaults.standard.set(darkMode, forKey: "darkMode")
+      }
+    }
+    
+    @Published var selectedSave: GameSave?
     
     var theme: GameTheme {
         switch selectedTheme {
@@ -42,5 +48,6 @@ class GameSettings: ObservableObject {
     
     init() {
         selectedTheme = ThemeName(rawValue: UserDefaults.standard.string(forKey: "theme") ?? ThemeName.green.rawValue)!
+        darkMode = UserDefaults.standard.string(forKey: "darkMode") ?? false
     }
 }
