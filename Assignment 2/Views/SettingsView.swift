@@ -22,37 +22,42 @@ struct SettingsView: View {
                 }
             }
 
+            Text(gameSettings.modeDescription)
+                .fixedSize(horizontal: false, vertical: true)
+                .multilineTextAlignment(.center)
+                .padding()
+                .frame(width: 300, height: 200)
+                .background(Rectangle().foregroundColor(Color.black.opacity(0.5)))
+            
             // Language
             
         }
+        .padding(.horizontal, 20)
     }
 }
 
 // Will be moved to the components 
 struct ModeItem: View {
     @EnvironmentObject var gameSettings: GameSettings
-    var modeItem: Mode
+    var modeItem: DifficultyMode
     
     var body: some View {
         ZStack {
-            // Color(gameSettings.mode == modeItem  ? gameSettings.theme.buttonYellow : Color.clear)
-            
-            Text(modeItem.rawValue)
-                .font(.system(size: 15.0))
-                // .foregroundColor(
-                //     gameSettings.mode == modeItem ? gameSettings.theme.red  : .black
-                // )
-
             RoundedRectangle(cornerRadius: 25)
-                .fill(gameSettings.mode == modeItem  ? gameSettings.theme.buttonYellow : Color.clear)
+                    .fill(gameSettings.difficultyMode == modeItem  ? gameSettings.menuTheme.thirdLevelColor : Color.secondLevelColor)
+                Text(modeItem.rawValue.capitalized)
+                    .font(.system(size: 15.0))
+                    .foregroundColor(
+                         gameSettings.difficultyMode == modeItem ? gameSettings.menuTheme.topLevelColor  : gameSettings.menuTheme.fourthLevelColor
+                     )
         }
         .onTapGesture {
-            gameSettings.mode = modeItem
+            gameSettings.difficultyMode = modeItem
         }
     }
 }
 
-struct ThemePicker: View {
+struct LocalePicker: View {
     @EnvironmentObject var gameSettings: GameSettings
     
     var body: some View {
@@ -65,10 +70,10 @@ struct ThemePicker: View {
             .pickerStyle(InlinePickerStyle())
             .background(
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(gameSettings.theme.buttonYellow)
+                    .fill(gameSettings.menuTheme.thirdLevelColor)
             )
             Text("Language")
-                .foregroundColor(.white)
+                .foregroundColor(gameSettings.menuTheme.secondLevelColor)
                 .padding()
         }
     }
