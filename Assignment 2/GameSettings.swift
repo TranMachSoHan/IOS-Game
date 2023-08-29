@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 
-enum Mode: String, CaseIterable {
+enum DifficultyMode: String, CaseIterable {
     case easy, medium, hard
 }
 
@@ -12,12 +12,15 @@ enum Locale: String, CaseIterable, Hashable {
 
 class GameSettings: ObservableObject {
     // Difficulty Mode
-    @Published var mode: Mode = .easy
-  
-    // Locale 
-    @Published var locale: ThemeName {
+    @Published var difficultyMode: DifficultyMode {
       didSet {
-          UserDefaults.standard.set(locale, forKey: "locale")
+          UserDefaults.standard.set(difficultyMode.rawValue, forKey: "difficultyMode")
+      }
+    }
+    // Locale 
+    @Published var locale: Locale {
+      didSet {
+          UserDefaults.standard.set(locale.rawValue, forKey: "locale")
       }
     }
 
@@ -35,10 +38,20 @@ class GameSettings: ObservableObject {
     var gameTheme: GameTheme {
         return darkMode ? GameThemes.darkMode : GameThemes.lightMode
     }
-    
+
+    var modeDescription: String{
+        switch difficultyMode {
+            case .easy:
+                return "Easy description"
+            case .medium:
+                return "Medium description"
+            case .hard:
+                return "Hard description"
+        }
+    }
     init() {
-        selectedTheme = ThemeName(rawValue: UserDefaults.standard.string(forKey: "theme") ?? ThemeName.green.rawValue)!
-        darkMode = UserDefaults.standard.string(forKey: "darkMode") ?? false
-        locale = UserDefaults.standard.string(forKey: "locale") ?? Locale.en
+        darkMode = UserDefaults.standard.bool(forKey: "darkMode") ?? false
+        locale = Locale(rawValue: UserDefaults.standard.string(forKey: "locale") ?? Locale.en.rawValue)!
+        difficultyMode = DifficultyMode(rawValue: UserDefaults.standard.string(forKey: "difficultyMode") ?? DifficultyMode.easy.rawValue)!
     }
 }
