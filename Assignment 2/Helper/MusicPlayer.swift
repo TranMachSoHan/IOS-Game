@@ -33,6 +33,19 @@ class MusicPlayer {
       }
   }
 
+  func playSoundEffect(soundEffect: String) {
+    if let bundle = Bundle.main.path(forResource: soundEffect, ofType: "mp3") {
+        let soundEffectUrl = NSURL(fileURLWithPath: bundle)
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf:soundEffectUrl as URL)
+            guard let audioPlayer = audioPlayer else { return }
+            audioPlayer.play()
+        } catch {
+            print(error)
+        }
+    }
+  }
+  
   func stopBackgroundMusic() {
       guard let audioPlayer = audioPlayer else { return }
       audioPlayer.stop()
