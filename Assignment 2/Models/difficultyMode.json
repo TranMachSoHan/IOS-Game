@@ -1,0 +1,14 @@
+[
+  {
+    "modeName": "easy",
+    "modeDescription": "Description Easy"
+  },
+  {
+    "modeName": "medium",
+    "modeDescription": "Description Medium"
+  },
+  {
+    "modeName": "hard",
+    "modeDescription": "Description Hard"
+  },
+]
