@@ -5,16 +5,30 @@ enum Mode: String, CaseIterable {
     case easy, medium, hard
 }
 
+enum Locale: String, CaseIterable, Hashable {
+    case en: "English",
+    case vn: "Vietnam",
+}
+
 class GameSettings: ObservableObject {
+    // Difficulty Mode
     @Published var mode: Mode = .easy
   
-    // game theme
+    // Game Theme
     @Published var selectedTheme: ThemeName {
       didSet {
           UserDefaults.standard.set(selectedTheme.rawValue, forKey: "theme")
       }
     }
 
+    // Locale 
+    // game theme
+    @Published var locale: ThemeName {
+      didSet {
+          UserDefaults.standard.set(locale, forKey: "locale")
+      }
+    }
+    
     @Published var darkMode: Bool {
       didSet {
           UserDefaults.standard.set(darkMode, forKey: "darkMode")
@@ -49,5 +63,6 @@ class GameSettings: ObservableObject {
     init() {
         selectedTheme = ThemeName(rawValue: UserDefaults.standard.string(forKey: "theme") ?? ThemeName.green.rawValue)!
         darkMode = UserDefaults.standard.string(forKey: "darkMode") ?? false
+        locale = UserDefaults.standard.string(forKey: "locale") ?? Locale.en
     }
 }
