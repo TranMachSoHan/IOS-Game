@@ -47,6 +47,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "GameViewModel.updateBotPlayerPoint(deduceBloodPoint:):GameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "levelStatus.botPlayer.bloodPoint">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #6 in GameStatus.updateActionFlow(row:col:selectedCharacter:):GameView.swift">
          <PersistentStrings>
             <PersistentString
@@ -57,17 +65,6 @@
             </PersistentString>
             <PersistentString
                value = "self.playerTurn.isAI">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in GameStatus.updateActionFlow(row:col:selectedCharacter:):GameView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "turn">
-            </PersistentString>
-            <PersistentString
-               value = "mainPlayer.bloodPoint">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -91,10 +88,13 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "GameViewModel.updateBotPlayerPoint(deduceBloodPoint:):GameView.swift">
+         contextName = "closure #1 in GameStatus.updateActionFlow(row:col:selectedCharacter:):GameView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "levelStatus.botPlayer.bloodPoint">
+               value = "turn">
+            </PersistentString>
+            <PersistentString
+               value = "mainPlayer.bloodPoint">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -103,6 +103,14 @@
          <PersistentStrings>
             <PersistentString
                value = "playerTurn">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #3 in HomeView.body.getter:HomeView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "viewRouter.currentPage">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -139,18 +147,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in closure #3 in closure #1 in closure #1 in closure #1 in SwitchUserView.body.getter:SwitchUserView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.popUpTypeString">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "Assignment_2App.init():Assignment_2App.swift">
          <PersistentStrings>
             <PersistentString
                value = "viewRouter.currentPage">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #3 in closure #1 in closure #1 in closure #1 in SwitchUserView.body.getter:SwitchUserView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.popUpTypeString">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -166,10 +174,10 @@
          contextName = "AcheivementBadgeView.filterAcheivementBadges():AcheivementBadgeView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "badges.filter{ badge in&#10;            return playerBadges.contains(badge.name)&#10;        }">
+               value = "playerBadges">
             </PersistentString>
             <PersistentString
-               value = "playerBadges">
+               value = "badges.filter{ badge in&#10;            return playerBadges.contains(badge.name)&#10;        }">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

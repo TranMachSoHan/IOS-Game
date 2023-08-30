@@ -17,6 +17,7 @@ struct HomeView: View {
     @EnvironmentObject var viewRouter: ViewRouter
     @EnvironmentObject var currentPlayer: CurrentPlayer
     @Environment(\.managedObjectContext) var managedObjContext
+    @EnvironmentObject var dataController: DataController
     
     var body: some View {
         ZStack {
@@ -36,14 +37,23 @@ struct HomeView: View {
                     ProfileView()
                 }
         }.onAppear{
-//            DataController().deleteAll()
-            if (currentPlayer.id == ""){
+            let player = dataController.getPlayerById(with: UUID(uuidString: currentPlayer.id), context: managedObjContext)
+            if (player == nil){
                 viewRouter.currentPage = .switchUser
             }
-            
+            else{
+                currentPlayer.setPlayer(player: player ?? Player(context: managedObjContext))
+            }
+            MusicPlayer.shared.startBackgroundMusic(backgroundMusicFileName: "background-music")
         }
-        
-        
+        .onChange(of: viewRouter.currentPage) { newState in
+            if viewRouter.currentPage == .gamePage{
+                MusicPlayer.shared.audioPlayer?.setVolume(0.5, fadeDuration: 0.5)
+            }
+            else{
+                MusicPlayer.shared.audioPlayer?.setVolume(1, fadeDuration: 1)
+            }
+        }
     }
 }
 

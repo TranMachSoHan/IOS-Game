@@ -1,3 +1,15 @@
+/*
+  RMIT University Vietnam
+  Course: COSC2659 iOS Development
+  Semester: 2022B
+  Assessment: Assignment 2
+  Author: Tran Mach So Han
+  ID: s3750789
+  Created  date: 10/08/2023
+  Last modified: 02/09/2023
+  Acknowledgement:
+*/
+
 import Foundation
 import SwiftUI
 
@@ -6,8 +18,8 @@ enum DifficultyMode: String, CaseIterable {
 }
 
 enum Locale: String, CaseIterable, Hashable {
-    case en: "English",
-    case vn: "Vietnam",
+    case en
+    case vn
 }
 
 class GameSettings: ObservableObject {
@@ -17,7 +29,7 @@ class GameSettings: ObservableObject {
           UserDefaults.standard.set(difficultyMode.rawValue, forKey: "difficultyMode")
       }
     }
-    // Locale 
+    // Locale
     @Published var locale: Locale {
       didSet {
           UserDefaults.standard.set(locale.rawValue, forKey: "locale")
@@ -31,9 +43,9 @@ class GameSettings: ObservableObject {
       }
     }
     
-    var menuTheme: MenuTheme {
-        return darkMode ? MenuThemes.darkMode : MenuThemes.lightMode
-    }
+//    var menuTheme: MenuTheme {
+//        return darkMode ? MenuThemes.darkMode : MenuThemes.lightMode
+//    }
 
     var gameTheme: GameTheme {
         return darkMode ? GameThemes.darkMode : GameThemes.lightMode

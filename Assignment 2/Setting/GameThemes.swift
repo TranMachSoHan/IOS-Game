@@ -17,10 +17,11 @@ import SwiftUI
 import SpriteKit
 
 struct MenuTheme {
-    let menuBackgroundImage : String,
-    let backgroundColor: SKColor,
-    let buttonColor: SKColor,
-    let textColor: SKColor
+    let menuBackgroundImage : String
+    let topLevelColor: SKColor
+    let secondLevelColor: SKColor
+    let thirdLevelColor: SKColor
+    let fourthLevelColor: SKColor
 
     init(
         menuBackgroundImage: String,
@@ -38,12 +39,12 @@ struct MenuTheme {
 }
 
 struct GameTheme {
-    let gameBackgroundImages: [String],
-    let borderPlayerImageColor: SKColor,
-    let boardColor: SKColor,
-    let statusTextcolor: SKColor,
-    let imageOverlayOpacity: Double,
-    let manaBarColor: SKColor,
+    let gameBackgroundImages: [String]
+    let borderPlayerImageColor: SKColor
+    let boardColor: SKColor
+    let statusTextcolor: SKColor
+    let imageOverlayOpacity: Double
+    let manaBarColor: SKColor
     let borderCharacterSelected: SKColor
 
     init(
@@ -51,7 +52,7 @@ struct GameTheme {
         borderPlayerImageColor: SKColor,
         boardColor: SKColor,
         statusTextcolor: SKColor,
-        imageOverlayOpacity: SKColor,
+        imageOverlayOpacity: Double,
         manaBarColor: SKColor,
         borderCharacterSelected: SKColor
     ){
@@ -66,7 +67,7 @@ struct GameTheme {
 }
 
 struct GameThemes {
-    static let lightMode = MenuTheme(
+    static let lightMode = GameTheme(
         gameBackgroundImages: [],
         borderPlayerImageColor: SKColor(red: 76 / 255, green: 61 / 255, blue: 61 / 255, alpha: 1),
         boardColor: SKColor(red: 220 / 255, green: 220 / 255, blue: 220 / 255, alpha: 1),
@@ -76,7 +77,7 @@ struct GameThemes {
         borderCharacterSelected: SKColor(red: 192 / 255, green: 127 / 255, blue: 0 / 255, alpha: 1)
     )
 
-    static let darkMode = MenuTheme(
+    static let darkMode = GameTheme(
         gameBackgroundImages: [],
         borderPlayerImageColor: SKColor(red: 255 / 255, green: 247 / 255, blue: 212 / 255, alpha: 1),
         boardColor: SKColor(red: 169 / 255, green: 169 / 255, blue: 169 / 255, alpha: 0/7),

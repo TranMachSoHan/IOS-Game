@@ -26,24 +26,6 @@ struct Badge : Codable, Hashable {
 
 var badges = decodeJsonFromJsonFile(jsonFileName: "badges.json")
 
-// How to decode a json file into a struct
-func decodeJsonFromJsonFile(jsonFileName: String) -> [Badge] {
-    if let file = Bundle.main.url(forResource: jsonFileName, withExtension: nil){
-        if let data = try? Data(contentsOf: file) {
-            do {
-                let decoder = JSONDecoder()
-                let decoded = try decoder.decode([Badge].self, from: data)
-                return decoded
-            } catch let error {
-                fatalError("Failed to decode JSON: \(error)")
-            }
-        }
-    } else {
-        fatalError("Couldn't load \(jsonFileName) file")
-    }
-    return [ ] as [Badge]
-}
-
 func findBadgeByName(name: String) -> Badge{
-    return badges.first(where: {$0.name == "New Member"}) ?? badges[0]
+    return badges.first(where: {$0.name == name}) ?? badges[0]
 }

@@ -50,4 +50,5 @@ class MusicPlayer {
       guard let audioPlayer = audioPlayer else { return }
       audioPlayer.stop()
   }
+    
 }
