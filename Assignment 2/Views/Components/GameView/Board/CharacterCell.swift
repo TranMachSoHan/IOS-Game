@@ -14,23 +14,31 @@ import SwiftUI
 
 struct CharacterCell: View {
     @Binding var character: Character
-    
+    @Binding var cell: Cell
+
     var body: some View {
         ZStack {
             arrowCell
             VStack {
                 character.imageChibi
                     .resizable()
-                    .scaledToFit()
+                    .animation(.easeIn(duration: 0.5))
                 HStack (alignment: .bottom){
                     StatusPoint(point: character.attackPoint, image: Image("attack"))
-                        .frame(width: 30, height: 30)
+                        .frame(width: 20, height: 20)
                     StatusPoint(point: character.bloodPoint, image: Image("blood"))
-                        .frame(width: 30, height: 30)
+                        .frame(width: 20, height: 20)
                 }
             }
-            .padding(15)
+            .padding(7)
         }
+        .onChange(of: cell.isDead, perform: { (value) in
+            withAnimation(.easeInOut(duration: 0.5).delay(0.4)) {
+                cell.isDead = false
+                character.characterName = ""
+                cell.isBlockedBy = nil
+            }
+        })
     }
 }
 
@@ -42,7 +50,7 @@ extension CharacterCell {
                 Spacer()
                 if (character.upAttack){
                     Image(systemName: "arrow.up")
-                        .foregroundColor(.yellow)
+                        .foregroundColor(.green)
                 }
                 Spacer()
             }
@@ -69,7 +77,7 @@ extension CharacterCell {
                 Spacer()
                 if (character.downAttack){
                     Image(systemName: "arrow.down")
-                        .foregroundColor(.yellow)
+                        .foregroundColor(.green)
                 }
                 Spacer()
             }

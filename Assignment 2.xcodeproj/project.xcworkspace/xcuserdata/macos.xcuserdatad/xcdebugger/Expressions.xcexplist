@@ -3,26 +3,13 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "GameViewModel.updateBotPlayerPoint(deduceBloodPoint:):GameView.swift">
+         contextName = "PlayerGame.removeDeck(removedCharacter:):PlayerLevelStatus.swift">
          <PersistentStrings>
             <PersistentString
-               value = "levelStatus.botPlayer.bloodPoint">
+               value = "displayCharacterDeck">
             </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Assignment_2App.init():Assignment_2App.swift">
-         <PersistentStrings>
             <PersistentString
-               value = "viewRouter.currentPage">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in Assignment_2App.body.getter:Assignment_2App.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "viewRouter.currentPage">
+               value = "characterDeck">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -35,21 +22,52 @@
             <PersistentString
                value = "player.levelStatus?.allObjects.count">
             </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "GameStatus.updatePlayerStatus(manaPoint:):GameView.swift">
-         <PersistentStrings>
             <PersistentString
-               value = "playerTurn">
+               value = "gameStatus.playerTurn">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "GameStatus.updatePlayerTurn(player:):GameView.swift">
+         contextName = "closure #2 in HomeView.body.getter:HomeView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "botPlayer">
+               value = "currentPlayer.id">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameViewModel.updateCharacterInCell(row:col:character:):GameView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "GameStatus.init():GameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.playerTurn == botPlayer">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #6 in GameStatus.updateActionFlow(row:col:selectedCharacter:):GameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.playerTurn == botPlayer">
+            </PersistentString>
+            <PersistentString
+               value = "self.playerTurn == self.botPlayer">
+            </PersistentString>
+            <PersistentString
+               value = "self.playerTurn.isAI">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in GameStatus.updateActionFlow(row:col:selectedCharacter:):GameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "turn">
+            </PersistentString>
+            <PersistentString
+               value = "mainPlayer.bloodPoint">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -65,59 +83,26 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "GameViewModel.updateCharacterInCell(row:col:character:):GameView.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in closure #1 in closure #2 in closure #1 in closure #1 in closure #1 in GameView.body.getter:GameView.swift">
+         contextName = "GameStatus.updateActionFlow(row:col:selectedCharacter:):GameView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "levelStatus.mainBoard.cells">
+               value = "turn">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in closure #1 in closure #1 in closure #1 in closure #2 in closure #1 in closure #1 in closure #1 in GameView.body.getter:GameView.swift">
+         contextName = "GameViewModel.updateBotPlayerPoint(deduceBloodPoint:):GameView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "playerStatus.playerTurn.displayCharacterDeck">
+               value = "levelStatus.botPlayer.bloodPoint">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #2 in HomeView.body.getter:HomeView.swift">
+         contextName = "GameStatus.updatePlayerStatus(manaPoint:):GameView.swift">
          <PersistentStrings>
-            <PersistentString
-               value = "currentPlayer.id">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in closure #1 in PlayerStatusView.body.getter:PlayerStatus.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "player">
-            </PersistentString>
             <PersistentString
                value = "playerTurn">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in closure #3 in closure #1 in closure #1 in closure #1 in SwitchUserView.body.getter:SwitchUserView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.popUpTypeString">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "PlayerGame.removeDeck(removedCharacter:):PlayerLevelStatus.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "displayCharacterDeck">
-            </PersistentString>
-            <PersistentString
-               value = "characterDeck">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -130,13 +115,72 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #1 in Assignment_2App.body.getter:Assignment_2App.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "viewRouter.currentPage">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #1 in closure #1 in closure #2 in closure #1 in closure #1 in closure #1 in GameView.body.getter:GameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "playerStatus.playerTurn.displayCharacterDeck">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #2 in closure #1 in closure #1 in closure #1 in GameView.body.getter:GameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "levelStatus.mainBoard.cells">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #3 in closure #1 in closure #1 in closure #1 in SwitchUserView.body.getter:SwitchUserView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.popUpTypeString">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Assignment_2App.init():Assignment_2App.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "viewRouter.currentPage">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameStatus.updatePlayerTurn(player:):GameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "botPlayer">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "AcheivementBadgeView.filterAcheivementBadges():AcheivementBadgeView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "playerBadges">
+               value = "badges.filter{ badge in&#10;            return playerBadges.contains(badge.name)&#10;        }">
             </PersistentString>
             <PersistentString
-               value = "badges.filter{ badge in&#10;            return playerBadges.contains(badge.name)&#10;        }">
+               value = "playerBadges">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in PlayerStatusView.body.getter:PlayerStatus.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "player">
+            </PersistentString>
+            <PersistentString
+               value = "playerTurn">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

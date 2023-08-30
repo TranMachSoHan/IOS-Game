@@ -32,8 +32,11 @@ struct PlayerGame: Hashable {
     var manaPoint: Int = 5
     var bloodPoint: Int = 100
     var imageName: String = "robot"
-    var isAI: Bool = false
     var color: Color
+    
+    var getIDString: String{
+        return id.uuidString
+    }
     
     var image: Image {
         return Image(imageName)
@@ -44,13 +47,19 @@ struct PlayerGame: Hashable {
 
     mutating func removeDeck(removedCharacter: Character) {
         let index = self.displayCharacterDeck.firstIndex(where: {$0.characterName == removedCharacter.characterName})
-        self.characterDeck.append(self.displayCharacterDeck.remove(at: index ?? 0))
-        self.displayCharacterDeck.insert(characterDeck.remove(at: 0), at: index ?? 0)
+        self.displayCharacterDeck.remove(at: index ?? 0)
+        if (self.characterDeck.count != 0){
+            self.displayCharacterDeck.insert(characterDeck.remove(at: 0), at: index ?? 0)
+        }
     }
     
+    mutating func appendDeckAtEnd(removedCharacter: Character) {
+        self.characterDeck.append(removedCharacter)
+    }
+
     mutating func updatePlayerStatus(manaPoint: Int = 0, bloodPoint: Int = 0){
-        self.manaPoint = self.manaPoint - manaPoint
-        self.bloodPoint = self.bloodPoint - bloodPoint
+        self.manaPoint = self.manaPoint + manaPoint
+        self.bloodPoint = self.bloodPoint + bloodPoint
     }
     init(color: Color){
         let randomDeck = [
@@ -73,7 +82,13 @@ struct PlayerGame: Hashable {
 struct Cell : Hashable{
     var character : Character = Character()
     var isAttackedCell : Bool = false
+    var isProtectedCell : Bool = false
+    var isDead : Bool = false
     var isBlockedBy: PlayerGame?
+    
+    init(){
+        self.isBlockedBy = nil
+    }
 }
 
 struct MainBoard: Hashable{

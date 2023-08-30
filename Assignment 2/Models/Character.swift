@@ -17,6 +17,16 @@ struct Character: Hashable {
     var leftAttack : Bool = false
     var rightAttack : Bool = false
     
+    init(characterName: String = "", manaPoint: Int = 0, bloodPoint: Int = 0, attackPoint: Int = 0) {
+        self.characterName = characterName
+        self.manaPoint = manaPoint
+        self.bloodPoint = bloodPoint
+        self.attackPoint = attackPoint
+        self.upAttack = Bool.random()
+        self.downAttack = Bool.random()
+        self.leftAttack = Bool.random()
+        self.rightAttack = Bool.random()
+    }
     var imageCard: Image {
         Image(characterName)
     }

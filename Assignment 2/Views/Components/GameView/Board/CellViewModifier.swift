@@ -18,6 +18,7 @@ import SwiftUI
 struct AttackCellModifier: ViewModifier {
     let state: Binding<Bool>
     @Binding var cell: Cell
+    @State var playerTurn: PlayerGame = PlayerGame(color: .blue)
     let repeatCount: Int
     let duration: Double
     
@@ -35,16 +36,17 @@ struct AttackCellModifier: ViewModifier {
     func body(content: Content) -> some View
     {
         ZStack{
-            Color(self.blinking.wrappedValue ? .green : .gray)
+            cell.isBlockedBy != nil ? cell.isBlockedBy?.color : .gray
+            
+            Color(self.blinking.wrappedValue ? .purple : .clear)
                 .animation( // Kind of animation can be changed per needs
                     Animation.linear(duration:self.duration).repeatCount(self.repeatCount)
                 )
+            
             if (cell.character.characterName != ""){
-                CharacterCell(character: $cell.character)
-                    .frame(width: 90)
+                CharacterCell(character: $cell.character, cell: $cell)
             }
         }
-        
     }
 }
 

@@ -20,10 +20,7 @@
 
 import SwiftUI
 
-var characterExample = ["knight", "samurai", "robin-hood"]
-
 var emptyCharacter : Character = Character()
-
 struct GameView: View {
     @EnvironmentObject var currentPlayer: CurrentPlayer
     @Environment(\.managedObjectContext) var managedObjContext
@@ -42,21 +39,20 @@ struct GameView: View {
 //                    .edgesIgnoringSafeArea(.all)
 //                    .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
                 VStack {
-                    HStack {
-                        PlayerStatusView(
-                            image: gameStatus.botPlayer.image,
-                            bloodPoint: $gameStatus.botPlayer.bloodPoint,
-                            manaPoint: $gameStatus.botPlayer.manaPoint,
-                            manaPositionTop: false,
-                            showDeck: false,
-                            draggedCharacter: $draggedCharacter,
-                            player: $gameStatus.botPlayer,
-                            playerTurn: $gameStatus.playerTurn,
-                            displayCharacterDeck: $gameStatus.botPlayer.displayCharacterDeck,
-                            showLoading: true,
-                            isOpponentLoading: $gameStatus.isLoading
-                        )
-                    }
+                    PlayerStatusView(
+                        image: gameStatus.botPlayer.image,
+                        bloodPoint: $gameStatus.botPlayer.bloodPoint,
+                        manaPoint: $gameStatus.botPlayer.manaPoint,
+                        manaPositionTop: false,
+                        showDeck: false,
+                        draggedCharacter: $draggedCharacter,
+                        player: $gameStatus.botPlayer,
+                        playerTurn: $gameStatus.playerTurn,
+                        displayCharacterDeck: $gameStatus.botPlayer.displayCharacterDeck,
+                        showLoading: true,
+                        gameStatus: gameStatus
+                    )
+                    .frame(height: 150)
                     
                     ForEach(0..<4, id: \.self) { row in
                         HStack {
@@ -65,14 +61,8 @@ struct GameView: View {
                                     .onTapGesture {
                                         withAnimation {
                                             if draggedCharacter.characterName != "" {
-//                                                gameStatus.mainBoard.cells[col][row].character = draggedCharacter
-                                                gameStatus.addCharacterInCell(row: row, col: col, selectedCharacter: draggedCharacter)
-                                                
-                                                gameStatus.removePlayerDeck(removedCharacter: draggedCharacter)
-                                                
-                                                gameStatus.updatePlayerTurn(player: gameStatus.botPlayer)
+                                                gameStatus.updateActionFlow(row: row, col: col, selectedCharacter: draggedCharacter)
                                                 draggedCharacter = emptyCharacter
-                                                self.gameStatus.botLoading()
                                             }
                                         }
                                     }
@@ -80,62 +70,85 @@ struct GameView: View {
                         }
                     }
                     
-                    HStack {
-                        PlayerStatusView(
-                            image: gameStatus.mainPlayer.image,
-                            bloodPoint: $gameStatus.mainPlayer.bloodPoint,
-                            manaPoint: $gameStatus.mainPlayer.manaPoint,
-                            manaPositionTop: true,
-                            showDeck: true,
-                            draggedCharacter: $draggedCharacter,
-                            player: $gameStatus.mainPlayer,
-                            playerTurn: $gameStatus.playerTurn,
-                            displayCharacterDeck: $gameStatus.mainPlayer.displayCharacterDeck,
-                            showLoading: false,
-                            isOpponentLoading: $gameStatus.isLoading
-                        )
-                    }
+                    PlayerStatusView(
+                        image: gameStatus.mainPlayer.image,
+                        bloodPoint: $gameStatus.mainPlayer.bloodPoint,
+                        manaPoint: $gameStatus.mainPlayer.manaPoint,
+                        manaPositionTop: true,
+                        showDeck: true,
+                        draggedCharacter: $draggedCharacter,
+                        player: $gameStatus.mainPlayer,
+                        playerTurn: $gameStatus.playerTurn,
+                        displayCharacterDeck: $gameStatus.mainPlayer.displayCharacterDeck,
+                        showLoading: false,
+                        gameStatus: gameStatus
+                    )
                 }
-                .padding(.horizontal, 10)
             }
-            .onAppear(){
-                self.gameStatus.intialGame()
-                self.gameStatus.botLoading()
-            }
+            .onChange(of: self.gameStatus.playerTurn, perform: { (value) in
+                if self.gameStatus.playerTurn == self.gameStatus.botPlayer{
+                    self.gameStatus.botLoading()
+                }
+            })
+            .edgesIgnoringSafeArea(.all)
     }
-    
-    
-    
 }
 
 class GameStatus: ObservableObject {
     @Published var level: GameLevel = .easy
     @Published var mainBoard: MainBoard = MainBoard()
-    @Published var mainPlayer: PlayerGame = PlayerGame(color: .green)
-    @Published var playerTurn: PlayerGame  = PlayerGame(color: .clear)
-    @Published var botPlayer: PlayerGame = PlayerGame(color: .red)
-    @Published var isLoading = false
+    @Published var mainPlayer: PlayerGame = PlayerGame(color: .brown)
+    @Published var playerTurn: PlayerGame  = PlayerGame(
+        color: .clear)
+    @Published var botPlayer: PlayerGame = PlayerGame(color: .purple)
+    @Published var turn = 0
+    
+    init(){
+        self.playerTurn = botPlayer
+        if self.playerTurn == botPlayer{
+            self.botLoading()
+        }
+        
+    }
     
     func botLoading () {
         // Bot turn
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [self] in
-//            self.botProcess()
-//            self.updatePlayerTurn(player: mainPlayer)
-//            isLoading = false
-//        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [self] in
+            self.botProcess()
+        }
+    }
+    
+    func updateActionFlow(row: Int, col: Int, selectedCharacter: Character){
+        turn = turn + 1
+        var waitingTime = 3
         
-        self.botProcess()
-        self.updatePlayerTurn(player: mainPlayer)
-        isLoading = false
-    }
-    
-    func updatePlayerTurn(player: PlayerGame){
-        playerTurn = player
-    }
-    
-    func intialGame(){
-        updatePlayerTurn(player: botPlayer)
-        self.isLoading = self.playerTurn == self.botPlayer
+        self.removePlayerDeck(removedCharacter: selectedCharacter)
+        self.addCharacterInCell(row: row, col: col, selectedCharacter: selectedCharacter)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + DispatchTimeInterval.seconds(waitingTime)){ [self] in
+            // Update existing character and minus point
+            if turn >= 2 {
+                turn = 0
+                var flatMainBoard = mainBoard.cells.flatMap { $0 }
+                
+                var mainPlayerBloodReduced = flatMainBoard
+                    .filter { $0.isBlockedBy?.id == botPlayer.id }
+                    .map({$0.character.attackPoint}).reduce(0, +)
+                self.mainPlayer.updatePlayerStatus(manaPoint: 1, bloodPoint: -mainPlayerBloodReduced)
+                
+                var mainBotBloodReduced = flatMainBoard
+                    .filter { $0.isBlockedBy?.id == mainPlayer.id }
+                    .map({$0.character.attackPoint}).reduce(0, +)
+                self.botPlayer.updatePlayerStatus(manaPoint: 1, bloodPoint: -mainBotBloodReduced)
+                
+                // increase waiting time to do animation update Blood point
+                waitingTime += 2
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + DispatchTimeInterval.seconds(waitingTime)) { [self] in
+            self.playerTurn = self.playerTurn.id == self.botPlayer.id ? mainPlayer : botPlayer
+        }
     }
     
     func botProcess(){
@@ -158,8 +171,7 @@ class GameStatus: ObservableObject {
         }
         
         let selectedCellTuple = emptyCells[Int.random(in: 0..<emptyCells.count)]
-        addCharacterInCell(row: selectedCellTuple.1, col: selectedCellTuple.0, selectedCharacter: selectedCharacter)
-        removePlayerDeck(removedCharacter: selectedCharacter)
+        updateActionFlow(row: selectedCellTuple.1, col: selectedCellTuple.0, selectedCharacter: selectedCharacter)
     }
     
     func removePlayerDeck(removedCharacter: Character){
@@ -171,23 +183,78 @@ class GameStatus: ObservableObject {
         }
     }
     
+    // mapping 2D array to tuple row, col
     func twoDArrayToColumnAndRowTuplesWithFilter(_ array: [[Cell]]) -> [(Int, Int)] {
         return array.enumerated().flatMap { (index, row) in
             row.enumerated().filter { $0.element.character.characterName == "" }.map { ($0.offset, index) }
         }
     }
     
-    func getAttackedCells(){
+    // from the tuple index of character, find the list of cell matching the direction of chracter
+    // then convert the status of the cell: isAttackedCell to be true
+    func boldAttackedCells(row: Int, col: Int, selectedCharacter: Character) -> [(Int, Int)]{
         
+        // Declare to store enemy cells in the attack direction
+        var enemyCellsEntry: [(Int, Int)] = []
+        // closure function
+        let checkCellsAndAppend: (Int, Int) -> Void = { col, row in
+            self.mainBoard.cells[col][row].isAttackedCell = true
+            if self.mainBoard.cells[col][row].isBlockedBy?.getIDString != self.playerTurn.getIDString{
+                enemyCellsEntry.append((col, row))
+            }
+        }
+        
+        // Character has the direction including: up, down, right and left
+        if selectedCharacter.upAttack{
+            for attackedRow in (0..<row){
+                checkCellsAndAppend(col, attackedRow)
+            }
+        }
+        
+        if selectedCharacter.downAttack{
+            for attackedRow in (row+1..<self.mainBoard.cells.count){
+                checkCellsAndAppend(col, attackedRow)
+            }
+        }
+        
+        if selectedCharacter.rightAttack{
+            for attackedCol in (col+1..<self.mainBoard.cells[0].count){
+                checkCellsAndAppend(attackedCol, row)
+            }
+        }
+
+        if selectedCharacter.leftAttack{
+            for attackedCol in (0..<col){
+                checkCellsAndAppend(attackedCol, row)
+            }
+        }
+        return enemyCellsEntry
     }
     
+    // add character to 2D cell in the mainboard
+    // Here is the main logic after character is allocated in the cell
     func addCharacterInCell(row: Int, col: Int, selectedCharacter: Character){
         self.mainBoard.cells[col][row].character = selectedCharacter
-        if playerTurn == botPlayer {
-            self.botPlayer.updatePlayerStatus(manaPoint: selectedCharacter.manaPoint)
+        self.mainBoard.cells[col][row].isBlockedBy = self.playerTurn
+        
+        // Update ManaPoint
+        if playerTurn.id == botPlayer.id {
+            self.botPlayer.updatePlayerStatus(manaPoint: -selectedCharacter.manaPoint)
         }
         else {
-            self.mainPlayer.updatePlayerStatus(manaPoint: selectedCharacter.manaPoint)
+            self.mainPlayer.updatePlayerStatus(manaPoint: -selectedCharacter.manaPoint)
+        }
+        
+        // Start attack
+        let attackCells = self.boldAttackedCells(row: row, col: col, selectedCharacter: selectedCharacter)
+        
+        
+        for (col, row) in attackCells{
+            var cell = self.mainBoard.cells[col][row]
+            if cell.character.bloodPoint < selectedCharacter.attackPoint{
+                
+            }
+            self.mainBoard.cells[col][row].isDead = true
         }
     }
 }

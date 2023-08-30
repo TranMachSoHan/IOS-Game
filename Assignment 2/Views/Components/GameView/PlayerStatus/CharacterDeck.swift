@@ -35,18 +35,18 @@ struct CharacterDeck: View {
                             .frame(height: geo.size.height/4)
                         Spacer()
                         Spacer()
+                        StatusPoint(point: attackPoint, image: Image("attack"))
+                            .frame(height: geo.size.height/4)
                     }
                     Spacer()
                     HStack{
-                        StatusPoint(point: attackPoint, image: Image("attack"))
-                            .frame(height: geo.size.height/4)
+                        Spacer()
                         Spacer()
                         StatusPoint(point: bloodPoint, image: Image("blood"))
-                            .frame(height: geo.size.height/4)
+                            .frame(width: geo.size.width/2, height: geo.size.height/4)
                     }
                 }
             }
-            .edgesIgnoringSafeArea(.all)
         }
     }
 }
