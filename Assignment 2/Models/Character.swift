@@ -38,4 +38,60 @@ struct Character: Hashable {
     mutating func resetCharacterAttribute() {
         self.characterName = ""
     }
+    
+    mutating func setPoint(manaPoint: Int, upAttackQty: Binding<Int>, downAttackQty: Binding<Int>, leftAttackQty: Binding<Int>, rightAttackQty: Binding<Int>){
+        var totalPoint = 0
+        switch manaPoint{
+            case 1:
+                totalPoint = 6
+            case 2:
+                totalPoint = 8
+            case 3:
+                totalPoint = 11
+            default:
+                totalPoint = 8
+        }
+        
+        // Make sure the total point skill is equivalent to the totalPoint
+        // Ensure the balance of a character
+        
+        var bloodPoint = Int.random(in: 1...totalPoint)
+        totalPoint -= bloodPoint
+        
+        if upAttackQty.wrappedValue != 0{
+            if Bool.random(){
+                self.upAttack = true
+                upAttackQty.wrappedValue -= 1
+            }
+        }
+        
+        if downAttackQty.wrappedValue != 0{
+            if Bool.random(){
+                self.downAttack = true
+                downAttackQty.wrappedValue -= 1
+            }
+        }
+        
+        if leftAttackQty.wrappedValue != 0{
+            if Bool.random(){
+                self.leftAttack = true
+                leftAttackQty.wrappedValue -= 1
+            }
+        }
+        
+        if rightAttackQty.wrappedValue != 0{
+            if Bool.random(){
+                self.rightAttack = true
+                rightAttackQty.wrappedValue -= 1
+            }
+        }
+        
+        // remaining
+        var attackPoint = totalPoint
+        
+        // Update Point for the character
+        self.manaPoint = manaPoint
+        self.bloodPoint = bloodPoint
+        self.attackPoint = attackPoint
+    }
 }

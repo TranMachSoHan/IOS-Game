@@ -13,17 +13,19 @@
 import SwiftUI
 
 struct BoardCell: View {
-    @Binding var mainBoard: [[Cell]]
     @Binding var draggedCharacter: Character
+    @ObservedObject var gameStatus: GameStatus
+    
     var body: some View {
-        ForEach(0..<3, id: \.self) { row in
+        ForEach(0..<4, id: \.self) { row in
             HStack {
-                ForEach(0..<3, id: \.self) { col in
-                    CellCharacterStatusView(cell: $mainBoard[col][row], draggedCharacter: $draggedCharacter)
+                ForEach(0..<4, id: \.self) { col in
+                    CellCharacterStatusView(cell: $gameStatus.mainBoard.cells[col][row], draggedCharacter: $draggedCharacter)
                         .onTapGesture {
                             withAnimation {
                                 if draggedCharacter.characterName != "" {
-                                    mainBoard[col][row].character = draggedCharacter
+                                    gameStatus.updateActionFlow(row: row, col: col, selectedCharacter: draggedCharacter)
+                                    draggedCharacter = emptyCharacter
                                 }
                             }
                         }

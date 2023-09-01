@@ -1,0 +1,140 @@
+[{
+        "level": 1,
+        "instruction": "level1",
+        "turn": "player",
+        "botOriginPosition": [],
+        "player": {
+            "manaPoint": 2,
+            "manaArr": [1, 1, 1, 1, 1, 1],
+            "bloodPoint": 3,
+            "upAttackQty": 0,
+            "downAttackQty": 0,
+            "leftAttackQty": 0,
+            "rightAttackQty": 0
+        },
+        "bot": {
+            "manaPoint": 3,
+            "bloodPoint": 3,
+            "manaArr": [1, 1, 1, 1, 1, 1],
+            "upAttackQty": 0,
+            "downAttackQty": 0,
+            "leftAttackQty": 0,
+            "rightAttackQty": 0
+        }
+    },
+    {
+        "level": 2,
+        "instruction": "level2",
+        "turn": "bot",
+        "botOriginPosition": [{
+            "col": 3,
+            "row": 1
+        }],
+        "player": {
+            "manaPoint": 2,
+            "bloodPoint": 3,
+            "manaArr": [1, 1, 1, 1, 1, 1],
+            "upAttackQty": 2,
+            "downAttackQty": 0,
+            "leftAttackQty": 0,
+            "rightAttackQty": 0
+        },
+        "bot": {
+            "manaPoint": 3,
+            "bloodPoint": 5,
+            "manaArr": [1, 1, 1, 1, 1, 1],
+            "upAttackQty": 0,
+            "downAttackQty": 0,
+            "leftAttackQty": 0,
+            "rightAttackQty": 0
+        }
+    },
+    {
+        "level": 3,
+        "instruction": "level3",
+        "turn": "bot",
+        "botOriginPosition": [{
+            "col": 3,
+            "row": 1
+        }],
+        "player": {
+            "manaPoint": 3,
+            "bloodPoint": 3,
+            "manaArr": [1, 1, 1, 1, 1, 1],
+            "upAttackQty": 2,
+            "downAttackQty": 2,
+            "leftAttackQty": 0,
+            "rightAttackQty": 0
+        },
+        "bot": {
+            "manaPoint": 3,
+            "bloodPoint": 5,
+            "manaArr": [1, 1, 1, 1, 1, 1],
+            "upAttackQty": 1,
+            "downAttackQty": 1,
+            "leftAttackQty": 0,
+            "rightAttackQty": 0
+        }
+    },
+    {
+        "level": 4,
+        "instruction": "level4",
+        "turn": "bot",
+        "botOriginPosition": [{
+            "col": 3,
+            "row": 1
+        }],
+        "player": {
+            "manaPoint": 3,
+            "bloodPoint": 10,
+            "manaArr": [1, 1, 1, 2, 1, 2],
+            "upAttackQty": 2,
+            "downAttackQty": 2,
+            "leftAttackQty": 2,
+            "rightAttackQty": 2
+            
+        },
+        "bot": {
+            "manaPoint": 3,
+            "bloodPoint": 10,
+            "manaArr": [1, 1, 1, 2, 1, 2],
+            "upAttackQty": 0,
+            "downAttackQty": 0,
+            "leftAttackQty": 1,
+            "rightAttackQty": 1
+        }
+    },
+
+    {
+        "level": 5,
+        "instruction": "level5",
+        "turn": "bot",
+        "botOriginPosition": [{
+                "col": 3,
+                "row": 1
+            },
+            {
+                "col": 2,
+                "row": 2
+            }
+        ],
+        "player": {
+            "manaPoint": 3,
+            "bloodPoint": 10,
+            "manaArr": [1, 1, 1, 2, 2, 2],
+            "upAttackQty": 2,
+            "downAttackQty": 2,
+            "leftAttackQty": 2,
+            "rightAttackQty": 2
+        },
+        "bot": {
+            "manaPoint": 3,
+            "bloodPoint": 10,
+            "manaArr": [1, 1, 1, 2, 2, 2],
+            "upAttackQty": 2,
+            "downAttackQty": 2,
+            "leftAttackQty": 2,
+            "rightAttackQty": 2
+        }
+    }
+]

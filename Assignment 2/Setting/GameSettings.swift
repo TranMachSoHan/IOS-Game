@@ -29,6 +29,9 @@ class GameSettings: ObservableObject {
           UserDefaults.standard.set(difficultyMode.rawValue, forKey: "difficultyMode")
       }
     }
+    
+    @Published var level: Int = 0
+    
     // Locale
     @Published var locale: Locale {
       didSet {
@@ -43,9 +46,11 @@ class GameSettings: ObservableObject {
       }
     }
     
-//    var menuTheme: MenuTheme {
-//        return darkMode ? MenuThemes.darkMode : MenuThemes.lightMode
-//    }
+    @Published var badgeNameUnlock: String = ""
+    
+    var menuTheme: MenuTheme {
+        return darkMode ? MenuThemes.darkMode : MenuThemes.lightMode
+    }
 
     var gameTheme: GameTheme {
         return darkMode ? GameThemes.darkMode : GameThemes.lightMode
@@ -62,7 +67,7 @@ class GameSettings: ObservableObject {
         }
     }
     init() {
-        darkMode = UserDefaults.standard.bool(forKey: "darkMode") ?? false
+        darkMode = UserDefaults.standard.bool(forKey: "darkMode")
         locale = Locale(rawValue: UserDefaults.standard.string(forKey: "locale") ?? Locale.en.rawValue)!
         difficultyMode = DifficultyMode(rawValue: UserDefaults.standard.string(forKey: "difficultyMode") ?? DifficultyMode.easy.rawValue)!
     }

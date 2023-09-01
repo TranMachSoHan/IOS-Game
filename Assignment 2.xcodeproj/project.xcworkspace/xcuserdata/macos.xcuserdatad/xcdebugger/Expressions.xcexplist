@@ -3,13 +3,16 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "PlayerGame.removeDeck(removedCharacter:):PlayerLevelStatus.swift">
+         contextName = "GameStatus.init(level:mode:):GameStatus.swift">
          <PersistentStrings>
             <PersistentString
-               value = "displayCharacterDeck">
+               value = "mainPlayer">
             </PersistentString>
             <PersistentString
-               value = "characterDeck">
+               value = "playerTurn">
+            </PersistentString>
+            <PersistentString
+               value = "botPlayer">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -24,6 +27,28 @@
             </PersistentString>
             <PersistentString
                value = "gameStatus.playerTurn">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "PlayerGame.removeDeck(removedCharacter:):PlayerLevelStatus.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "displayCharacterDeck">
+            </PersistentString>
+            <PersistentString
+               value = "characterDeck">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #4 in HomeView.body.getter:HomeView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "currentPlayer.id">
+            </PersistentString>
+            <PersistentString
+               value = "gameSettings.badgeNameUnlock">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -99,18 +124,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "GameStatus.updatePlayerStatus(manaPoint:):GameView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "playerTurn">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "closure #3 in HomeView.body.getter:HomeView.swift">
          <PersistentStrings>
             <PersistentString
                value = "viewRouter.currentPage">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameStatus.updatePlayerStatus(manaPoint:):GameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "playerTurn">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -131,10 +156,35 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "PlayerGame.prepareDeckCard(manaCharacter:upAttackQty:downAttackQty:leftAttackQty:rightAttackQty:):PlayerLevelStatus.swift">
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in closure #1 in closure #1 in closure #1 in closure #2 in closure #1 in closure #1 in closure #1 in GameView.body.getter:GameView.swift">
          <PersistentStrings>
             <PersistentString
                value = "playerStatus.playerTurn.displayCharacterDeck">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #1 in closure #1 in LevelView.body.getter:LevelView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "currentPlayer.levelUnlock(mode: gameSettings.difficultyMode)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameStatus.setUpMode(level:mode:):GameStatus.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "progress.turn == &quot;player&quot;">
+            </PersistentString>
+            <PersistentString
+               value = "playerTurn">
+            </PersistentString>
+            <PersistentString
+               value = "botPlayer">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -167,6 +217,14 @@
          <PersistentStrings>
             <PersistentString
                value = "botPlayer">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DataController.addBadgeForPlayer(badgeName:id:context:):DataController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "player.badges">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

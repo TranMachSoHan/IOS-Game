@@ -22,7 +22,9 @@ class CurrentPlayer: ObservableObject  {
     }
     @Published var name: String = ""
     @Published var imageName: String = ""
-    @Published var gameLevel: Int = 0
+    @Published var easyLevel: Int = 0
+    @Published var mediumLevel: Int = 0
+    @Published var hardLevel: Int = 0 
     @Published var badges: [String] = []
 
     init() {
@@ -33,11 +35,25 @@ class CurrentPlayer: ObservableObject  {
         self.id = player.id?.uuidString ?? ""
         self.name = player.name ?? ""
         self.imageName = player.imageName ?? ""
+        self.easyLevel = Int(player.easyLevel)
+        self.mediumLevel = Int(player.mediumLevel)
+        self.hardLevel = Int(player.hardLevel)
         let badge = player.badges ?? []
         self.badges = badge.compactMap { $0 as String }
     }
 
     var image : Image {
         return Image(imageName)
+    }
+    
+    func levelUnlock(mode: DifficultyMode) -> Int{
+        switch mode{
+            case .easy:
+                return easyLevel
+            case .medium:
+                return mediumLevel
+            case .hard:
+                return hardLevel
+        }
     }
 }

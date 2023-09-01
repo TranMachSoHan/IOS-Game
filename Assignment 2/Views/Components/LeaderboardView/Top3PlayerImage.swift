@@ -29,7 +29,6 @@ struct Top3PlayerImage: View {
                     }
             }
             Text(player.name!)
-            Text("\(player.score)")
         }
     }
 }

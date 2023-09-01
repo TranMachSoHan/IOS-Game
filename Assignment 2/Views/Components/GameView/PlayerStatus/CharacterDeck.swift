@@ -19,13 +19,17 @@ struct CharacterDeck: View {
     var attackPoint: Int
     var manaPoint: Int
     var bloodPoint: Int
+    var upAttack: Bool
+    var downAttack: Bool
+    var rightAttack: Bool
+    var leftAttack: Bool
     
     var body: some View {
         GeometryReader { geo in
             ZStack (alignment: .topLeading) {
-                RoundedRectangle(cornerRadius: 5)
+                RoundedRectangle(cornerRadius: 30)
                     .fill(LinearGradient(gradient: Gradient(colors: [.black, .red, .yellow]), startPoint: .top, endPoint: .bottom))
-                
+
                 ZStack{
                     characterImg
                 }.padding(10)
@@ -34,19 +38,20 @@ struct CharacterDeck: View {
                         StatusPoint(point: manaPoint, image: Image("mana"))
                             .frame(height: geo.size.height/4)
                         Spacer()
-                        Spacer()
-                        StatusPoint(point: attackPoint, image: Image("attack"))
-                            .frame(height: geo.size.height/4)
                     }
                     Spacer()
                     HStack{
-                        Spacer()
-                        Spacer()
+                        StatusPoint(point: attackPoint, image: Image("attack"))
+                            .frame(height: geo.size.height/4)
                         StatusPoint(point: bloodPoint, image: Image("blood"))
-                            .frame(width: geo.size.width/2, height: geo.size.height/4)
+                            .frame(height: geo.size.height/4)
                     }
                 }
             }
+            .padding(.vertical, geo.size.height/14)
+            .padding(.horizontal, geo.size.width/8)
+            
+            DirectionView(upAttack: upAttack, downAttack: downAttack, rightAttack: rightAttack, leftAttack: leftAttack)
         }
     }
 }
@@ -78,6 +83,6 @@ extension CharacterDeck {
 
 struct CharacterDeck_Previews: PreviewProvider {
     static var previews: some View {
-        CharacterDeck(image: Image("knight"), attackPoint: 3, manaPoint: 1, bloodPoint: 1)
+        CharacterDeck(image: Image("knight"), attackPoint: 3, manaPoint: 1, bloodPoint: 1, upAttack: true, downAttack: true, rightAttack: true, leftAttack: true)
     }
 }

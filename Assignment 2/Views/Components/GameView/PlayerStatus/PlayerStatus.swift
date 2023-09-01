@@ -44,7 +44,7 @@ struct PlayerStatusView: View {
                     if manaPositionTop {
                         manaBar
                             .frame(height: 40)
-                            .padding(.vertical, 5)
+                            .padding(.bottom, 5)
                             
                     }
                     HStack{
@@ -59,12 +59,17 @@ struct PlayerStatusView: View {
                             BloodBarView(percentage: $bloodPoint)
                                 .frame(height: geo.size.height/10)
                         }
+                        .frame(height: geo.size.height/3)
                         
                         if showLoading{
-                            Spacer()
                             if playerTurn.id == gameStatus.botPlayer.id{
                                 LoadingView()
                                 .frame(width: geo.size.width/2)
+                            }
+                            else{
+                                Rectangle()
+                                    .fill(.opacity(0))
+                                    .frame(width: geo.size.width/2, height: geo.size.height/5)
                             }
                         }
                         else{
@@ -90,13 +95,22 @@ struct PlayerStatusView: View {
                     HStack {
                         if showDeck {
                             ForEach(displayCharacterDeck, id: \.self) {character in
-                                CharacterDeck(image: Image(character.characterName), attackPoint: character.attackPoint, manaPoint: character.manaPoint, bloodPoint: character.bloodPoint)
-                                    .onTapGesture {
-                                        if playerTurn == player && player.manaPoint >= character.manaPoint{
-                                            draggedCharacter = draggedCharacter == character ? emptyCharacter : character
-                                        }
+                                CharacterDeck(
+                                    image: Image(character.characterName),
+                                    attackPoint: character.attackPoint,
+                                    manaPoint: character.manaPoint,
+                                    bloodPoint: character.bloodPoint,
+                                    upAttack: character.upAttack,
+                                    downAttack: character.downAttack,
+                                    rightAttack: character.rightAttack,
+                                    leftAttack: character.leftAttack
+                                )
+                                .onTapGesture {
+                                    if playerTurn == player && player.manaPoint >= character.manaPoint{
+                                        draggedCharacter = draggedCharacter == character ? emptyCharacter : character
                                     }
-                                    .border(.green, width: draggedCharacter == character ? 10 : 0)
+                                }
+                                .border(.green, width: draggedCharacter == character ? 10 : 0)
                             }
                         }
                         
@@ -105,7 +119,7 @@ struct PlayerStatusView: View {
                     if !manaPositionTop{
                         manaBar
                             .frame(height: 40)
-                            .padding(.vertical, 5)
+                            .padding(.top, 5)
                     }
                 }
             }

@@ -18,17 +18,17 @@ import SpriteKit
 
 struct MenuTheme {
     let menuBackgroundImage : String
-    let topLevelColor: SKColor
-    let secondLevelColor: SKColor
-    let thirdLevelColor: SKColor
-    let fourthLevelColor: SKColor
+    let topLevelColor: Color
+    let secondLevelColor: Color
+    let thirdLevelColor: Color
+    let fourthLevelColor: Color
 
     init(
         menuBackgroundImage: String,
-        topLevelColor: SKColor,
-        secondLevelColor: SKColor,
-        thirdLevelColor: SKColor,
-        fourthLevelColor: SKColor
+        topLevelColor: Color,
+        secondLevelColor: Color,
+        thirdLevelColor: Color,
+        fourthLevelColor: Color
     ){
         self.menuBackgroundImage = menuBackgroundImage
         self.topLevelColor = topLevelColor
@@ -38,25 +38,43 @@ struct MenuTheme {
     }
 }
 
+struct MenuThemes {
+    static let lightMode = MenuTheme(
+        menuBackgroundImage: "menu-background-light",
+        topLevelColor: Color(red: 255 / 255, green: 247 / 255, blue: 212 / 255),
+        secondLevelColor: Color(red: 255 / 255, green: 217 / 255, blue: 90 / 255),
+        thirdLevelColor: Color(red: 192 / 255, green: 127 / 255, blue: 0 / 255),
+        fourthLevelColor: Color(red: 76 / 255, green: 61 / 255, blue: 61 / 255)
+    )
+
+    static let darkMode = MenuTheme(
+        menuBackgroundImage: "menu-background-dark",
+        topLevelColor: Color(red: 76 / 255, green: 61 / 255, blue: 61 / 255),
+        secondLevelColor: Color(red: 192 / 255, green: 127 / 255, blue: 0 / 255),
+        thirdLevelColor: Color(red: 255 / 255, green: 217 / 255, blue: 90 / 255),
+        fourthLevelColor: Color(red: 255 / 255, green: 247 / 255, blue: 212 / 255)
+    )
+}
+
 struct GameTheme {
-    let gameBackgroundImages: [String]
-    let borderPlayerImageColor: SKColor
-    let boardColor: SKColor
-    let statusTextcolor: SKColor
+    let gameBackgroundColor: Color
+    let borderPlayerImageColor: Color
+    let boardColor: Color
+    let statusTextcolor: Color
     let imageOverlayOpacity: Double
-    let manaBarColor: SKColor
-    let borderCharacterSelected: SKColor
+    let manaBarColor: Color
+    let borderCharacterSelected: Color
 
     init(
-        gameBackgroundImages: [String],
-        borderPlayerImageColor: SKColor,
-        boardColor: SKColor,
-        statusTextcolor: SKColor,
+        gameBackgroundColor: Color,
+        borderPlayerImageColor: Color,
+        boardColor: Color,
+        statusTextcolor: Color,
         imageOverlayOpacity: Double,
-        manaBarColor: SKColor,
-        borderCharacterSelected: SKColor
+        manaBarColor: Color,
+        borderCharacterSelected: Color
     ){
-        self.gameBackgroundImages = gameBackgroundImages
+        self.gameBackgroundColor = gameBackgroundColor
         self.borderPlayerImageColor = borderPlayerImageColor
         self.boardColor = boardColor
         self.statusTextcolor = statusTextcolor
@@ -68,23 +86,22 @@ struct GameTheme {
 
 struct GameThemes {
     static let lightMode = GameTheme(
-        gameBackgroundImages: [],
-        borderPlayerImageColor: SKColor(red: 76 / 255, green: 61 / 255, blue: 61 / 255, alpha: 1),
-        boardColor: SKColor(red: 220 / 255, green: 220 / 255, blue: 220 / 255, alpha: 1),
-        statusTextcolor: SKColor(red: 0 / 255, green: 0 / 255, blue: 0 / 255, alpha: 1),
+        gameBackgroundColor: Color.yellow,
+        borderPlayerImageColor: Color(red: 76 / 255, green: 61 / 255, blue: 61 / 255),
+        boardColor: Color(red: 220 / 255, green: 220 / 255, blue: 220 / 255),
+        statusTextcolor: Color(red: 0 / 255, green: 0 / 255, blue: 0 / 255),
         imageOverlayOpacity: 0.2,
-        manaBarColor: SKColor(red: 0 / 255, green: 100 / 255, blue: 0 / 255, alpha: 1),
-        borderCharacterSelected: SKColor(red: 192 / 255, green: 127 / 255, blue: 0 / 255, alpha: 1)
+        manaBarColor: Color(red: 0 / 255, green: 100 / 255, blue: 0 / 255),
+        borderCharacterSelected: Color(red: 192 / 255, green: 127 / 255, blue: 0 / 255)
     )
 
     static let darkMode = GameTheme(
-        gameBackgroundImages: [],
-        borderPlayerImageColor: SKColor(red: 255 / 255, green: 247 / 255, blue: 212 / 255, alpha: 1),
-        boardColor: SKColor(red: 169 / 255, green: 169 / 255, blue: 169 / 255, alpha: 0/7),
-        statusTextcolor: SKColor(red: 255 / 255, green: 255 / 255, blue: 255 / 255, alpha: 1),
+        gameBackgroundColor: Color.brown,
+        borderPlayerImageColor: Color(red: 255 / 255, green: 247 / 255, blue: 212 / 255),
+        boardColor: Color(red: 169 / 255, green: 169 / 255, blue: 169 / 255),
+        statusTextcolor: Color(red: 255 / 255, green: 255 / 255, blue: 255 / 255),
         imageOverlayOpacity: 0.7,
-        manaBarColor: SKColor(red: 0 / 255, green: 255 / 255, blue: 0 / 255, alpha: 1),
-        borderCharacterSelected: SKColor(red: 255 / 255, green: 192 / 255, blue: 76 / 255, alpha: 1)
+        manaBarColor: Color(red: 0 / 255, green: 255 / 255, blue: 0 / 255),
+        borderCharacterSelected: Color(red: 255 / 255, green: 192 / 255, blue: 76 / 255)
     )
 }
-

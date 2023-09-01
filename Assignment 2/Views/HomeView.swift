@@ -18,24 +18,32 @@ struct HomeView: View {
     @EnvironmentObject var currentPlayer: CurrentPlayer
     @Environment(\.managedObjectContext) var managedObjContext
     @EnvironmentObject var dataController: DataController
+    @EnvironmentObject var gameSettings: GameSettings
+    @State var showPopUpBadge: Bool = false
     
     var body: some View {
         ZStack {
-            //Display the corresponding view based on the varible
-            switch viewRouter.currentPage {
-                case .menuPage:
-                    MenuView()
-                case .gamePage:
-                    GameView(gameStatus: GameStatus())
-                case .switchUser:
-                    SwitchUserView()
-                case .leaderboardPage:
-                    LeaderboardView()
-                case .howToPlayPage:
-                    MenuView()
-                case .profilePage:
-                    ProfileView()
-                }
+            ZStack{
+                gameSettings.menuTheme.topLevelColor
+                //Display the corresponding view based on the varible
+                switch viewRouter.currentPage {
+                    case .menuPage:
+                        MenuView()
+                    case .gamePage:
+                        GameView(gameStatus: GameStatus(level: gameSettings.level, mode: gameSettings.difficultyMode))
+                    case .gameLevelPage:
+                        LevelView()
+                    case .switchUser:
+                        SwitchUserView()
+                    case .leaderboardPage:
+                        LeaderboardView()
+                    case .howToPlayPage:
+                        MenuView()
+                    case .profilePage:
+                        ProfileView()
+                    }
+            }.padding(.top, 50)
+            
         }.onAppear{
             let player = dataController.getPlayerById(with: UUID(uuidString: currentPlayer.id), context: managedObjContext)
             if (player == nil){
@@ -54,6 +62,20 @@ struct HomeView: View {
                 MusicPlayer.shared.audioPlayer?.setVolume(1, fadeDuration: 1)
             }
         }
+        .onChange(of: gameSettings.badgeNameUnlock) { newState in
+            if gameSettings.badgeNameUnlock != ""{
+                dataController.addBadgeForPlayer(
+                    badgeName: gameSettings.badgeNameUnlock,
+                    id: UUID(uuidString: currentPlayer.id) ?? UUID(),
+                    context: managedObjContext)
+                currentPlayer.badges.append(gameSettings.badgeNameUnlock)
+                showPopUpBadge = true
+            }
+        }
+        .sheet(isPresented: $showPopUpBadge) {
+            EarnNewBadgeView(badge: findBadgeByName(name: gameSettings.badgeNameUnlock), showPopUpBadge: $showPopUpBadge)
+        }
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
@@ -62,5 +84,7 @@ struct HomeView_Previews: PreviewProvider {
         HomeView()
             .environmentObject(ViewRouter())
             .environmentObject(CurrentPlayer())
+            .environmentObject(GameSettings())
+            .environmentObject(DataController())
     }
 }

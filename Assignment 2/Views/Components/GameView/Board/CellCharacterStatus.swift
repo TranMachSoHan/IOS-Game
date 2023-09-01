@@ -21,14 +21,15 @@ struct CellCharacterStatusView: View {
 
     var body: some View {
         let color_switch: Bool = draggedCharacter.characterName != "" && cell.character.characterName == ""
+        GeometryReader { geo in
+            ZStack{}
+                .attackCell(state: $cell.isAttackedCell, cell: $cell, repeatCount: 10, duration: 0.2)
+                .border(color_switch ? .yellow: .clear, width: color_switch ? 3: 0)
+                .clipShape(
+                    RoundedRectangle(cornerRadius: 20)
+                )
+        }
         
-        ZStack{}
-            .attackCell(state: $cell.isAttackedCell, cell: $cell, repeatCount: 10, duration: 0.2)
-            .border(color_switch ? .yellow: .clear, width: color_switch ? 3: 0)
-            .clipShape(
-                RoundedRectangle(cornerRadius: 20)
-            )
-            .frame(width: 90, height: 100)
     }
 
 }

@@ -14,25 +14,38 @@ import SwiftUI
 
 struct LeaderboardView: View {
     @Environment(\.managedObjectContext) var managedObjContext
-    
-    //Fetch players
-    @FetchRequest(sortDescriptors: []) var player: FetchedResults<Player>
+    @EnvironmentObject var viewRouter: ViewRouter
     
     var body: some View {
-        ZStack (alignment: .top){
-            Color.blue
-                .opacity(0.2)
-                .ignoresSafeArea(.all)
-            VStack {
-                LeaderboardList()
+        ZStack (alignment: .topLeading){
+            
+            TabView {
+                ForEach(DifficultyMode.allCases, id: \.self) { mode in
+                    LeaderboardList(difficultyMode: mode)
+                        .tabItem {
+                            Text("\(mode.rawValue.capitalized)")
+                        }
+                }
             }
-        }
+            Button(action: {
+                withAnimation {
+                    viewRouter.currentPage = .menuPage
+                }}) {
+                    Text("< Go Back")
+                        .underline()
+                }
+                .padding(.top, 50)
+                .padding(.horizontal, 30)
+        }.edgesIgnoringSafeArea(.all)
     }
+    
+    
 }
 
 
 struct LeaderboardView_Previews: PreviewProvider {
     static var previews: some View {
         LeaderboardView()
+            .environmentObject(CurrentPlayer())
     }
 }

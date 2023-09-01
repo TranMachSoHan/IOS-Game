@@ -26,6 +26,7 @@ struct Assignment_2App: App {
                 .environment(\.managedObjectContext, dataController.container.viewContext)
                 .environmentObject(dataController)
                 .environmentObject(currentPlayer)
+                .environmentObject(gameSettings)
 //                .environment(\.locale, .init(identifier: $gameSettings.identifier))
         }
     }

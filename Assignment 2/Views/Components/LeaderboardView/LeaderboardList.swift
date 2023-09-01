@@ -14,14 +14,13 @@
 import SwiftUI
 
 struct LeaderboardList: View {
+    @State var difficultyMode : DifficultyMode
     //Fetch players
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.score, order: .reverse)]) var player: FetchedResults<Player>
+    @FetchRequest(sortDescriptors: []) var player: FetchedResults<Player>
     @EnvironmentObject var currentPlayer: CurrentPlayer
     
     var body: some View {
         VStack {
-            
-            Top3Leaderboard()
             VStack {
                 //display the fetch result to list
                 ForEach(player) {player in

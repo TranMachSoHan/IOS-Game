@@ -17,28 +17,38 @@ struct CharacterCell: View {
     @Binding var cell: Cell
 
     var body: some View {
-        ZStack {
-            arrowCell
-            VStack {
-                character.imageChibi
-                    .resizable()
-                    .animation(.easeIn(duration: 0.5))
-                HStack (alignment: .bottom){
-                    StatusPoint(point: character.attackPoint, image: Image("attack"))
-                        .frame(width: 20, height: 20)
-                    StatusPoint(point: character.bloodPoint, image: Image("blood"))
-                        .frame(width: 20, height: 20)
+        GeometryReader { geo in
+            ZStack (alignment: .center) {
+                VStack (alignment: .center){
+                    character.imageChibi
+                        .resizable()
+                        .animation(.easeIn(duration: 0.5))
+                        .frame(width: geo.size.width/1.3)
+                    HStack{
+                        Spacer()
+                        StatusPoint(point: character.attackPoint, image: Image("attack"))
+                            .frame(width: geo.size.width/3, height: geo.size.height/3)
+                        StatusPoint(point: character.bloodPoint, image: Image("blood"))
+                            .frame(width: geo.size.width/3, height: geo.size.height/3)
+                        Spacer()
+                    }
                 }
             }
-            .padding(7)
+            .padding(.vertical, geo.size.height/9)
+            .onChange(of: cell.isDead, perform: { (value) in
+                withAnimation(.easeInOut(duration: 0.5).delay(0.4)) {
+                    cell.isDead = false
+                    character.characterName = ""
+                    cell.isBlockedBy = nil
+                }
+            })
+            
+            DirectionView(
+                upAttack: character.upAttack,
+                downAttack: character.downAttack,
+                rightAttack: character.rightAttack,
+                leftAttack: character.leftAttack)
         }
-        .onChange(of: cell.isDead, perform: { (value) in
-            withAnimation(.easeInOut(duration: 0.5).delay(0.4)) {
-                cell.isDead = false
-                character.characterName = ""
-                cell.isBlockedBy = nil
-            }
-        })
     }
 }
 

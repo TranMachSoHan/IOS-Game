@@ -14,6 +14,7 @@
 enum Page {
     case menuPage
     case gamePage
+    case gameLevelPage
     case leaderboardPage
     case howToPlayPage
     case profilePage

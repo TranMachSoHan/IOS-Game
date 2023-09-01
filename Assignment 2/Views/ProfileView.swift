@@ -15,9 +15,37 @@ import SwiftUI
 struct ProfileView : View {
     @EnvironmentObject var viewRouter: ViewRouter
     @EnvironmentObject var currentPlayer: CurrentPlayer
+    @EnvironmentObject var gameSettings: GameSettings
     
     var body : some View {
-        ProfileAchievementView(imageName: currentPlayer.imageName, name: currentPlayer.name, badges: currentPlayer.badges, backPage: .menuPage)
+        ZStack (alignment: .topLeading){
+            
+            TabView {
+                
+                ProfileAchievementView(imageName: currentPlayer.imageName, name: currentPlayer.name, badges: currentPlayer.badges, backPage: .menuPage)
+                .tabItem {
+                    Image(systemName: "person.crop.circle")
+                    Text("Profile")
+                }
+                .tag(0)
+                
+                SettingsView()
+                    .tabItem {
+                        Image(systemName: "gear.circle.fill")
+                        Text("Setting")
+                    }
+                    .tag(0)
+            }
+            Button(action: {
+                withAnimation {
+                    viewRouter.currentPage = .menuPage
+                }}) {
+                    Text("< Go Back")
+                        .underline()
+                }
+                .padding(.top, 50)
+                .padding(.horizontal, 30)
+        }.edgesIgnoringSafeArea(.all)
     }
 }
 
@@ -27,5 +55,6 @@ struct ProfileView_Previews: PreviewProvider {
         ProfileView()
             .environmentObject(ViewRouter())
             .environmentObject(CurrentPlayer())
+            .environmentObject(GameSettings())
     }
 }

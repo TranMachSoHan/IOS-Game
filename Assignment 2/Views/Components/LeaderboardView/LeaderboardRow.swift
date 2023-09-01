@@ -40,8 +40,6 @@ struct LeaderboardRow: View {
                             .foregroundColor(self.isCurrentPlayer ?  .white : .black)
                     }
                     Spacer()
-                    Text("\(player.score)")
-                        .foregroundColor(self.isCurrentPlayer ? .white : .black)
                 }
                 .padding(.horizontal, 10)
             )

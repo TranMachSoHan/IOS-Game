@@ -17,10 +17,10 @@ struct SwitchUserView: View {
     @EnvironmentObject var currentPlayer: CurrentPlayer
     @Environment(\.managedObjectContext) var managedObjContext
     @EnvironmentObject var dataController: DataController
+    @EnvironmentObject var gameSettings: GameSettings
     @Environment(\.dismiss) var dismiss
     
     @State var showPopUpAuth: Bool = false
-    @State var showPopUpBadge: Bool = false
     @State var popUpTypeString: String = "Sign In"
     @State var name: String = ""
     @State var password: String = ""
@@ -29,11 +29,6 @@ struct SwitchUserView: View {
     
     var body: some View {
         ZStack (alignment: .top){
-            //background
-            Color.blue
-                .opacity(0.2)
-                .ignoresSafeArea()
-            
             VStack() {
                 //Back to menu button
                 HStack{
@@ -68,10 +63,9 @@ struct SwitchUserView: View {
         }
         .sheet(isPresented: $showPopUpAuth){
             SignInUpView(popUpTypeString: $popUpTypeString, name: $name, pass: $password, showPopUpAuth: $showPopUpAuth, error: error, onClose: self.onCheckingAuthen)
+                .interactiveDismissDisabled()
         }
-        .sheet(isPresented: $showPopUpBadge) {
-            EarnNewBadgeView(badge: findBadgeByName(name: "New Member"), showPopUpBadge: $showPopUpBadge)
-        }
+        
     }
     
     func onCheckingAuthen(){
@@ -88,9 +82,8 @@ struct SwitchUserView: View {
         else {
             let player: Player = dataController.addPlayer(name: self.name, pass: self.password, context: managedObjContext)
             currentPlayer.setPlayer(player: player)
-            dataController.updateScore(badge: findBadgeByName(name: "New Member"), id: player.id!, context: managedObjContext)
+            gameSettings.badgeNameUnlock = "New Member"
             showPopUpAuth = false
-            showPopUpBadge = true
         }
     }
 }
@@ -100,5 +93,7 @@ struct SwitchUserView_Previews: PreviewProvider {
         SwitchUserView()
             .environmentObject(ViewRouter())
             .environmentObject(CurrentPlayer())
+            .environmentObject(GameSettings())
+            .environmentObject(DataController())
     }
 }

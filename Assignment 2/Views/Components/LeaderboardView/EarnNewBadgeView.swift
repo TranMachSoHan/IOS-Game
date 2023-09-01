@@ -102,11 +102,3 @@ struct EarnNewBadgeView: View {
         }
     }
 }
-
-
-
-//struct EarnNewBadgeView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EarnNewBadgeView(badge: badges[0])
-//    }
-//}

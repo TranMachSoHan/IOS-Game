@@ -27,12 +27,16 @@ enum Progress {
     case resume
 }
 
+let availableCharacterName = ["kimetsu", "ryu", "vampire", "knight", "samurai", "robin-hood"]
+let availableBotName = ["bot1", "bot2", "bot3", "bot4", "bot5", "bot6"]
+
 struct PlayerGame: Hashable {
     var id: UUID = UUID()
     var manaPoint: Int = 5
     var bloodPoint: Int = 100
     var imageName: String = "robot"
     var color: Color
+    var isAI: Bool
     
     var getIDString: String{
         return id.uuidString
@@ -53,6 +57,40 @@ struct PlayerGame: Hashable {
         }
     }
     
+    mutating func prepareDeckCard(
+        manaCharacter: [Int] = [],
+        upAttackQty: Int = 0,
+        downAttackQty: Int = 0,
+        leftAttackQty: Int = 0,
+        rightAttackQty: Int = 0
+    ){
+        var characterNameCopy = self.isAI ? availableBotName.shuffled() : availableCharacterName.shuffled()
+        
+        var manaCharacter = manaCharacter
+        var upAttackQty = upAttackQty
+        var downAttackQty = downAttackQty
+        var leftAttackQty = leftAttackQty
+        var rightAttackQty = rightAttackQty
+        
+        var deck: [Character] = []
+        
+        for _ in 1...availableCharacterName.count {
+            let manaPoint = manaCharacter.isEmpty ? Int.random(in: 1...3) : manaCharacter.remove(at: 0)
+            var character = Character(characterName: characterNameCopy.remove(at: 0))
+            character.setPoint(manaPoint: manaPoint,
+                               upAttackQty: Binding(get: {upAttackQty}, set: {upAttackQty = $0}),
+                               downAttackQty: Binding(get: {downAttackQty}, set: {downAttackQty = $0}),
+                               leftAttackQty: Binding(get: {leftAttackQty}, set: {leftAttackQty = $0}),
+                               rightAttackQty: Binding(get: {rightAttackQty}, set: {rightAttackQty = $0}))
+            deck.append(character)
+        }
+        
+        self.characterDeck = deck.shuffled()
+        for _ in 1...3{
+            self.displayCharacterDeck.append(characterDeck.remove(at: 0))
+        }
+    }
+    
     mutating func appendDeckAtEnd(removedCharacter: Character) {
         self.characterDeck.append(removedCharacter)
     }
@@ -61,22 +99,12 @@ struct PlayerGame: Hashable {
         self.manaPoint = self.manaPoint + manaPoint
         self.bloodPoint = self.bloodPoint + bloodPoint
     }
-    init(color: Color){
-        let randomDeck = [
-            Character(characterName: "kimetsu", manaPoint: 3, bloodPoint: 2, attackPoint: 1),
-            Character(characterName: "ryu", manaPoint: 1, bloodPoint: 2, attackPoint: 1),
-            Character(characterName: "vampire", manaPoint: 2, bloodPoint: 2, attackPoint: 1),
-            Character(characterName: "knight", manaPoint: 3, bloodPoint: 2, attackPoint: 1),
-            Character(characterName: "samurai", manaPoint: 1, bloodPoint: 2, attackPoint: 1),
-            Character(characterName: "robin-hood", manaPoint: 2, bloodPoint: 2, attackPoint: 1),
-        ]
-        
-        self.characterDeck = randomDeck.shuffled()
-        for _ in 1...3{
-            self.displayCharacterDeck.append(characterDeck.remove(at: 0))
-        }
+    init(color: Color, isAI: Bool = false){
+        self.isAI = isAI
         self.color = color
     }
+    
+    
 }
 
 struct Cell : Hashable{
@@ -93,62 +121,4 @@ struct Cell : Hashable{
 
 struct MainBoard: Hashable{
     var cells: [[Cell]] = [[Cell]](repeating: [Cell](repeating: Cell(), count: 4), count: 4)
-}
-
-struct PlayerLevelStatus: Hashable {
-    var level: GameLevel = .easy
-    var mainBoard: MainBoard = MainBoard()
-    var mainPlayer: PlayerGame = PlayerGame(color: .green)
-    var botPlayer: PlayerGame = PlayerGame(color: .red)
-    var playerTurn: PlayerGame
-    
-    init(){
-        self.playerTurn = botPlayer
-    }
-    
-    mutating func removePlayerDeck(removedCharacter: Character){
-        if self.playerTurn == self.botPlayer {
-            self.botPlayer.removeDeck(removedCharacter: removedCharacter)
-        }
-        else {
-            self.mainPlayer.removeDeck(removedCharacter: removedCharacter)
-        }
-    }
-    
-    func twoDArrayToColumnAndRowTuplesWithFilter(_ array: [[Cell]]) -> [(Int, Int)] {
-        return array.enumerated().flatMap { (index, row) in
-            row.enumerated().filter { $0.element.character.characterName == "" }.map { ($0.offset, index) }
-        }
-    }
-    
-    mutating func addCharacterInCell(row: Int, col: Int, selectedCharacter: Character){
-        self.mainBoard.cells[col][row].character = selectedCharacter
-    }
-    
-    mutating func updatePlayerTurn(player: PlayerGame){
-        self.playerTurn = player
-    }
-    
-    mutating func botProcess(){
-        // process AI deck with point
-        // filter the current card with less mana than the bot
-        let availableDecks = self.botPlayer.displayCharacterDeck.filter { character in
-            character.manaPoint < self.botPlayer.manaPoint
-        }
-        
-        // Check available deck and random whether should spend mana to buy
-        if availableDecks.isEmpty{
-            return
-        }
-        
-        var selectedCharacter = availableDecks[0]
-        let emptyCells = twoDArrayToColumnAndRowTuplesWithFilter(self.mainBoard.cells)
-        if emptyCells.isEmpty {
-            return
-        }
-        
-        var selectedCellTuple = emptyCells[Int.random(in: 0..<emptyCells.count)]
-        self.addCharacterInCell(row: selectedCellTuple.1, col: selectedCellTuple.0, selectedCharacter: selectedCharacter)
-        self.removePlayerDeck(removedCharacter: selectedCharacter)
-    }
 }

@@ -41,9 +41,16 @@ class DataController: ObservableObject {
         player.name = name
         player.password = pass
         player.imageName = "luckin317"
-        player.badges = ["New Member"]
         save(context: context)
         return player
+    }
+    
+    func addBadgeForPlayer(badgeName: String, id: UUID, context: NSManagedObjectContext) {
+        let player = getPlayerById(with: id, context: context) ?? Player()
+        var badges = player.badges ?? []
+        badges.append(badgeName as NSString)
+        player.badges = badges
+        save(context: context)
     }
 
     func getPlayerById(with id: UUID?, context: NSManagedObjectContext) -> Player? {
@@ -62,9 +69,4 @@ class DataController: ObservableObject {
           _ = try? container.viewContext.execute(batchDeleteRequest1)
     }
     
-    func updateScore(badge: Badge, id: UUID, context: NSManagedObjectContext) {
-        let player = getPlayerById(with: id, context: context) ?? Player()
-//        player.badges = player.badges!.append(badge.name as NSString)
-        player.score = player.score + badge.score
-    }
 }
