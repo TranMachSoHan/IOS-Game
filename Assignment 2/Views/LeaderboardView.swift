@@ -15,7 +15,6 @@ import SwiftUI
 struct LeaderboardView: View {
     @Environment(\.managedObjectContext) var managedObjContext
     @EnvironmentObject var viewRouter: ViewRouter
-    
     var body: some View {
         ZStack (alignment: .topLeading){
             
@@ -24,6 +23,7 @@ struct LeaderboardView: View {
                     LeaderboardList(difficultyMode: mode)
                         .tabItem {
                             Text("\(mode.rawValue.capitalized)")
+                                .modifier(HeadingModifier())
                         }
                 }
             }

@@ -45,6 +45,14 @@ class DataController: ObservableObject {
         return player
     }
     
+    func updatePlayerLevel(level: Int, mode: DifficultyMode, id: UUID, context: NSManagedObjectContext) {
+        let player = getPlayerById(with: id, context: context) ?? Player()
+        player.easyLevel = mode == .easy ? Int64(level) : player.easyLevel
+        player.mediumLevel = mode == .medium ? Int64(level) : player.mediumLevel
+        player.hardLevel = mode == .hard ? Int64(level) : player.hardLevel
+        save(context: context)
+    }
+    
     func addBadgeForPlayer(badgeName: String, id: UUID, context: NSManagedObjectContext) {
         let player = getPlayerById(with: id, context: context) ?? Player()
         var badges = player.badges ?? []

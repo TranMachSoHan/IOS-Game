@@ -21,6 +21,7 @@ struct AttackCellModifier: ViewModifier {
     @State var playerTurn: PlayerGame = PlayerGame(color: .blue)
     let repeatCount: Int
     let duration: Double
+    @EnvironmentObject var gameSettings: GameSettings
     
     // internal wrapper is needed because there is no didFinish of Animation now
     private var blinking: Binding<Bool> {
@@ -36,7 +37,7 @@ struct AttackCellModifier: ViewModifier {
     func body(content: Content) -> some View
     {
         ZStack{
-            cell.isBlockedBy != nil ? cell.isBlockedBy?.color : .gray
+            cell.isBlockedBy != nil ? cell.isBlockedBy?.color : gameSettings.menuTheme.boardColor
             
             Color(self.blinking.wrappedValue ? .purple : .clear)
                 .animation( // Kind of animation can be changed per needs
@@ -64,6 +65,7 @@ struct CellViewModifier_Previews: PreviewProvider {
             .environment(\.managedObjectContext, DataController().container.viewContext)
             .environmentObject(DataController())
             .environmentObject(CurrentPlayer())
+            .environmentObject(GameSettings())
     }
 }
 

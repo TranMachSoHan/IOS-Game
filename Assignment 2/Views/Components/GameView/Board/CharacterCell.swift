@@ -47,58 +47,11 @@ struct CharacterCell: View {
                 upAttack: character.upAttack,
                 downAttack: character.downAttack,
                 rightAttack: character.rightAttack,
-                leftAttack: character.leftAttack)
-        }
-    }
-}
-
-extension CharacterCell {
-    
-    var arrowCell : some View{
-        VStack {
-            HStack {
-                Spacer()
-                if (character.upAttack){
-                    Image(systemName: "arrow.up")
-                        .foregroundColor(.green)
-                }
-                Spacer()
-            }
-            Spacer()
-            HStack {
-                if (character.leftAttack){
-                    Image(systemName: "arrow.left")
-                        .foregroundColor(.green)
-                }
-                else{
-                    Spacer()
-                }
-                Spacer()
-                if (character.rightAttack){
-                    Image(systemName: "arrow.right")
-                        .foregroundColor(.green)
-                }
-                else{
-                    Spacer()
-                }
-            }
-            Spacer()
-            HStack {
-                Spacer()
-                if (character.downAttack){
-                    Image(systemName: "arrow.down")
-                        .foregroundColor(.green)
-                }
-                Spacer()
-            }
-        }
-    }
-    
-    @ViewBuilder func `if`<Content: View>(_ condition: Bool, transform: (Self) -> Content) -> some View {
-        if condition {
-            transform(self)
-        } else {
-            self
+                leftAttack: character.leftAttack,
+                leftUpAttack: character.leftUpAttack,
+                leftDownAttack: character.leftDownAttack,
+                rightUpAttack: character.rightUpAttack,
+                rightDownAttack: character.rightDownAttack)
         }
     }
 }

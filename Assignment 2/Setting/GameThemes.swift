@@ -22,19 +22,28 @@ struct MenuTheme {
     let secondLevelColor: Color
     let thirdLevelColor: Color
     let fourthLevelColor: Color
+    let boardColor: Color
+    let manaBarColor: Color
+    let borderCharacterSelected: Color
 
     init(
         menuBackgroundImage: String,
         topLevelColor: Color,
         secondLevelColor: Color,
         thirdLevelColor: Color,
-        fourthLevelColor: Color
+        fourthLevelColor: Color,
+        boardColor: Color,
+        manaBarColor: Color,
+        borderCharacterSelected: Color
     ){
         self.menuBackgroundImage = menuBackgroundImage
         self.topLevelColor = topLevelColor
         self.secondLevelColor = secondLevelColor
         self.thirdLevelColor = thirdLevelColor
         self.fourthLevelColor = fourthLevelColor
+        self.boardColor = boardColor
+        self.manaBarColor = manaBarColor
+        self.borderCharacterSelected = borderCharacterSelected
     }
 }
 
@@ -44,7 +53,10 @@ struct MenuThemes {
         topLevelColor: Color(red: 255 / 255, green: 247 / 255, blue: 212 / 255),
         secondLevelColor: Color(red: 255 / 255, green: 217 / 255, blue: 90 / 255),
         thirdLevelColor: Color(red: 192 / 255, green: 127 / 255, blue: 0 / 255),
-        fourthLevelColor: Color(red: 76 / 255, green: 61 / 255, blue: 61 / 255)
+        fourthLevelColor: Color(red: 76 / 255, green: 61 / 255, blue: 61 / 255),
+        boardColor: Color(red: 220 / 255, green: 220 / 255, blue: 220 / 255),
+        manaBarColor: Color(red: 0 / 255, green: 100 / 255, blue: 0 / 255),
+        borderCharacterSelected: Color(red: 192 / 255, green: 127 / 255, blue: 0 / 255)
     )
 
     static let darkMode = MenuTheme(
@@ -52,7 +64,10 @@ struct MenuThemes {
         topLevelColor: Color(red: 76 / 255, green: 61 / 255, blue: 61 / 255),
         secondLevelColor: Color(red: 192 / 255, green: 127 / 255, blue: 0 / 255),
         thirdLevelColor: Color(red: 255 / 255, green: 217 / 255, blue: 90 / 255),
-        fourthLevelColor: Color(red: 255 / 255, green: 247 / 255, blue: 212 / 255)
+        fourthLevelColor: Color(red: 255 / 255, green: 247 / 255, blue: 212 / 255),
+        boardColor: Color(red: 169 / 255, green: 169 / 255, blue: 169 / 255),
+        manaBarColor: Color(red: 0 / 255, green: 100 / 255, blue: 0 / 255),
+        borderCharacterSelected: Color(red: 192 / 255, green: 127 / 255, blue: 0 / 255)
     )
 }
 

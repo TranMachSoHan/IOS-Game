@@ -29,11 +29,20 @@ struct GameView: View {
     @State var draggedCharacter: Character = emptyCharacter
     @ObservedObject var gameStatus: GameStatus
     @EnvironmentObject var viewRouter: ViewRouter
+    @State var victoryState: Bool = false
+    @State var pauseGame: Bool = false
     
     var body: some View {
         GeometryReader { geo in
-            ZStack{
+            ZStack {
                 VStack {
+                    HStack{
+                        pauseButton
+                        Spacer()
+                        gameProgressNoti
+                    }
+                    .frame(height: geo.size.height/10)
+
                     PlayerStatusView(
                         image: gameStatus.botPlayer.image,
                         bloodPoint: $gameStatus.botPlayer.bloodPoint,
@@ -46,11 +55,10 @@ struct GameView: View {
                         displayCharacterDeck: $gameStatus.botPlayer.displayCharacterDeck,
                         showLoading: true,
                         gameStatus: gameStatus
-                    )
-                    .frame(height: geo.size.height/6)
+                    ).frame(height: geo.size.height/5)
                     
                     BoardCell(draggedCharacter: $draggedCharacter, gameStatus: gameStatus)
-                        
+                        .frame(height: geo.size.height/10)
                     
                     PlayerStatusView(
                         image: gameStatus.mainPlayer.image,
@@ -65,17 +73,34 @@ struct GameView: View {
                         showLoading: false,
                         gameStatus: gameStatus
                     )
-                    .frame(height: geo.size.height/2.5)
+                    
+                }
+                .onChange(of: self.gameStatus.playerTurn, perform: { (value) in
+                    if self.gameStatus.playerTurn == self.gameStatus.botPlayer{
+                        self.gameStatus.botLoading()
+                    }
+                })
+                .onChange(of: self.gameStatus.victory, perform: { (value) in
+                    if self.gameStatus.victory{
+                        let level = gameSettings.level + 1
+                        let mode = gameSettings.difficultyMode
+                        // Update core data and Current Player
+                        currentPlayer.easyLevel = mode == .easy ? level : currentPlayer.easyLevel
+                        currentPlayer.mediumLevel = mode == .medium ? level : currentPlayer.mediumLevel
+                        currentPlayer.hardLevel = mode == .hard ? level : currentPlayer.hardLevel
+                        dataController.updatePlayerLevel(level: level, mode: mode, id: UUID(uuidString: currentPlayer.id) ?? UUID(), context: managedObjContext)
+                        self.gameStatus.victory = false
+                        victoryState = true
+                    }
+                    
+                    
+                })
+                if pauseGame {
+                    PauseView(pauseGame: $pauseGame)
                 }
             }
-            .onChange(of: self.gameStatus.playerTurn, perform: { (value) in
-                if self.gameStatus.playerTurn == self.gameStatus.botPlayer{
-                    self.gameStatus.botLoading()
-                }
-            })
-            .padding(.top, 30)
         }
-        .popover(isPresented: $gameStatus.victory) {
+        .popover(isPresented: $victoryState) {
             //Show winning announcement view with no swipe down action
             GameAnnouncementView(isWon: true)
                 .interactiveDismissDisabled()
@@ -85,9 +110,26 @@ struct GameView: View {
             GameAnnouncementView(isWon: false)
                 .interactiveDismissDisabled()
         }
-//        .sheet(isPresented: $showPopUpBadge) {
-//            EarnNewBadgeView(badge: findBadgeByName(name: "New Member"), showPopUpBadge: $showPopUpBadge)
-//        }
+    }
+}
+
+extension GameView {
+    var gameProgressNoti: some View {
+        VStack{
+            Text("Level \(gameSettings.level)")
+                .modifier(HeadingModifier())
+            Text("Mode \(gameSettings.difficultyMode.rawValue)")
+                .modifier(HeadingModifier())
+        }
+    }
+    
+    var pauseButton: some View {
+        Button(action: {
+           pauseGame = true
+        }) {
+            Image(systemName: "pause.circle")
+                .modifier(HeadingModifier())
+        }
     }
 }
 

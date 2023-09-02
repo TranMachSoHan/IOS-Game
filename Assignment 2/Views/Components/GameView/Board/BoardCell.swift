@@ -25,6 +25,7 @@ struct BoardCell: View {
                             withAnimation {
                                 if draggedCharacter.characterName != "" {
                                     gameStatus.updateActionFlow(row: row, col: col, selectedCharacter: draggedCharacter)
+                                    MusicPlayer.shared.playSoundEffect(soundEffect: "character-drag", type: "mp3")
                                     draggedCharacter = emptyCharacter
                                 }
                             }

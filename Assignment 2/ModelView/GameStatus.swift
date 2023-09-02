@@ -14,7 +14,8 @@ import Foundation
 
 
 class GameStatus: ObservableObject {
-    @Published var level: GameLevel = .easy
+    @Published var level: Int = 0
+    @Published var mode: DifficultyMode = .easy
     @Published var mainBoard: MainBoard = MainBoard()
     @Published var mainPlayer: PlayerGame
     @Published var playerTurn: PlayerGame
@@ -25,6 +26,8 @@ class GameStatus: ObservableObject {
     @Published var gameOver: Bool = false
     
     init(level: Int = 1, mode: DifficultyMode = .easy){
+        self.level = level
+        self.mode = mode
         self.mainPlayer = PlayerGame(color: .blue)
         self.botPlayer = PlayerGame(color: .purple, isAI: true)
         self.playerTurn = PlayerGame(color: .clear)
@@ -33,16 +36,30 @@ class GameStatus: ObservableObject {
     }
     
     func setUpMode(level: Int = 3, mode: DifficultyMode = .easy){
-        if mode == .easy{
-            let progress = findProgressByLevel(level: level)
-            self.playerTurn = progress.turn == "player" ? mainPlayer : botPlayer
-            self.botPlayer.bloodPoint = progress.player.bloodPoint
-            self.mainPlayer.bloodPoint = progress.bot.bloodPoint
-            self.botOriginPosition = progress.getOriginPositionArr
-            if level < 5 {
+        self.playerTurn = Bool.random() ? mainPlayer : botPlayer
+        
+        if mode == .easy {
+            if level <= 5 {
+                let progress = findProgressByLevel(level: level)
+                self.playerTurn = progress.turn == "player" ? mainPlayer : botPlayer
+                self.botPlayer.bloodPoint = progress.player.bloodPoint
+                self.mainPlayer.bloodPoint = progress.bot.bloodPoint
+                self.botOriginPosition = progress.getOriginPositionArr
                 self.mainPlayer.prepareDeckCard(manaCharacter: progress.player.manaArr, upAttackQty: progress.player.upAttackQty, downAttackQty: progress.player.downAttackQty)
                 self.botPlayer.prepareDeckCard(manaCharacter: progress.player.manaArr, upAttackQty: progress.player.upAttackQty, downAttackQty: progress.player.downAttackQty)
             }
+            else {
+                self.botPlayer.bloodPoint = 30
+                self.mainPlayer.bloodPoint = 30
+                self.mainPlayer.prepareDeckCard()
+                self.botPlayer.prepareDeckCard()
+            }
+        }
+        else if mode == .medium {
+            self.botPlayer.bloodPoint = 50
+            self.mainPlayer.bloodPoint = 50
+            self.mainPlayer.prepareDeckCard(leftUpAttackQty: 6, rightUpAttackQty: 6, leftDownAttackQty: 6, rightDownAttackQty: 6)
+            self.botPlayer.prepareDeckCard(leftUpAttackQty: 6, rightUpAttackQty: 6, leftDownAttackQty: 6, rightDownAttackQty: 6)
         }
         
         if self.playerTurn.id == botPlayer.id{
@@ -52,19 +69,43 @@ class GameStatus: ObservableObject {
     
     func botLoading () {
         // Bot turn
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [self] in
             self.botProcess()
         }
     }
     
-    func updateActionFlow(row: Int, col: Int, selectedCharacter: Character){
-        turn = turn + 1
-        var waitingTime = 3
+    func botProcess(){
+        var waitingTime = 0
         
-        self.removePlayerDeck(removedCharacter: selectedCharacter)
-        self.addCharacterInCell(row: row, col: col, selectedCharacter: selectedCharacter)
+        // process AI deck with point
+        // filter the current card with less mana than the bot
+        let availableDecks = botPlayer.displayCharacterDeck.filter { character in
+            character.manaPoint < botPlayer.manaPoint
+        }
+        // Check available deck and random whether should spend mana to buy
+        if !availableDecks.isEmpty{
+            let selectedCharacter = availableDecks[0]
+            let emptyCells = twoDArrayToColumnAndRowTuplesWithFilter(mainBoard.cells)
+            
+            
+            // No empty cells
+            if !emptyCells.isEmpty {
+                let selectedCellTuple = emptyCells[Int.random(in: 0..<emptyCells.count)]
+                self.updateActionFlow(row: selectedCellTuple.1, col: selectedCellTuple.0, selectedCharacter: selectedCharacter)
+                waitingTime = 2
+            }
+        }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + DispatchTimeInterval.seconds(waitingTime)){ [self] in
+            self.updateNextPlayer()
+        }
+    }
+    
+    func updateNextPlayer(){
+        turn = turn + 1
+        var waitingTime = 0
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + DispatchTimeInterval.seconds(2)){ [self] in
             // Update existing character and minus point
             if turn >= 2 {
                 turn = 0
@@ -81,13 +122,26 @@ class GameStatus: ObservableObject {
                 self.botPlayer.updatePlayerStatus(manaPoint: 1, bloodPoint: -mainBotBloodReduced)
                 
                 // increase waiting time to do animation update Blood point
-                waitingTime += 2
+                waitingTime = 2
+                
+                // Update victory and game over
+                // Game view receive change will show announcement view
+                self.checkVictoryStatus()
+                if self.victory || self.gameOver {
+                    return
+                }
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + DispatchTimeInterval.seconds(waitingTime)) { [self] in
+                self.playerTurn = self.playerTurn.id == self.botPlayer.id ? mainPlayer : botPlayer
             }
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + DispatchTimeInterval.seconds(waitingTime)) { [self] in
-            self.playerTurn = self.playerTurn.id == self.botPlayer.id ? mainPlayer : botPlayer
-        }
+        
+    }
+    func updateActionFlow(row: Int, col: Int, selectedCharacter: Character){
+        self.removePlayerDeck(removedCharacter: selectedCharacter)
+        self.addCharacterInCell(row: row, col: col, selectedCharacter: selectedCharacter)
     }
     
     func checkVictoryStatus(){
@@ -102,29 +156,6 @@ class GameStatus: ObservableObject {
         }
         
         self.victory = isVictory
-    }
-    
-    func botProcess(){
-        // process AI deck with point
-        // filter the current card with less mana than the bot
-        let availableDecks = botPlayer.displayCharacterDeck.filter { character in
-            character.manaPoint < botPlayer.manaPoint
-        }
-        // Check available deck and random whether should spend mana to buy
-        if availableDecks.isEmpty{
-            return
-        }
-
-        let selectedCharacter = availableDecks[0]
-        let emptyCells = twoDArrayToColumnAndRowTuplesWithFilter(mainBoard.cells)
-        
-        // No empty cells
-        if emptyCells.isEmpty {
-            return
-        }
-        
-        let selectedCellTuple = emptyCells[Int.random(in: 0..<emptyCells.count)]
-        updateActionFlow(row: selectedCellTuple.1, col: selectedCellTuple.0, selectedCharacter: selectedCharacter)
     }
     
     func removePlayerDeck(removedCharacter: Character){
@@ -181,6 +212,47 @@ class GameStatus: ObservableObject {
                 checkCellsAndAppend(attackedCol, row)
             }
         }
+        
+        if selectedCharacter.leftUpAttack{
+            var attackedCol = col - 1
+            var attackedRow = row - 1
+            while attackedCol >= 0 && attackedRow >= 0{
+                checkCellsAndAppend(attackedCol, attackedRow)
+                attackedCol -= 1
+                attackedRow -= 1
+            }
+        }
+        
+        if selectedCharacter.rightUpAttack{
+            var attackedCol = col + 1
+            var attackedRow = row - 1
+            while attackedCol < self.mainBoard.cells[0].count && attackedRow >= 0{
+                checkCellsAndAppend(attackedCol, attackedRow)
+                attackedCol += 1
+                attackedRow -= 1
+            }
+        }
+        
+        if selectedCharacter.leftDownAttack{
+            var attackedCol = col - 1
+            var attackedRow = row + 1
+            while attackedCol >= 0 && attackedRow < self.mainBoard.cells.count{
+                checkCellsAndAppend(attackedCol, attackedRow)
+                attackedCol -= 1
+                attackedRow += 1
+            }
+        }
+        
+        if selectedCharacter.rightDownAttack{
+            var attackedCol = col + 1
+            var attackedRow = row + 1
+            while attackedCol < self.mainBoard.cells[0].count && attackedRow < self.mainBoard.cells.count{
+                checkCellsAndAppend(attackedCol, attackedRow)
+                attackedCol += 1
+                attackedRow += 1
+            }
+        }
+        
         return enemyCellsEntry
     }
     

@@ -23,6 +23,10 @@ struct CharacterDeck: View {
     var downAttack: Bool
     var rightAttack: Bool
     var leftAttack: Bool
+    var leftUpAttack: Bool
+    var leftDownAttack: Bool
+    var rightUpAttack: Bool
+    var rightDownAttack: Bool
     
     var body: some View {
         GeometryReader { geo in
@@ -51,7 +55,15 @@ struct CharacterDeck: View {
             .padding(.vertical, geo.size.height/14)
             .padding(.horizontal, geo.size.width/8)
             
-            DirectionView(upAttack: upAttack, downAttack: downAttack, rightAttack: rightAttack, leftAttack: leftAttack)
+            DirectionView(
+                upAttack: upAttack,
+                downAttack: downAttack,
+                rightAttack: rightAttack,
+                leftAttack: leftAttack,
+                leftUpAttack: leftUpAttack,
+                leftDownAttack: leftDownAttack,
+                rightUpAttack: rightUpAttack,
+                rightDownAttack: rightDownAttack)
         }
     }
 }
@@ -83,6 +95,9 @@ extension CharacterDeck {
 
 struct CharacterDeck_Previews: PreviewProvider {
     static var previews: some View {
-        CharacterDeck(image: Image("knight"), attackPoint: 3, manaPoint: 1, bloodPoint: 1, upAttack: true, downAttack: true, rightAttack: true, leftAttack: true)
+        CharacterDeck(image: Image("knight"), attackPoint: 3, manaPoint: 1, bloodPoint: 1, upAttack: true, downAttack: true, rightAttack: true, leftAttack: true, leftUpAttack: true,
+                      leftDownAttack: true,
+                      rightUpAttack: true,
+                      rightDownAttack: true)
     }
 }

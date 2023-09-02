@@ -16,17 +16,15 @@ struct Character: Hashable {
     var downAttack : Bool = false
     var leftAttack : Bool = false
     var rightAttack : Bool = false
+    var leftUpAttack : Bool = false
+    var leftDownAttack : Bool = false
+    var rightUpAttack : Bool = false
+    var rightDownAttack : Bool = false
     
-    init(characterName: String = "", manaPoint: Int = 0, bloodPoint: Int = 0, attackPoint: Int = 0) {
+    init(characterName: String = "") {
         self.characterName = characterName
-        self.manaPoint = manaPoint
-        self.bloodPoint = bloodPoint
-        self.attackPoint = attackPoint
-        self.upAttack = Bool.random()
-        self.downAttack = Bool.random()
-        self.leftAttack = Bool.random()
-        self.rightAttack = Bool.random()
     }
+    
     var imageCard: Image {
         Image(characterName)
     }
@@ -39,7 +37,16 @@ struct Character: Hashable {
         self.characterName = ""
     }
     
-    mutating func setPoint(manaPoint: Int, upAttackQty: Binding<Int>, downAttackQty: Binding<Int>, leftAttackQty: Binding<Int>, rightAttackQty: Binding<Int>){
+    mutating func setPoint(
+        manaPoint: Int,
+        upAttackQty: Binding<Int>,
+        downAttackQty: Binding<Int>,
+        leftAttackQty: Binding<Int>,
+        rightAttackQty: Binding<Int>,
+        leftDownAttackQty: Binding<Int>,
+        rightDownAttackQty: Binding<Int>,
+        leftUpAttackQty: Binding<Int>,
+        rightUpAttackQty: Binding<Int>){
         var totalPoint = 0
         switch manaPoint{
             case 1:
@@ -54,35 +61,70 @@ struct Character: Hashable {
         
         // Make sure the total point skill is equivalent to the totalPoint
         // Ensure the balance of a character
-        
         var bloodPoint = Int.random(in: 1...totalPoint)
         totalPoint -= bloodPoint
         
-        if upAttackQty.wrappedValue != 0{
+        // Direction
+        if upAttackQty.wrappedValue != 0 && totalPoint != 0{
             if Bool.random(){
                 self.upAttack = true
                 upAttackQty.wrappedValue -= 1
+                totalPoint -= 1
             }
         }
         
-        if downAttackQty.wrappedValue != 0{
+        if downAttackQty.wrappedValue != 0 && totalPoint != 0{
             if Bool.random(){
                 self.downAttack = true
                 downAttackQty.wrappedValue -= 1
+                totalPoint -= 1
             }
         }
         
-        if leftAttackQty.wrappedValue != 0{
+        if leftAttackQty.wrappedValue != 0 && totalPoint != 0{
             if Bool.random(){
                 self.leftAttack = true
                 leftAttackQty.wrappedValue -= 1
+                totalPoint -= 1
             }
         }
         
-        if rightAttackQty.wrappedValue != 0{
+        if rightAttackQty.wrappedValue != 0 && totalPoint != 0{
             if Bool.random(){
                 self.rightAttack = true
                 rightAttackQty.wrappedValue -= 1
+                totalPoint -= 1
+            }
+        }
+        if leftUpAttackQty.wrappedValue != 0 && totalPoint != 0{
+            if Bool.random(){
+                self.leftUpAttack = true
+                leftUpAttackQty.wrappedValue -= 1
+                totalPoint -= 1
+            }
+        }
+        
+        if leftDownAttackQty.wrappedValue != 0 && totalPoint != 0{
+            if Bool.random(){
+                self.leftDownAttack = true
+                leftDownAttackQty.wrappedValue -= 1
+                totalPoint -= 1
+            }
+        }
+        
+        if rightUpAttackQty.wrappedValue != 0 && totalPoint != 0{
+            if Bool.random(){
+                self.rightUpAttack = true
+                rightUpAttackQty.wrappedValue -= 1
+                totalPoint -= 1
+            }
+        }
+        
+        if rightDownAttackQty.wrappedValue != 0 && totalPoint != 0{
+            if Bool.random(){
+                self.rightDownAttack = true
+                rightDownAttackQty.wrappedValue -= 1
+                totalPoint -= 1
             }
         }
         

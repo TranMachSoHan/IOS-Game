@@ -14,6 +14,7 @@ import SwiftUI
 
 struct  BloodBarView: View {
     @Binding var percentage: Int
+    @State var originBloodPoint: Int
     
     var body: some View {
         bloodBar
@@ -31,18 +32,19 @@ extension BloodBarView {
                     .foregroundColor(Color.gray.opacity(0.7))
 
                 RoundedRectangle(cornerRadius: 40)
-                    .frame(width: Double(percentage)/100 * geo.size.width)
+                    .frame(width: Double(percentage)/Double(originBloodPoint) * 100 * geo.size.width)
                     .foregroundColor(
-                        progressColor(percentage: percentage)
+                        progressColor(percentage: Double(percentage)/Double(originBloodPoint) * 100)
                     )
 
-                Text(String(format: "%.0f%%", percentage))
-                    .font(.system(size: geo.size.height > geo.size.width ? geo.size.width * 0.3: geo.size.height * 0.3))
+                Text("\(percentage)")
+                    .font(.system(size: geo.size.height > geo.size.width ? geo.size.width * 0.8: geo.size.height * 0.8))
                     .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
             }
         }
     }
-    func progressColor(percentage: Int) -> Color {
+    func progressColor(percentage: Double) -> Color {
         if percentage <= 30 {
             return Color.red
         } else if percentage <= 60 {

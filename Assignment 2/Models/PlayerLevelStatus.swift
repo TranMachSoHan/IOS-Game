@@ -59,10 +59,14 @@ struct PlayerGame: Hashable {
     
     mutating func prepareDeckCard(
         manaCharacter: [Int] = [],
-        upAttackQty: Int = 0,
-        downAttackQty: Int = 0,
-        leftAttackQty: Int = 0,
-        rightAttackQty: Int = 0
+        upAttackQty: Int = 6,
+        downAttackQty: Int = 6,
+        leftAttackQty: Int = 6,
+        rightAttackQty: Int = 6,
+        leftUpAttackQty: Int = 0,
+        rightUpAttackQty: Int = 0,
+        leftDownAttackQty: Int = 0,
+        rightDownAttackQty: Int = 0
     ){
         var characterNameCopy = self.isAI ? availableBotName.shuffled() : availableCharacterName.shuffled()
         
@@ -71,6 +75,10 @@ struct PlayerGame: Hashable {
         var downAttackQty = downAttackQty
         var leftAttackQty = leftAttackQty
         var rightAttackQty = rightAttackQty
+        var leftDownAttackQty = leftDownAttackQty
+        var rightDownAttackQty = rightDownAttackQty
+        var leftUpAttackQty = leftUpAttackQty
+        var rightUpAttackQty = rightUpAttackQty
         
         var deck: [Character] = []
         
@@ -81,7 +89,11 @@ struct PlayerGame: Hashable {
                                upAttackQty: Binding(get: {upAttackQty}, set: {upAttackQty = $0}),
                                downAttackQty: Binding(get: {downAttackQty}, set: {downAttackQty = $0}),
                                leftAttackQty: Binding(get: {leftAttackQty}, set: {leftAttackQty = $0}),
-                               rightAttackQty: Binding(get: {rightAttackQty}, set: {rightAttackQty = $0}))
+                               rightAttackQty: Binding(get: {rightAttackQty}, set: {rightAttackQty = $0}),
+                               leftDownAttackQty: Binding(get: {leftDownAttackQty}, set: {leftDownAttackQty = $0}),
+                               rightDownAttackQty: Binding(get: {rightDownAttackQty}, set: {rightDownAttackQty = $0}),
+                               leftUpAttackQty: Binding(get: {leftUpAttackQty}, set: {leftUpAttackQty = $0}),
+                               rightUpAttackQty: Binding(get: {rightUpAttackQty}, set: {rightUpAttackQty = $0}))
             deck.append(character)
         }
         

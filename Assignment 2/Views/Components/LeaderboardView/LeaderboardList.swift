@@ -12,19 +12,38 @@
  */
 
 import SwiftUI
+import CoreData
 
 struct LeaderboardList: View {
-    @State var difficultyMode : DifficultyMode
     //Fetch players
-    @FetchRequest(sortDescriptors: []) var player: FetchedResults<Player>
+    @FetchRequest var player: FetchedResults<Player>
     @EnvironmentObject var currentPlayer: CurrentPlayer
+    var difficultyMode: DifficultyMode
+    
+    init(difficultyMode: DifficultyMode) {
+        self.difficultyMode = difficultyMode
+        var sortDescriptor: NSSortDescriptor
+        if difficultyMode == .easy {
+            sortDescriptor = NSSortDescriptor(keyPath: \Player.easyLevel, ascending: false)
+        }
+        else if difficultyMode == .medium {
+            sortDescriptor = NSSortDescriptor(keyPath: \Player.mediumLevel, ascending: false)
+        }
+        else {
+            sortDescriptor = NSSortDescriptor(keyPath: \Player.hardLevel, ascending: false)
+        }
+        
+        let request: NSFetchRequest<Player> = Player.fetchRequest()
+        request.sortDescriptors = [sortDescriptor]
+        _player = FetchRequest<Player>(fetchRequest: request)
+    }
     
     var body: some View {
         VStack {
             VStack {
                 //display the fetch result to list
                 ForEach(player) {player in
-                    LeaderboardRow(player: player, isCurrentPlayer: currentPlayer.id == player.id?.uuidString)
+                    LeaderboardRow(player: player, isCurrentPlayer: currentPlayer.id == player.id?.uuidString, difficultyMode: difficultyMode)
                 }
             }
             .padding(.horizontal, 20)

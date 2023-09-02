@@ -25,17 +25,22 @@ struct ProfileView : View {
                 ProfileAchievementView(imageName: currentPlayer.imageName, name: currentPlayer.name, badges: currentPlayer.badges, backPage: .menuPage)
                 .tabItem {
                     Image(systemName: "person.crop.circle")
+                        .modifier(HeadingModifier())
                     Text("Profile")
+                        .modifier(HeadingModifier())
                 }
                 .tag(0)
                 
                 SettingsView()
                     .tabItem {
                         Image(systemName: "gear.circle.fill")
+                            .modifier(HeadingModifier())
                         Text("Setting")
+                            .modifier(HeadingModifier())
                     }
                     .tag(0)
             }
+            
             Button(action: {
                 withAnimation {
                     viewRouter.currentPage = .menuPage

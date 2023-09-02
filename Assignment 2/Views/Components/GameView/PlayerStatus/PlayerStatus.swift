@@ -12,12 +12,6 @@
 
 import SwiftUI
 
-var characterMainDeck = [
-    Character(characterName: "knight", manaPoint: 3, bloodPoint: 2, attackPoint: 1),
-    Character(characterName: "samurai", manaPoint: 1, bloodPoint: 2, attackPoint: 1),
-    Character(characterName: "robin-hood", manaPoint: 2, bloodPoint: 2, attackPoint: 1)
-]
-
 struct PlayerStatusView: View {
     var image: Image
     @Binding var bloodPoint: Int
@@ -30,6 +24,7 @@ struct PlayerStatusView: View {
     @Binding var displayCharacterDeck: [Character]
     @State var showLoading: Bool
     @State var gameStatus: GameStatus
+    @Environment(\.dismiss) var dismiss
     
     let timer = Timer.publish(every: 0.8, on: .main, in: .common).autoconnect()
     @State var leftOffset: CGFloat = -80
@@ -38,28 +33,21 @@ struct PlayerStatusView: View {
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                player.color
-                    .opacity(playerTurn == player ? 1 : 0.4)
                 VStack {
                     if manaPositionTop {
                         manaBar
-                            .frame(height: 40)
-                            .padding(.bottom, 5)
-                            
+                            .frame(height: geo.size.height/10)
+                            .padding(.vertical, geo.size.height/10)
                     }
                     HStack{
-                        ZStack (alignment: .bottom){
-                            image
-                                .resizable()
-                                .scaledToFit()
-                                .clipShape(Circle())
-                                .overlay(Circle().stroke(Color(.white), lineWidth: 4))
-                                .shadow(radius: 7)
-                            
-                            BloodBarView(percentage: $bloodPoint)
-                                .frame(height: geo.size.height/10)
-                        }
-                        .frame(height: geo.size.height/3)
+                        image
+                            .resizable()
+                            .clipShape(Circle())
+                            .overlay(
+                                Circle()
+                                    .stroke(playerTurn.id == player.id ? player.color : .white, lineWidth: 10))
+                            .shadow(radius: 7)
+                            .frame(height: geo.size.height/2)
                         
                         if showLoading{
                             if playerTurn.id == gameStatus.botPlayer.id{
@@ -80,6 +68,11 @@ struct PlayerStatusView: View {
                                     HStack {
                                         Text("End Turn")
                                             .fontWeight(.semibold)
+                                            .onTapGesture {
+                                                gameStatus.updateNextPlayer()
+                                                MusicPlayer.shared.playSoundEffect(soundEffect: "end-turn", type: "mp3")
+                                                dismiss()
+                                            }
                                     }
                                     .frame(minWidth: 0, maxWidth: .infinity)
                                     .padding()
@@ -90,10 +83,12 @@ struct PlayerStatusView: View {
                             
                         }
                     }
-                    .frame(height: 90)
+                    .frame(height: geo.size.height/7)
                     
-                    HStack {
-                        if showDeck {
+                    BloodBarView(percentage: $bloodPoint, originBloodPoint: bloodPoint)
+                        .frame(height: geo.size.height/15)
+                    if showDeck {
+                        HStack {
                             ForEach(displayCharacterDeck, id: \.self) {character in
                                 CharacterDeck(
                                     image: Image(character.characterName),
@@ -103,23 +98,26 @@ struct PlayerStatusView: View {
                                     upAttack: character.upAttack,
                                     downAttack: character.downAttack,
                                     rightAttack: character.rightAttack,
-                                    leftAttack: character.leftAttack
+                                    leftAttack: character.leftAttack,
+                                    leftUpAttack: character.leftUpAttack,
+                                    leftDownAttack: character.leftDownAttack,
+                                    rightUpAttack: character.rightUpAttack,
+                                    rightDownAttack: character.rightDownAttack
                                 )
                                 .onTapGesture {
-                                    if playerTurn == player && player.manaPoint >= character.manaPoint{
+                                    if playerTurn.id == player.id && player.manaPoint >= character.manaPoint{
                                         draggedCharacter = draggedCharacter == character ? emptyCharacter : character
                                     }
                                 }
                                 .border(.green, width: draggedCharacter == character ? 10 : 0)
                             }
                         }
-                        
                     }
                     
                     if !manaPositionTop{
                         manaBar
-                            .frame(height: 40)
-                            .padding(.top, 5)
+                            .frame(height: geo.size.height/10)
+                            .padding(.vertical, geo.size.height/10)
                     }
                 }
             }
@@ -133,11 +131,3 @@ extension PlayerStatusView {
 //            .padding(manaPositionTop ? .bottom : .top, 30)
     }
 }
-
-//
-//struct PlayerStatusView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PlayerStatusView(image: Image("luckin317"), bloodPoint: 40)
-//            .environmentObject(GameSettings())
-//    }
-//}

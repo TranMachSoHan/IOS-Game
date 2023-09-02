@@ -33,8 +33,8 @@ class MusicPlayer {
       }
   }
 
-  func playSoundEffect(soundEffect: String) {
-    if let bundle = Bundle.main.path(forResource: soundEffect, ofType: "mp3") {
+func playSoundEffect(soundEffect: String, type: String) {
+    if let bundle = Bundle.main.path(forResource: soundEffect, ofType: type) {
         let soundEffectUrl = NSURL(fileURLWithPath: bundle)
         do {
             audioPlayer = try AVAudioPlayer(contentsOf:soundEffectUrl as URL)

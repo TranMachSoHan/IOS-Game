@@ -39,6 +39,12 @@
 		2266BA612AA2300100ABD83B /* GameAnnouncementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2266BA602AA2300100ABD83B /* GameAnnouncementView.swift */; };
 		2266BA632AA2412700ABD83B /* LevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2266BA622AA2412700ABD83B /* LevelView.swift */; };
 		22714B602A85426800399305 /* StatusPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22714B5F2A85426800399305 /* StatusPoint.swift */; };
+		2280A83C2AA38C7A003A7EA1 /* character-drag.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2280A8392AA38C79003A7EA1 /* character-drag.mp3 */; };
+		2280A83D2AA38C7A003A7EA1 /* click-menu-app.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2280A83A2AA38C79003A7EA1 /* click-menu-app.mp3 */; };
+		2280A83E2AA38C7A003A7EA1 /* end-turn.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2280A83B2AA38C7A003A7EA1 /* end-turn.mp3 */; };
+		2280A8402AA38D8F003A7EA1 /* level-up.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2280A83F2AA38D8F003A7EA1 /* level-up.wav */; };
+		2280A8422AA38DDB003A7EA1 /* game-over.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2280A8412AA38DDB003A7EA1 /* game-over.wav */; };
+		2280A8442AA3A940003A7EA1 /* PauseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2280A8432AA3A940003A7EA1 /* PauseView.swift */; };
 		22902E842A892A0200425C64 /* ManaBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22902E832A892A0200425C64 /* ManaBarView.swift */; };
 		22902E862A8944F700425C64 /* PlayerLevelStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22902E852A8944F700425C64 /* PlayerLevelStatus.swift */; };
 		22902E882A8A637C00425C64 /* DropViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22902E872A8A637C00425C64 /* DropViewDelegate.swift */; };
@@ -125,6 +131,12 @@
 		2266BA602AA2300100ABD83B /* GameAnnouncementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAnnouncementView.swift; sourceTree = "<group>"; };
 		2266BA622AA2412700ABD83B /* LevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelView.swift; sourceTree = "<group>"; };
 		22714B5F2A85426800399305 /* StatusPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusPoint.swift; sourceTree = "<group>"; };
+		2280A8392AA38C79003A7EA1 /* character-drag.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "character-drag.mp3"; sourceTree = "<group>"; };
+		2280A83A2AA38C79003A7EA1 /* click-menu-app.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "click-menu-app.mp3"; sourceTree = "<group>"; };
+		2280A83B2AA38C7A003A7EA1 /* end-turn.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "end-turn.mp3"; sourceTree = "<group>"; };
+		2280A83F2AA38D8F003A7EA1 /* level-up.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "level-up.wav"; sourceTree = "<group>"; };
+		2280A8412AA38DDB003A7EA1 /* game-over.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "game-over.wav"; sourceTree = "<group>"; };
+		2280A8432AA3A940003A7EA1 /* PauseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseView.swift; sourceTree = "<group>"; };
 		22902E832A892A0200425C64 /* ManaBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaBarView.swift; sourceTree = "<group>"; };
 		22902E852A8944F700425C64 /* PlayerLevelStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerLevelStatus.swift; sourceTree = "<group>"; };
 		22902E872A8A637C00425C64 /* DropViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropViewDelegate.swift; sourceTree = "<group>"; };
@@ -312,6 +324,11 @@
 		2266BA442A9F96EB00ABD83B /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				2280A8412AA38DDB003A7EA1 /* game-over.wav */,
+				2280A83F2AA38D8F003A7EA1 /* level-up.wav */,
+				2280A8392AA38C79003A7EA1 /* character-drag.mp3 */,
+				2280A83A2AA38C79003A7EA1 /* click-menu-app.mp3 */,
+				2280A83B2AA38C7A003A7EA1 /* end-turn.mp3 */,
 				2266BA472A9F9DE200ABD83B /* background-music.mp3 */,
 			);
 			path = Sounds;
@@ -352,12 +369,13 @@
 			path = ModelView;
 			sourceTree = "<group>";
 		};
-		2266BA5F2AA22FC900ABD83B /* Anouncement */ = {
+		2266BA5F2AA22FC900ABD83B /* Other */ = {
 			isa = PBXGroup;
 			children = (
 				2266BA602AA2300100ABD83B /* GameAnnouncementView.swift */,
+				2280A8432AA3A940003A7EA1 /* PauseView.swift */,
 			);
-			path = Anouncement;
+			path = Other;
 			sourceTree = "<group>";
 		};
 		229075202A9D0783001D78D0 /* PlayerStatus */ = {
@@ -438,7 +456,7 @@
 		22F22C2E2A836CB3002C1BBD /* GameView */ = {
 			isa = PBXGroup;
 			children = (
-				2266BA5F2AA22FC900ABD83B /* Anouncement */,
+				2266BA5F2AA22FC900ABD83B /* Other */,
 				229075202A9D0783001D78D0 /* PlayerStatus */,
 				22B803AD2A9A5E8700B65C04 /* Board */,
 				221AC3982A99135F007C835B /* LoadingGameView.swift */,
@@ -558,9 +576,14 @@
 			files = (
 				2266BA482A9F9DE200ABD83B /* background-music.mp3 in Resources */,
 				2266BA572AA0E78100ABD83B /* easy-progress.json in Resources */,
+				2280A83C2AA38C7A003A7EA1 /* character-drag.mp3 in Resources */,
 				226040742A814AE800B4682F /* Preview Assets.xcassets in Resources */,
+				2280A83E2AA38C7A003A7EA1 /* end-turn.mp3 in Resources */,
+				2280A83D2AA38C7A003A7EA1 /* click-menu-app.mp3 in Resources */,
 				226040712A814AE800B4682F /* Assets.xcassets in Resources */,
+				2280A8422AA38DDB003A7EA1 /* game-over.wav in Resources */,
 				22DABF5E2A91F98D00A41CEF /* badges.json in Resources */,
+				2280A8402AA38D8F003A7EA1 /* level-up.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,6 +650,7 @@
 				22C37C512A90B2A00053B097 /* PlayerRow.swift in Sources */,
 				22C949A42A95E520006D8CCD /* Top3PlayerImage.swift in Sources */,
 				22DABF602A91FFF600A41CEF /* Badge.swift in Sources */,
+				2280A8442AA3A940003A7EA1 /* PauseView.swift in Sources */,
 				22902E882A8A637C00425C64 /* DropViewDelegate.swift in Sources */,
 				2266BA432A9F8AF500ABD83B /* GameThemes.swift in Sources */,
 				22C37C4E2A90B2070053B097 /* SwitchUserView.swift in Sources */,

@@ -14,9 +14,12 @@
 import SwiftUI
 
 struct LeaderboardRow: View {
+    @EnvironmentObject var gameSettings: GameSettings
     var player: Player
     var number: Int = 0
     var isCurrentPlayer: Bool = false
+    var difficultyMode: DifficultyMode
+    @State var level: Int64 = 0
     
     var body: some View {
         RoundedRectangle(cornerRadius: 10)
@@ -40,8 +43,21 @@ struct LeaderboardRow: View {
                             .foregroundColor(self.isCurrentPlayer ?  .white : .black)
                     }
                     Spacer()
+                    Text("\(level)")
+                        .bold()
+                        .modifier(HeadingModifier())
                 }
                 .padding(.horizontal, 10)
+                .onAppear(){
+                    switch difficultyMode {
+                        case .easy:
+                            level = player.easyLevel
+                        case .medium:
+                            level = player.mediumLevel
+                        case .hard:
+                            level = player.hardLevel
+                    }
+                }
             )
     }
 }

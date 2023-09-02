@@ -9,10 +9,10 @@
                value = "mainPlayer">
             </PersistentString>
             <PersistentString
-               value = "playerTurn">
+               value = "botPlayer">
             </PersistentString>
             <PersistentString
-               value = "botPlayer">
+               value = "playerTurn">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -53,10 +53,34 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "DataController.updatePlayerLevel(level:mode:id:context:):DataController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "level">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #3 in closure #1 in GameView.body.getter:GameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.gameStatus.victory">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #2 in HomeView.body.getter:HomeView.swift">
          <PersistentStrings>
             <PersistentString
                value = "currentPlayer.id">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in BloodBarView.bloodBar.getter:BloodBar.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "percentage">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -105,21 +129,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "GameStatus.updateActionFlow(row:col:selectedCharacter:):GameView.swift">
+         contextName = "closure #1 in closure #1 in closure #1 in closure #1 in LevelView.body.getter:LevelView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "turn">
+               value = "currentPlayer.levelUnlock(mode: gameSettings.difficultyMode)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in GameStatus.updateActionFlow(row:col:selectedCharacter:):GameView.swift">
+         contextName = "GameStatus.updateActionFlow(row:col:selectedCharacter:):GameView.swift">
          <PersistentStrings>
             <PersistentString
                value = "turn">
-            </PersistentString>
-            <PersistentString
-               value = "mainPlayer.bloodPoint">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -167,10 +188,13 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in closure #1 in closure #1 in closure #1 in LevelView.body.getter:LevelView.swift">
+         contextName = "closure #1 in GameStatus.updateActionFlow(row:col:selectedCharacter:):GameView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "currentPlayer.levelUnlock(mode: gameSettings.difficultyMode)">
+               value = "turn">
+            </PersistentString>
+            <PersistentString
+               value = "mainPlayer.bloodPoint">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -178,13 +202,13 @@
          contextName = "GameStatus.setUpMode(level:mode:):GameStatus.swift">
          <PersistentStrings>
             <PersistentString
-               value = "progress.turn == &quot;player&quot;">
-            </PersistentString>
-            <PersistentString
                value = "playerTurn">
             </PersistentString>
             <PersistentString
                value = "botPlayer">
+            </PersistentString>
+            <PersistentString
+               value = "progress.turn == &quot;player&quot;">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -193,6 +217,14 @@
          <PersistentStrings>
             <PersistentString
                value = "levelStatus.mainBoard.cells">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameStatus.checkVictoryStatus():GameStatus.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.victory">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -221,6 +253,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #1 in closure #1 in closure #1 in closure #1 in closure #1 in PlayerStatusView.body.getter:PlayerStatus.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "bloodPoint">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "DataController.addBadgeForPlayer(badgeName:id:context:):DataController.swift">
          <PersistentStrings>
             <PersistentString
@@ -232,10 +272,10 @@
          contextName = "AcheivementBadgeView.filterAcheivementBadges():AcheivementBadgeView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "playerBadges">
+               value = "badges.filter{ badge in&#10;            return playerBadges.contains(badge.name)&#10;        }">
             </PersistentString>
             <PersistentString
-               value = "badges.filter{ badge in&#10;            return playerBadges.contains(badge.name)&#10;        }">
+               value = "playerBadges">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

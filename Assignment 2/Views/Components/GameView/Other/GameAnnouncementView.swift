@@ -38,6 +38,14 @@ struct GameAnnouncementView: View {
                 }
             }.edgesIgnoringSafeArea(.bottom)
         }
+        .onAppear(){
+            if isWon{
+                MusicPlayer.shared.playSoundEffect(soundEffect: "level-up", type: "wav")
+            }
+            else{
+                MusicPlayer.shared.playSoundEffect(soundEffect: "game-over", type: "wav")
+            }
+        }
     }
 }
 
@@ -45,7 +53,7 @@ extension GameAnnouncementView{
     var backBtn: some View {
         GeometryReader { geo in
             Button {
-
+                viewRouter.currentPage = .gameLevelPage
             } label: {
                 Capsule()
                     .fill(gameSettings.menuTheme.secondLevelColor)
@@ -64,6 +72,9 @@ extension GameAnnouncementView{
     var gamePlayBtn: some View {
         GeometryReader { geo in
             Button {
+                if isWon {
+                    gameSettings.level = gameSettings.level + 1
+                }
                 viewRouter.currentPage = .gamePage
             } label: {
                 Capsule()
