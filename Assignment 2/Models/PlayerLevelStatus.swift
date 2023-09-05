@@ -14,32 +14,22 @@
 import Foundation
 import SwiftUI
 
-// Defined with @objc to allow it to be used with @NSManaged.
-enum GameLevel
-{
-    case easy
-    case difficult
-}
-
-enum Progress {
-    case inProgress
-    case finished
-    case resume
-}
-
 let availableCharacterName = ["kimetsu", "ryu", "vampire", "knight", "samurai", "robin-hood"]
 let availableBotName = ["bot1", "bot2", "bot3", "bot4", "bot5", "bot6"]
 
-struct PlayerGame: Hashable {
-    var id: UUID = UUID()
+struct PlayerGame: Hashable, Codable {
+    var id: String = UUID().uuidString
     var manaPoint: Int = 5
     var bloodPoint: Int = 100
     var imageName: String = "robot"
-    var color: Color
+    var colorName: String
     var isAI: Bool
     
+    var color: Color{
+        return Color(colorName)
+    }
     var getIDString: String{
-        return id.uuidString
+        return id
     }
     
     var image: Image {
@@ -111,15 +101,15 @@ struct PlayerGame: Hashable {
         self.manaPoint = self.manaPoint + manaPoint
         self.bloodPoint = self.bloodPoint + bloodPoint
     }
-    init(color: Color, isAI: Bool = false){
+    init(color: String, isAI: Bool = false){
         self.isAI = isAI
-        self.color = color
+        self.colorName = color
     }
     
     
 }
 
-struct Cell : Hashable{
+struct Cell : Hashable, Codable{
     var character : Character = Character()
     var isAttackedCell : Bool = false
     var isProtectedCell : Bool = false
@@ -131,6 +121,6 @@ struct Cell : Hashable{
     }
 }
 
-struct MainBoard: Hashable{
+struct MainBoard: Hashable, Codable{
     var cells: [[Cell]] = [[Cell]](repeating: [Cell](repeating: Cell(), count: 4), count: 4)
 }

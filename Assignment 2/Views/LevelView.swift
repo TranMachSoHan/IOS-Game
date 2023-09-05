@@ -21,6 +21,16 @@ struct LevelView: View {
     var body: some View {
         GeometryReader { geo in
             ScrollView{
+                Button(action: {
+                    withAnimation {
+                        viewRouter.currentPage = .menuPage
+                    }}) {
+                        Text("< Go Back")
+                            .underline()
+                    }
+                    .padding(.top, 50)
+                    .padding(.horizontal, 30)
+                
                 VStack {
                     Text("\(gameSettings.difficultyMode.rawValue.capitalized) Mode")
                         .font(.system(size: geo.size.width/10, design: .rounded))

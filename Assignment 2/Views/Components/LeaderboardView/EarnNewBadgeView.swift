@@ -86,7 +86,7 @@ struct EarnNewBadgeView: View {
                 }
                 
                 Button(action: {
-                    viewRouter.currentPage = .leaderboardPage
+                    viewRouter.currentPage = .profilePage
                 }) {
                     RoundedRectangle(cornerRadius: 5)
                         .fill(.blue)

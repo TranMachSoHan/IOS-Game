@@ -58,7 +58,7 @@ struct CharacterCell: View {
 
 struct CharacterCellView: PreviewProvider {
     static var previews: some View {
-        GameView(gameStatus: GameStatus())
+        GameView(isNewGame: true, gameStatus: GameStatus(gameProgress: nil))
             .environment(\.managedObjectContext, DataController().container.viewContext)
             .environmentObject(DataController())
             .environmentObject(CurrentPlayer())

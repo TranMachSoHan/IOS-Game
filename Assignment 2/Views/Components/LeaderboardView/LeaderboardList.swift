@@ -18,6 +18,7 @@ struct LeaderboardList: View {
     //Fetch players
     @FetchRequest var player: FetchedResults<Player>
     @EnvironmentObject var currentPlayer: CurrentPlayer
+    @EnvironmentObject var gameSettings: GameSettings
     var difficultyMode: DifficultyMode
     
     init(difficultyMode: DifficultyMode) {
@@ -26,28 +27,28 @@ struct LeaderboardList: View {
         if difficultyMode == .easy {
             sortDescriptor = NSSortDescriptor(keyPath: \Player.easyLevel, ascending: false)
         }
-        else if difficultyMode == .medium {
+        else {
             sortDescriptor = NSSortDescriptor(keyPath: \Player.mediumLevel, ascending: false)
         }
-        else {
-            sortDescriptor = NSSortDescriptor(keyPath: \Player.hardLevel, ascending: false)
-        }
-        
         let request: NSFetchRequest<Player> = Player.fetchRequest()
         request.sortDescriptors = [sortDescriptor]
         _player = FetchRequest<Player>(fetchRequest: request)
     }
     
     var body: some View {
-        VStack {
+        ZStack{
+            gameSettings.menuTheme.topLevelColor
             VStack {
-                //display the fetch result to list
-                ForEach(player) {player in
-                    LeaderboardRow(player: player, isCurrentPlayer: currentPlayer.id == player.id?.uuidString, difficultyMode: difficultyMode)
+                VStack {
+                    //display the fetch result to list
+                    ForEach(player) {player in
+                        LeaderboardRow(player: player, isCurrentPlayer: currentPlayer.id == player.id?.uuidString, difficultyMode: difficultyMode)
+                    }
                 }
+                .padding(.horizontal, 20)
             }
-            .padding(.horizontal, 20)
         }
+        
     }
 }
 

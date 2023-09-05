@@ -19,28 +19,29 @@ struct ProfileView : View {
     
     var body : some View {
         ZStack (alignment: .topLeading){
-            
-            TabView {
-                
-                ProfileAchievementView(imageName: currentPlayer.imageName, name: currentPlayer.name, badges: currentPlayer.badges, backPage: .menuPage)
-                .tabItem {
-                    Image(systemName: "person.crop.circle")
-                        .modifier(HeadingModifier())
-                    Text("Profile")
-                        .modifier(HeadingModifier())
-                }
-                .tag(0)
-                
-                SettingsView()
+            ZStack{
+                TabView {
+                    
+                    ProfileAchievementView(imageName: currentPlayer.imageName, name: currentPlayer.name, badges: currentPlayer.badges, backPage: .menuPage)
                     .tabItem {
-                        Image(systemName: "gear.circle.fill")
+                        Image(systemName: "person.crop.circle")
                             .modifier(HeadingModifier())
-                        Text("Setting")
+                        Text("Profile")
                             .modifier(HeadingModifier())
                     }
                     .tag(0)
+                    
+                    SettingsView()
+                        .tabItem {
+                            Image(systemName: "gear.circle.fill")
+                                .modifier(HeadingModifier())
+                            Text("Setting")
+                                .modifier(HeadingModifier())
+                        }
+                        .tag(0)
+                }
+                
             }
-            
             Button(action: {
                 withAnimation {
                     viewRouter.currentPage = .menuPage
@@ -50,7 +51,8 @@ struct ProfileView : View {
                 }
                 .padding(.top, 50)
                 .padding(.horizontal, 30)
-        }.edgesIgnoringSafeArea(.all)
+        }
+        .edgesIgnoringSafeArea(.all)
     }
 }
 

@@ -12,8 +12,7 @@
 
 import Foundation
 
-
-class GameStatus: ObservableObject {
+class GameStatus: ObservableObject{
     @Published var level: Int = 0
     @Published var mode: DifficultyMode = .easy
     @Published var mainBoard: MainBoard = MainBoard()
@@ -24,19 +23,50 @@ class GameStatus: ObservableObject {
     @Published var botOriginPosition: [(Int, Int)] = []
     @Published var victory: Bool = false
     @Published var gameOver: Bool = false
+    @Published var gameProgress: GameProgress
+    @Published var isMainPlayerTurn: Bool = false
     
-    init(level: Int = 1, mode: DifficultyMode = .easy){
-        self.level = level
-        self.mode = mode
-        self.mainPlayer = PlayerGame(color: .blue)
-        self.botPlayer = PlayerGame(color: .purple, isAI: true)
-        self.playerTurn = PlayerGame(color: .clear)
-        self.playerTurn = botPlayer
-        self.setUpMode(level: level, mode: mode)
+    var showPlayerTurn : String {
+        return self.playerTurn.id == mainPlayer.id ? "Your turn" : "Bot turn"
     }
     
-    func setUpMode(level: Int = 3, mode: DifficultyMode = .easy){
-        self.playerTurn = Bool.random() ? mainPlayer : botPlayer
+    init(level: Int = 1, mode: DifficultyMode = .easy, gameProgress: GameProgress?){
+        self.level = level
+        self.mode = mode
+        mainPlayer = PlayerGame(color: "blueMainPlayer")
+        botPlayer = PlayerGame(color: "purpleBotPlayer", isAI: true)
+        playerTurn = PlayerGame(color: "clear")
+        self.gameProgress = GameProgress()
+        
+        if gameProgress != nil {
+            self.convertGameProgressToGameStatus(gameProgress: gameProgress!)
+            if self.playerTurn.id == self.botPlayer.id{
+                self.botLoading()
+            }
+            else{
+                self.isMainPlayerTurn = true
+            }
+        }
+        else{
+            self.setUpMode()
+        }
+    }
+    
+    func convertGameProgressToGameStatus(gameProgress: GameProgress){
+        self.level = gameProgress.level
+        self.mode = gameProgress.difficultyMode
+        self.mainBoard = gameProgress.mainBoard
+        self.mainPlayer = gameProgress.mainPlayer
+        self.playerTurn = gameProgress.playerTurn
+        self.botPlayer = gameProgress.botPlayer
+        self.turn = gameProgress.turn
+        self.victory = gameProgress.victory
+        self.gameOver = gameProgress.gameOver
+        self.gameProgress = gameProgress
+    }
+    
+    func setUpMode(){
+        self.playerTurn = botPlayer
         
         if mode == .easy {
             if level <= 5 {
@@ -49,21 +79,24 @@ class GameStatus: ObservableObject {
                 self.botPlayer.prepareDeckCard(manaCharacter: progress.player.manaArr, upAttackQty: progress.player.upAttackQty, downAttackQty: progress.player.downAttackQty)
             }
             else {
-                self.botPlayer.bloodPoint = 30
-                self.mainPlayer.bloodPoint = 30
+                self.botPlayer.bloodPoint = 15
+                self.mainPlayer.bloodPoint = 15
                 self.mainPlayer.prepareDeckCard()
                 self.botPlayer.prepareDeckCard()
             }
         }
         else if mode == .medium {
-            self.botPlayer.bloodPoint = 50
-            self.mainPlayer.bloodPoint = 50
+            self.botPlayer.bloodPoint = 30
+            self.mainPlayer.bloodPoint = 30
             self.mainPlayer.prepareDeckCard(leftUpAttackQty: 6, rightUpAttackQty: 6, leftDownAttackQty: 6, rightDownAttackQty: 6)
             self.botPlayer.prepareDeckCard(leftUpAttackQty: 6, rightUpAttackQty: 6, leftDownAttackQty: 6, rightDownAttackQty: 6)
         }
         
         if self.playerTurn.id == botPlayer.id{
             self.botLoading()
+        }
+        else{
+            self.isMainPlayerTurn = true
         }
     }
     
@@ -128,6 +161,7 @@ class GameStatus: ObservableObject {
                 // Game view receive change will show announcement view
                 self.checkVictoryStatus()
                 if self.victory || self.gameOver {
+                    self.removeGameStatusToMemory()
                     return
                 }
             }
@@ -136,9 +170,9 @@ class GameStatus: ObservableObject {
                 self.playerTurn = self.playerTurn.id == self.botPlayer.id ? mainPlayer : botPlayer
             }
         }
-        
-        
     }
+    
+    
     func updateActionFlow(row: Int, col: Int, selectedCharacter: Character){
         self.removePlayerDeck(removedCharacter: selectedCharacter)
         self.addCharacterInCell(row: row, col: col, selectedCharacter: selectedCharacter)
@@ -281,4 +315,29 @@ class GameStatus: ObservableObject {
             }
         }
     }
+    
+    func removeGameStatusToMemory(){
+        let playerId = CurrentPlayer().id
+        // Remove Key-Value Pair
+        UserDefaults.standard.removeObject(forKey: "gameProgress_\(playerId)")
+        
+    }
+    
+    func storeGameStatusToMemory(playerId: String){
+        gameProgress.convertGameStatusToGameProgress(gameStatus: self)
+        do {
+            // Create JSON Encoder
+            let encoder = JSONEncoder()
+
+            // Encode Note
+            let data = try encoder.encode(self.gameProgress)
+
+            // Write/Set Data
+            UserDefaults.standard.set(data, forKey: "gameProgress_\(playerId)")
+
+        } catch {
+            print("Unable to Encode Note (\(error))")
+        }
+    }
+    
 }

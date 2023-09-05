@@ -9,6 +9,8 @@
   Last modified: 02/09/2023
   Acknowledgement: 
     https://www.zerotoappstore.com/how-to-add-background-music-in-swift.html
+    Sound effect: https://mixkit.co/free-sound-effects/game/
+    Background music: https://wowsound.com/
 */
 
 import Foundation

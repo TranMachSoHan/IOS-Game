@@ -6,7 +6,7 @@
         "player": {
             "manaPoint": 2,
             "manaArr": [1, 1, 1, 1, 1, 1],
-            "bloodPoint": 3,
+            "bloodPoint": 5,
             "upAttackQty": 0,
             "downAttackQty": 0,
             "leftAttackQty": 0,
@@ -14,7 +14,7 @@
         },
         "bot": {
             "manaPoint": 3,
-            "bloodPoint": 3,
+            "bloodPoint": 5,
             "manaArr": [1, 1, 1, 1, 1, 1],
             "upAttackQty": 0,
             "downAttackQty": 0,
@@ -32,7 +32,7 @@
         }],
         "player": {
             "manaPoint": 2,
-            "bloodPoint": 3,
+            "bloodPoint": 5,
             "manaArr": [1, 1, 1, 1, 1, 1],
             "upAttackQty": 2,
             "downAttackQty": 0,

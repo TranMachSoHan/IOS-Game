@@ -24,14 +24,14 @@ struct LeaderboardRow: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 10)
             .fill(
-                self.isCurrentPlayer ? .blue : .gray.opacity(0.2)
+                self.isCurrentPlayer ? gameSettings.menuTheme.secondLevelColor : gameSettings.menuTheme.secondLevelColor.opacity(0.2)
             )
             .frame(height: 50.0)
             .overlay(
                 HStack {
                     HStack {
                         Text("\(number)")
-                            .foregroundColor(self.isCurrentPlayer ? .white : .black)
+                            .modifier(HeadingModifier())
                         Image(player.imageName!)
                             .resizable()
                             .scaledToFit()
@@ -40,7 +40,7 @@ struct LeaderboardRow: View {
                             .padding(.vertical, 5)
                         Text(player.name!)
                             .bold()
-                            .foregroundColor(self.isCurrentPlayer ?  .white : .black)
+                            .modifier(HeadingModifier())
                     }
                     Spacer()
                     Text("\(level)")
@@ -54,8 +54,6 @@ struct LeaderboardRow: View {
                             level = player.easyLevel
                         case .medium:
                             level = player.mediumLevel
-                        case .hard:
-                            level = player.hardLevel
                     }
                 }
             )

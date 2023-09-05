@@ -21,28 +21,26 @@ struct ProfileAchievementView : View {
     var backPage: Page
     
     var body : some View {
+        
         ZStack (alignment: .topLeading){
             gameSettings.menuTheme.topLevelColor
             VStack (alignment: .trailing){
-                HStack{
-                    Spacer()
-                }
                 HStack {
+                    Text(name)
+                        .modifier(HeadingModifier())
                     Image(imageName)
                         .resizable()
                         .scaledToFit()
                         .clipShape(Circle())
                         .overlay(Circle().stroke(Color(.white),lineWidth: 2))
                         .padding(.vertical, 5)
-                    
-                    Text(name)
-                        .modifier(HeadingModifier())
                 }
                 .frame(height: 200)
                 Divider()
                     .frame(minHeight: 1)
                 AcheivementBadgeView(playerBadges: badges)
             }
-        }.edgesIgnoringSafeArea(.all)
+        }
+        .padding(.top, 50)
     }
 }

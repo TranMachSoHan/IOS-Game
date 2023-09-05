@@ -27,6 +27,8 @@ struct SwitchUserView: View {
     @State var error: String = ""
     @State var clickedPlayerId : String = ""
     
+    @FetchRequest(sortDescriptors: []) var players: FetchedResults<Player>
+    
     var body: some View {
         ZStack (alignment: .top){
             VStack() {
@@ -58,20 +60,16 @@ struct SwitchUserView: View {
                 
                 
                 //Show list of players in leaderboard
-                PlayerList(name: $name, password: $password, showPopUpAuth: $showPopUpAuth, popUpTypeString: $popUpTypeString, clickedPlayerId: $clickedPlayerId)
+                PlayerList(players: players, name: $name, password: $password, showPopUpAuth: $showPopUpAuth, popUpTypeString: $popUpTypeString, clickedPlayerId: $clickedPlayerId)
             }
         }
         .sheet(isPresented: $showPopUpAuth){
-            SignInUpView(popUpTypeString: $popUpTypeString, name: $name, pass: $password, showPopUpAuth: $showPopUpAuth, error: error, onClose: self.onCheckingAuthen)
+            SignInUpView(popUpTypeString: $popUpTypeString, name: $name, pass: $password, showPopUpAuth: $showPopUpAuth, error: $error, onClose: self.onCheckingAuthen)
                 .interactiveDismissDisabled()
         }
-        
     }
     
     func onCheckingAuthen(){
-        if (self.name.isEmpty || self.password.isEmpty){
-            error = "Name or password cannot be empty"
-        }
         
         if (self.popUpTypeString == "Sign In"){
             // TODO: compare password for authentication
@@ -80,6 +78,20 @@ struct SwitchUserView: View {
             viewRouter.currentPage = .menuPage
         }
         else {
+            // Check name should not be empty
+            if (self.name.isEmpty ){
+                error = "Name cannot be empty"
+                return
+            }
+            
+            //Check existing name
+            if players.map({ player in
+                player.name
+            }).contains(self.name){
+                error = "This name is already taken!"
+                return
+            }
+            
             let player: Player = dataController.addPlayer(name: self.name, pass: self.password, context: managedObjContext)
             currentPlayer.setPlayer(player: player)
             gameSettings.badgeNameUnlock = "New Member"

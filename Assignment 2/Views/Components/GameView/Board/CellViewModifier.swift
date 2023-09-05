@@ -18,7 +18,7 @@ import SwiftUI
 struct AttackCellModifier: ViewModifier {
     let state: Binding<Bool>
     @Binding var cell: Cell
-    @State var playerTurn: PlayerGame = PlayerGame(color: .blue)
+    @State var playerTurn: PlayerGame = PlayerGame(color: "blue")
     let repeatCount: Int
     let duration: Double
     @EnvironmentObject var gameSettings: GameSettings
@@ -61,7 +61,7 @@ extension View {
 
 struct CellViewModifier_Previews: PreviewProvider {
     static var previews: some View {
-        GameView(gameStatus: GameStatus())
+        GameView(isNewGame: true, gameStatus: GameStatus(gameProgress: nil))
             .environment(\.managedObjectContext, DataController().container.viewContext)
             .environmentObject(DataController())
             .environmentObject(CurrentPlayer())

@@ -9,6 +9,7 @@
   Last modified: 02/09/2023
   Acknowledgement:
     https://www.hackingwithswift.com/books/ios-swiftui/how-to-combine-core-data-and-swiftui
+    https://stackoverflow.com/questions/56453857/how-to-save-existing-objects-to-core-data
 */
 
 import CoreData
@@ -49,7 +50,6 @@ class DataController: ObservableObject {
         let player = getPlayerById(with: id, context: context) ?? Player()
         player.easyLevel = mode == .easy ? Int64(level) : player.easyLevel
         player.mediumLevel = mode == .medium ? Int64(level) : player.mediumLevel
-        player.hardLevel = mode == .hard ? Int64(level) : player.hardLevel
         save(context: context)
     }
     
@@ -71,10 +71,10 @@ class DataController: ObservableObject {
         return players.first
     }
     
+    // For later used if on time
     func deleteAll() {
           let fetchRequest1: NSFetchRequest<NSFetchRequestResult> = Player.fetchRequest()
           let batchDeleteRequest1 = NSBatchDeleteRequest(fetchRequest: fetchRequest1)
           _ = try? container.viewContext.execute(batchDeleteRequest1)
     }
-    
 }

@@ -1,13 +1,18 @@
-//
-//  Character.swift
-//  Assignment 2
-//
-//  Created by macOS on 10/08/2023.
-//
+/*
+  RMIT University Vietnam
+  Course: COSC2659 iOS Development
+  Semester: 2022B
+  Assessment: Assignment 2
+  Author: Tran Mach So Han
+  ID: s3750789
+  Created  date: 07/08/2023
+  Last modified: 02/09/2023
+  Acknowledgement: Acknowledge the resources that you use here.
+*/
 
 import SwiftUI
 
-struct Character: Hashable {
+struct Character: Hashable, Codable {
     var characterName = ""
     var manaPoint = 0
     var bloodPoint = 0
@@ -61,8 +66,8 @@ struct Character: Hashable {
         
         // Make sure the total point skill is equivalent to the totalPoint
         // Ensure the balance of a character
-        var bloodPoint = Int.random(in: 1...totalPoint)
-        totalPoint -= bloodPoint
+        let attackPoint = Int.random(in: 0...totalPoint)
+        totalPoint -= attackPoint
         
         // Direction
         if upAttackQty.wrappedValue != 0 && totalPoint != 0{
@@ -129,7 +134,7 @@ struct Character: Hashable {
         }
         
         // remaining
-        var attackPoint = totalPoint
+        let bloodPoint = totalPoint
         
         // Update Point for the character
         self.manaPoint = manaPoint

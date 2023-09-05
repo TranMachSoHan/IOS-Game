@@ -14,7 +14,7 @@ import Foundation
 import SwiftUI
 
 enum DifficultyMode: String, CaseIterable {
-    case easy, medium, hard
+    case easy, medium
 }
 
 enum Locale: String, CaseIterable, Hashable {
@@ -59,13 +59,14 @@ class GameSettings: ObservableObject {
     var modeDescription: String{
         switch difficultyMode {
             case .easy:
-                return "Easy description"
+                return "Monster and Player will only have up, left, right, down attack directions. After level 5, blood of monster and player are both 15"
             case .medium:
-                return "Medium description"
-            case .hard:
-                return "Hard description"
+                return "Monster and Player will have 4 extra attack directions: up left, up right, down left, down right. And the monster blood will be increased to 30"
         }
     }
+    
+    @Published var gameProgress: GameProgress?
+    
     init() {
         darkMode = UserDefaults.standard.bool(forKey: "darkMode")
         locale = Locale(rawValue: UserDefaults.standard.string(forKey: "locale") ?? Locale.en.rawValue)!

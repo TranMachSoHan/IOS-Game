@@ -14,6 +14,38 @@
 
 import SwiftUI
 
+struct CharacterDecksView: View {
+    @Binding var draggedCharacter: Character
+    @Binding var displayCharacterDeck: [Character]
+    @Binding var playerTurn: PlayerGame
+    @Binding var player: PlayerGame
+    var body: some View{
+        HStack {
+            ForEach(displayCharacterDeck, id: \.self) {character in
+                CharacterDeck(
+                    image: Image(character.characterName),
+                    attackPoint: character.attackPoint,
+                    manaPoint: character.manaPoint,
+                    bloodPoint: character.bloodPoint,
+                    upAttack: character.upAttack,
+                    downAttack: character.downAttack,
+                    rightAttack: character.rightAttack,
+                    leftAttack: character.leftAttack,
+                    leftUpAttack: character.leftUpAttack,
+                    leftDownAttack: character.leftDownAttack,
+                    rightUpAttack: character.rightUpAttack,
+                    rightDownAttack: character.rightDownAttack
+                )
+                .onTapGesture {
+                    if playerTurn.id == player.id && player.manaPoint >= character.manaPoint{
+                        draggedCharacter = draggedCharacter == character ? emptyCharacter : character
+                    }
+                }
+                .border(.green, width: draggedCharacter == character ? 10 : 0)
+            }
+        }
+    }
+}
 struct CharacterDeck: View {
     var image : Image
     var attackPoint: Int

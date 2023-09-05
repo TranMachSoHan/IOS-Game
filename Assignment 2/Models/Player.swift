@@ -37,7 +37,6 @@ class CurrentPlayer: ObservableObject  {
         self.imageName = player.imageName ?? ""
         self.easyLevel = Int(player.easyLevel)
         self.mediumLevel = Int(player.mediumLevel)
-        self.hardLevel = Int(player.hardLevel)
         let badge = player.badges ?? []
         self.badges = badge.compactMap { $0 as String }
     }
@@ -52,8 +51,16 @@ class CurrentPlayer: ObservableObject  {
                 return easyLevel
             case .medium:
                 return mediumLevel
-            case .hard:
-                return hardLevel
+        }
+    }
+    
+    
+    func saveLevelUnlock(level: Int, mode: DifficultyMode){
+        switch mode{
+            case .easy:
+                self.easyLevel = level
+            case .medium:
+            self.mediumLevel = level
         }
     }
 }

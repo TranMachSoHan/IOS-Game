@@ -29,8 +29,10 @@ struct HomeView: View {
                 switch viewRouter.currentPage {
                     case .menuPage:
                         MenuView()
+                    case .gameContinuePage:
+                        GameView(isNewGame: false, gameStatus: GameStatus(level: gameSettings.level, mode: gameSettings.difficultyMode, gameProgress: gameSettings.gameProgress!))
                     case .gamePage:
-                        GameView(gameStatus: GameStatus(level: gameSettings.level, mode: gameSettings.difficultyMode))
+                        GameView(isNewGame: true, gameStatus: GameStatus(level: gameSettings.level, mode: gameSettings.difficultyMode, gameProgress: nil))
                     case .gameLevelPage:
                         LevelView()
                     case .switchUser:
@@ -38,7 +40,7 @@ struct HomeView: View {
                     case .leaderboardPage:
                         LeaderboardView()
                     case .howToPlayPage:
-                        MenuView()
+                        HowToPlay()
                     case .profilePage:
                         ProfileView()
                     }
@@ -52,8 +54,28 @@ struct HomeView: View {
             else{
                 currentPlayer.setPlayer(player: player ?? Player(context: managedObjContext))
             }
-            MusicPlayer.shared.startBackgroundMusic(backgroundMusicFileName: "background-music")
+//            MusicPlayer.shared.startBackgroundMusic(backgroundMusicFileName: "background-music")
         }
+        .onChange(of: currentPlayer.name, perform: { newValue in
+            // Read/Get Data
+            if let data = UserDefaults.standard.data(forKey: "gameProgress_\(currentPlayer.id)") {
+                do {
+                    // Create JSON Decoder
+                    let decoder = JSONDecoder()
+
+                    // Decode Note
+                    let playerGameProgress = try decoder.decode(GameProgress.self, from: data)
+
+                     gameSettings.gameProgress = playerGameProgress
+                } catch {
+                    print("Not found game status of user \(currentPlayer.id)")
+                    gameSettings.gameProgress = nil
+                }
+            }
+            else{
+                gameSettings.gameProgress = nil
+            }
+        })
         .onChange(of: viewRouter.currentPage) { newState in
             if viewRouter.currentPage == .gamePage{
                 MusicPlayer.shared.audioPlayer?.setVolume(0.5, fadeDuration: 0.5)

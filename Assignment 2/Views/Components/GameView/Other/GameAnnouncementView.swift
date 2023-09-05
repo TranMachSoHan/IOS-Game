@@ -1,13 +1,18 @@
-//
-//  AnnouncementView.swift
-//  Assignment 2
-//
-//  Created by macOS on 01/09/2023.
-//
-
+/*
+  RMIT University Vietnam
+  Course: COSC2659 iOS Development
+  Semester: 2022B
+  Assessment: Assignment 2
+  Author: Tran Mach So Han
+  ID: s3750789
+  Created  date: 18/08/2023
+  Last modified: 02/09/2023
+  Acknowledgement:
+*/
 
 import SwiftUI
 
+// This shows the Game Announcement when user wins or lose game
 struct GameAnnouncementView: View {
     @EnvironmentObject var gameSettings: GameSettings
     @State var isWon: Bool = false
@@ -26,30 +31,32 @@ struct GameAnnouncementView: View {
                     HStack{
                         // Back to level selection btn
                         backBtn
+                        // Continue level or re-try btn
                         gamePlayBtn
                     }
                     .frame(height:geo.size.height/6)
                     .padding(.horizontal, geo.size.width/15)
-                    
-                    
-
-                    // Continue level or re-try btn
-                    
                 }
             }.edgesIgnoringSafeArea(.bottom)
         }
         .onAppear(){
+            // Play sound effect
             if isWon{
                 MusicPlayer.shared.playSoundEffect(soundEffect: "level-up", type: "wav")
             }
             else{
                 MusicPlayer.shared.playSoundEffect(soundEffect: "game-over", type: "wav")
             }
+            /**
+             Remove from gameSettings
+            **/
+            gameSettings.gameProgress = nil
         }
     }
 }
 
 extension GameAnnouncementView{
+    // Back to level view
     var backBtn: some View {
         GeometryReader { geo in
             Button {
@@ -69,12 +76,14 @@ extension GameAnnouncementView{
         }
     }
     
+    // Continue level or re-try btn
     var gamePlayBtn: some View {
         GeometryReader { geo in
             Button {
                 if isWon {
                     gameSettings.level = gameSettings.level + 1
                 }
+                viewRouter.currentPage = .gameLevelPage
                 viewRouter.currentPage = .gamePage
             } label: {
                 Capsule()

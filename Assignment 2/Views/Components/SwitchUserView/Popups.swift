@@ -12,12 +12,15 @@ struct SignInUpView: View {
     @Binding var name: String
     @Binding var pass: String
     @Binding var showPopUpAuth: Bool
-    var error: String = ""
+    @Binding var error: String
     var onClose: () -> ()
 
     var body: some View {
         VStack(spacing: 12) {
-            Button(action: {showPopUpAuth = false}){
+            Button(action: {
+                showPopUpAuth = false
+                error = ""
+            }){
                 Image(systemName: "xmark")
                     .symbolVariant(.circle.fill)
                     .font(.system(size: 50,
@@ -55,17 +58,17 @@ struct SignInUpView: View {
             }
             
             
-            TextField("Password",
-                      text: $pass,
-                      prompt: Text("Password").foregroundColor(.blue))
-                .limitInputLength(value: $pass, length: 6)
-                .keyboardType(.decimalPad)
-                .padding(10)
-                .overlay {
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(.blue, lineWidth: 2)
-                }
-                .padding(.horizontal)
+//            TextField("Password",
+//                      text: $pass,
+//                      prompt: Text("Password").foregroundColor(.blue))
+//                .limitInputLength(value: $pass, length: 6)
+//                .keyboardType(.decimalPad)
+//                .padding(10)
+//                .overlay {
+//                    RoundedRectangle(cornerRadius: 10)
+//                        .stroke(.blue, lineWidth: 2)
+//                }
+//                .padding(.horizontal)
             
             if (error != ""){
                 Text(error)

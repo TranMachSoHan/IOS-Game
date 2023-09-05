@@ -16,7 +16,8 @@ import SwiftUI
 
 struct PlayerList: View {
     //Fetch players
-    @FetchRequest(sortDescriptors: []) var player: FetchedResults<Player>
+    var players: FetchedResults<Player>
+    @EnvironmentObject var currentPlayer: CurrentPlayer
     @Binding var name: String
     @Binding var password: String
     @Binding var showPopUpAuth: Bool
@@ -34,7 +35,7 @@ struct PlayerList: View {
             Text("Choose Player")
                 .font(.title)
             
-            if (player.isEmpty){
+            if (players.isEmpty){
                 Image("no-data")
                     .resizable()
                     .scaledToFit()
@@ -45,8 +46,9 @@ struct PlayerList: View {
             }
             else{
                 LazyVGrid(columns: columns, spacing: 30) {
-                    ForEach(player) {player in
+                    ForEach(players) {player in
                         PlayerRow(player: player)
+                            .border(.red, width: currentPlayer.id == player.id?.uuidString ? 7 : 0)
                             .onTapGesture {
                                 name = player.name!
                                 password = ""

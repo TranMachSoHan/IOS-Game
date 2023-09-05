@@ -27,6 +27,6 @@ struct StatusPoint: View {
 
 struct StatusPoint_Previews: PreviewProvider {
     static var previews: some View {
-        StatusPoint(point: 3, image: Image("mana"))
+        StatusPoint(point: 2, image: Image("blood"))
     }
 }

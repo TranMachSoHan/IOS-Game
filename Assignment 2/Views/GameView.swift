@@ -31,6 +31,12 @@ struct GameView: View {
     @EnvironmentObject var viewRouter: ViewRouter
     @State var victoryState: Bool = false
     @State var pauseGame: Bool = false
+    @State var isNewGame: Bool
+    
+    init(isNewGame: Bool, gameStatus: GameStatus){
+        self.gameStatus = gameStatus
+        self.isNewGame = isNewGame
+    }
     
     var body: some View {
         GeometryReader { geo in
@@ -40,22 +46,20 @@ struct GameView: View {
                         pauseButton
                         Spacer()
                         gameProgressNoti
+                        Spacer()
+                        showPlayerTurn
                     }
-                    .frame(height: geo.size.height/10)
 
                     PlayerStatusView(
                         image: gameStatus.botPlayer.image,
                         bloodPoint: $gameStatus.botPlayer.bloodPoint,
                         manaPoint: $gameStatus.botPlayer.manaPoint,
-                        manaPositionTop: false,
-                        showDeck: false,
-                        draggedCharacter: $draggedCharacter,
                         player: $gameStatus.botPlayer,
                         playerTurn: $gameStatus.playerTurn,
-                        displayCharacterDeck: $gameStatus.botPlayer.displayCharacterDeck,
+                        isMainPlayerTurn: $gameStatus.isMainPlayerTurn,
                         showLoading: true,
                         gameStatus: gameStatus
-                    ).frame(height: geo.size.height/5)
+                    ).frame(height: geo.size.height/7)
                     
                     BoardCell(draggedCharacter: $draggedCharacter, gameStatus: gameStatus)
                         .frame(height: geo.size.height/10)
@@ -64,37 +68,46 @@ struct GameView: View {
                         image: gameStatus.mainPlayer.image,
                         bloodPoint: $gameStatus.mainPlayer.bloodPoint,
                         manaPoint: $gameStatus.mainPlayer.manaPoint,
-                        manaPositionTop: true,
-                        showDeck: true,
-                        draggedCharacter: $draggedCharacter,
                         player: $gameStatus.mainPlayer,
                         playerTurn: $gameStatus.playerTurn,
-                        displayCharacterDeck: $gameStatus.mainPlayer.displayCharacterDeck,
+                        isMainPlayerTurn: $gameStatus.isMainPlayerTurn,
                         showLoading: false,
                         gameStatus: gameStatus
-                    )
-                    
+                    ).frame(height: geo.size.height/7)
+                    CharacterDecksView(
+                        draggedCharacter: $draggedCharacter,
+                        displayCharacterDeck: $gameStatus.mainPlayer.displayCharacterDeck,
+                        playerTurn: $gameStatus.playerTurn,
+                        player: $gameStatus.mainPlayer)
+                    .frame(height: geo.size.height/7)
                 }
                 .onChange(of: self.gameStatus.playerTurn, perform: { (value) in
-                    if self.gameStatus.playerTurn == self.gameStatus.botPlayer{
+                    if self.gameStatus.playerTurn.id == self.gameStatus.botPlayer.id{
                         self.gameStatus.botLoading()
                     }
+                    else{
+                        self.gameStatus.isMainPlayerTurn = true
+                    }
+                    gameStatus.storeGameStatusToMemory(playerId: currentPlayer.id)
                 })
                 .onChange(of: self.gameStatus.victory, perform: { (value) in
                     if self.gameStatus.victory{
-                        let level = gameSettings.level + 1
-                        let mode = gameSettings.difficultyMode
+                        let level = self.gameStatus.level + 1
+                        let mode = self.gameStatus.mode
+                        
                         // Update core data and Current Player
-                        currentPlayer.easyLevel = mode == .easy ? level : currentPlayer.easyLevel
-                        currentPlayer.mediumLevel = mode == .medium ? level : currentPlayer.mediumLevel
-                        currentPlayer.hardLevel = mode == .hard ? level : currentPlayer.hardLevel
-                        dataController.updatePlayerLevel(level: level, mode: mode, id: UUID(uuidString: currentPlayer.id) ?? UUID(), context: managedObjContext)
+                        currentPlayer.saveLevelUnlock(level: level, mode: mode)
+                        dataController.updatePlayerLevel(level: level, mode: mode, id: UUID(uuidString: currentPlayer.id)!, context: managedObjContext)
+                        
+                        // Toggle pop up sheet victory 
                         self.gameStatus.victory = false
                         victoryState = true
                     }
-                    
-                    
                 })
+                .onDisappear(){
+                    gameSettings.gameProgress = gameStatus.gameProgress
+                }
+                
                 if pauseGame {
                     PauseView(pauseGame: $pauseGame)
                 }
@@ -131,11 +144,18 @@ extension GameView {
                 .modifier(HeadingModifier())
         }
     }
+    
+    var showPlayerTurn: some View{
+        ZStack{
+            Text("\(gameStatus.showPlayerTurn)")
+                .modifier(HeadingModifier())
+        }
+    }
 }
 
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
-        GameView(gameStatus: GameStatus())
+        GameView(isNewGame: true, gameStatus: GameStatus(gameProgress: GameProgress()))
             .environment(\.managedObjectContext, DataController().container.viewContext)
             .environmentObject(DataController())
             .environmentObject(CurrentPlayer())

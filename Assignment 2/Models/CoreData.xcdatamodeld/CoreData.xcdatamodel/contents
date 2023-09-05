@@ -3,7 +3,6 @@
     <entity name="Player" representedClassName="Player" syncable="YES" codeGenerationType="class">
         <attribute name="badges" optional="YES" attributeType="Transformable" customClassName="[NSString]"/>
         <attribute name="easyLevel" optional="YES" attributeType="Integer 64" defaultValueString="1" usesScalarValueType="YES"/>
-        <attribute name="gameStatus" optional="YES" attributeType="Transformable"/>
         <attribute name="hardLevel" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="imageName" optional="YES" attributeType="String" defaultValueString=""/>

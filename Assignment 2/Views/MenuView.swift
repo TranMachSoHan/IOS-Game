@@ -24,7 +24,6 @@ struct MenuView: View {
         GeometryReader { geo in
             ZStack (alignment: .center){
                 //Background
-                
                 Image(gameSettings.menuTheme.menuBackgroundImage)
                     .resizable()
                     .scaledToFill()
@@ -54,6 +53,25 @@ struct MenuView: View {
                     }
                     .padding(.top,80)
                     
+                    if gameSettings.gameProgress != nil {
+                        Button(action: {
+                            withAnimation {
+                                viewRouter.currentPage = .gameContinuePage
+                            }
+                        }) {
+                            Capsule()
+                                .fill(gameSettings.menuTheme.thirdLevelColor)
+                                .frame(width: geo.size.width/1.8, height: geo.size.height/10)
+                                .overlay(
+                                    Text("Continue")
+                                        .font(.system(size: geo.size.width/10))
+                                        .fontWeight(.bold)
+                                        .foregroundColor(gameSettings.menuTheme.topLevelColor)
+                                        
+                                )
+                        }
+                    }
+                    
                     
                     Button(action: {
                         withAnimation {
@@ -64,17 +82,17 @@ struct MenuView: View {
                             .resizable()
                             .scaledToFill()
                             .frame(width: geo.size.width/1.2, height: geo.size.height/10)
-                        
+                            
                     }
                     
                     Button(action: {
-//                        viewRouter.currentPage = .switchUser
+                        viewRouter.currentPage = .howToPlayPage
                     }) {
                             Image(gameSettings.darkMode ? "how-to-play-btn-dark": "how-to-play-btn-light")
                                 .resizable()
                                 .scaledToFill()
                                 .frame(width: geo.size.width/1.2, height: geo.size.height/10)
-                                .shadow(color: .red, radius: 5, x: 5, y: 5)
+                                
                         }
                     Button(action: {
                         withAnimation {
@@ -85,7 +103,7 @@ struct MenuView: View {
                             .resizable()
                             .scaledToFill()
                             .frame(width: geo.size.width/1.2, height: geo.size.height/10)
-                            .shadow(color: .red, radius: 5, x: 5, y: 5)
+                            
                     }
                     Button(action: {
                         withAnimation {

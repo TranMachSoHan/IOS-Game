@@ -32,7 +32,7 @@ extension BloodBarView {
                     .foregroundColor(Color.gray.opacity(0.7))
 
                 RoundedRectangle(cornerRadius: 40)
-                    .frame(width: Double(percentage)/Double(originBloodPoint) * 100 * geo.size.width)
+                    .frame(width: Double(percentage)/Double(originBloodPoint) * geo.size.width)
                     .foregroundColor(
                         progressColor(percentage: Double(percentage)/Double(originBloodPoint) * 100)
                     )
